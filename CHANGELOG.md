@@ -18,11 +18,13 @@ CMDS: "[[📚 501 Obsidian]]"
 
 ---
 
-## v4.5 — 2026-05-04 (4-Way Sync Workflow + Share Folder Restored)
+## v4.5 — 2026-05-04 (4-Way Sync Workflow + Share Folder Restored + Sequencing Rule)
 
-**트리거**: v4.4 배포 직후 사용자 지적 — `40. Docs/47. CMDS Docs/cmds-system-files-share/` (sanitized 외부 공유본) 가 4월 18일 이후 16일간 stale 상태로 방치됨. 원인은 `system-docs-updater` 스킬의 옛 "Quick Update Command" 가 backup 만 다루고 share 는 별도 섹션으로 분리되어 있어 매번 누락됨. 운영 워크플로 자체를 4-way fan-out 으로 재설계.
+**트리거 #1 (share folder)**: v4.4 배포 직후 사용자 지적 — `40. Docs/47. CMDS Docs/cmds-system-files-share/` (sanitized 외부 공유본) 가 4월 18일 이후 16일간 stale 상태로 방치됨. 원인은 `system-docs-updater` 스킬의 옛 "Quick Update Command" 가 backup 만 다루고 share 는 별도 섹션으로 분리되어 있어 매번 누락됨. 운영 워크플로 자체를 4-way fan-out 으로 재설계.
 
-### CLAUDE.md v3.5 → v3.6 (precedence 1)
+**트리거 #2 (sequencing)**: v4.5 첫 배포 후 CHANGELOG.md 에 v4.5 entry 추가 → git push → 사용자 지적 "GitHub 은 했으면서 왜 라이브는 안 해?". 원인은 ④ Vercel deploy 가 그 순간의 DEV 폴더 *스냅샷* 을 배포하는데, 그 이후 추가된 콘텐츠는 라이브에 반영 안 됨. GitHub repo 와 Vercel 자동배포 미연결 (수동 CLI 만) 이라 git push 로는 라이브 갱신 불가. → **Sequencing Rule** 명시.
+
+### CLAUDE.md v3.5 → v3.7 (precedence 1)
 
 "📦 System Files Deployment" 섹션 재작성:
 - 단순 flow 다이어그램 → **4-way fan-out 다이어그램** (① 백업 → ② 공유 → ③ DEV → ④ Vercel 시각화)

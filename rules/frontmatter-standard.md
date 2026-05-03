@@ -1,3 +1,7 @@
+---
+date created: 2026-04-23T21:04
+date modified: 2026-05-04T00:30
+---
 # Frontmatter Standard (Required Properties)
 
 Every note in this vault MUST include these 7 required properties:

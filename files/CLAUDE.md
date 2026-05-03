@@ -26,9 +26,10 @@ optional-for:
 token-estimate: 5800
 CMDS: "[[📚 501 Obsidian]]"
 index: "[[🏛 CMDS Head Quarter]]"
-version: "3.6"
+version: "3.7"
 status: completed
 changelog:
+  - "3.7 (2026-05-04): Added Sequencing Rule (누락 방지 #2) — Vercel deploy is a snapshot, so any DEV folder change after deploy needs a redeploy. GitHub auto-deploy is NOT connected, so git push alone doesn't update live. 사고 사례: CHANGELOG v4.5 entry deploy 후 추가해서 라이브 미반영, 사용자가 'GitHub 은 했으면서 왜 라이브는 안 해?' 지적."
   - "3.6 (2026-05-04): Documented 4-way sync (backup + share + DEV + Vercel) as a single comprehensive bash command in 'System Files Deployment' section. Added 누락 방지 룰 + 사고 사례 (2026-04-18 ~ 05-03 share folder 16일 stale)를 명시. system-docs-updater 스킬도 Quick Update Command → All-in-One Sync Command 로 재구성."
   - "3.5 (2026-05-03): Added Antigravity 03-7/03-8 output lanes. Fixed deployment flow rules count (7→8, includes blank-line-rules). Clarified that 5 of 8 system files are publicly deployed."
   - "3.4 (2026-05-03): Synced AI Agent output lane rules with AGENTS.md by documenting Codex MBP/Studio lanes in shared rules."
@@ -237,7 +238,9 @@ Obsidian Sync 는 dotfile (`.claude/`) 을 동기화하지 않기 때문에, Cla
                           system.cmdspace.work  (즉시 반영)
 ```
 
-> **⚠️ 누락 방지 룰**: 시스템 파일 수정 후 ① + ② + ③ 모두 갱신해야 정합성 유지. ② share 폴더를 빼먹으면 외부에 공유한 sanitized 사본이 outdated 됨 (실제로 2026-04-30~05-03 사이 share 폴더 13~16일 stale 상태로 방치됐었음).
+> **⚠️ 누락 방지 룰 #1 (4 destinations)**: 시스템 파일 수정 후 ① + ② + ③ 모두 갱신해야 정합성 유지. ② share 폴더를 빼먹으면 외부에 공유한 sanitized 사본이 outdated 됨 (실제로 2026-04-30~05-03 사이 share 폴더 13~16일 stale 상태로 방치됐었음).
+>
+> **⚠️ 누락 방지 룰 #2 (Sequencing)**: ④ `vercel deploy` 는 그 순간의 DEV 폴더 *스냅샷* 을 배포. 따라서 **CHANGELOG.md / HTML / 기타 DEV 콘텐츠 변경은 ④ 전에 끝내야 함**. 만약 deploy 후에 추가 변경했다면 반드시 재배포 (`cd $DEV && vercel deploy --prod --yes`). GitHub 자동 배포 연결 안 돼있어 git push 만으론 라이브 갱신 안 됨 (2026-05-04 CHANGELOG v4.5 entry deploy 후 추가해서 라이브 미반영 사고 발생).
 
 #### 배포 명령 (4-way 통합)
 
