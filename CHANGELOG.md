@@ -29,6 +29,45 @@ CMDS: "[[📚 501 Obsidian]]"
 
 ---
 
+## v4.5.3 — 2026-05-04 (Landing Page Version Label Sync)
+
+**트리거**: 사용자 스크린샷 — system.cmdspace.work 랜딩 페이지에 *"CMDS v4.3 · 2026-04-19 업데이트"* 배지가 stale. 시스템 파일은 v4.5.2 까지 잘 따라왔으나, **랜딩 페이지 / 문서 페이지의 버전 라벨은 별개의 수동 갱신 대상** 이라 누락. 사고 패턴 #4 = "marketing surface drift".
+
+### File Version Snapshot
+
+| File | Version | Δ from v4.5.2 |
+|------|:-------:|:-------------:|
+| CLAUDE.md | 3.9 | — |
+| AGENTS.md | 2.5 | — |
+| ANTIGRAVITY.md | 2.0 | — |
+| CMDS.md | 2.5 | — |
+| 🏛 CMDS Guide.md | 2.5 | — |
+| 🏛 CMDS Head Quarter.md | 1.4 | — |
+| BRAIN.md *(internal)* | (Gobi-managed) | — |
+| BRAIN_PROMPT.md *(internal)* | (Gobi-managed) | — |
+
+(시스템 파일 무변경 — 랜딩/문서 페이지만 갱신)
+
+### Changes
+
+**`DEV/index.html`** (4 patches):
+- 버전 배지 EN: `v4.3 · Updated 2026-04-19` → `v4.5.2 · Updated 2026-05-04`
+- 버전 배지 KO: `v4.3 · 2026-04-19 업데이트` → `v4.5.2 · 2026-05-04 업데이트`
+- "seven shared rules" → "eight shared rules" (4 occurrences in EN: meta description, og:description, twitter:description, hero lede)
+- "일곱 개의 공유 규칙" → "여덟 개의 공유 규칙" (KO hero lede)
+
+**`DEV/docs/index.html`** (7 patches):
+- title / og:title / og:image:alt / twitter:title / twitter:image:alt / brand-version: `v4.3` → `v4.5.2`
+- hero-eyebrow: `CMDS · 2026-04-19 · v4.3` → `CMDS · 2026-05-04 · v4.5.2`
+
+### 사고 패턴 #4 명시 + 누락 방지
+
+`SKILL.md` 의 Pre-Deploy Checklist 에 **"랜딩 페이지 버전 라벨" 항목 신설** (4-way sync 의 0번째 단계 격으로 격상). 매크로 version 바뀔 때마다 grep 로 `v4\.[0-9]` / `2026-` / `seven|eight|일곱|여덟` 패턴 sweep 의무화.
+
+→ "5 destinations sync" 가 사실은 **6번째 surface (마케팅 랜딩) 까지 포함해야** 완전했음. v4.5.3 이후로는 marketing surface 까지 7-way 정렬.
+
+---
+
 ## v4.5.2 — 2026-05-04 (2-Layer Version System Formalized)
 
 **트리거**: 사용자 질문 — *"파일마다 버전 넘버가 다른 게 괜찮나? 전체 버전은 어디에서 관리해?"* — 정당한 지적이지만 답이 묵시적으로만 존재했음. 이번에 명시적 시스템화.
