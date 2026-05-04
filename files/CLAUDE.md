@@ -7,7 +7,7 @@ description: "Claude Code specific technical implementation guide. Defines file 
 author:
   - "[[구요한]]"
 date created: 2025-09-27T17:53
-date modified: 2026-05-04
+date modified: 2026-05-04T20:30
 tags:
   - CMDS
   - system
@@ -26,9 +26,10 @@ optional-for:
 token-estimate: 5800
 CMDS: "[[📚 501 Obsidian]]"
 index: "[[🏛 CMDS Head Quarter]]"
-version: "3.7"
+version: "3.8"
 status: completed
 changelog:
+  - "3.8 (2026-05-04): Removed stray numeric tag artifact (`tags: [CMDS, system, 1, 2]` ← `1, 2` came from precedence/audience leak). Restored proper YAML array format. Routine cleanup, no content changes."
   - "3.7 (2026-05-04): Added Sequencing Rule (누락 방지 #2) — Vercel deploy is a snapshot, so any DEV folder change after deploy needs a redeploy. GitHub auto-deploy is NOT connected, so git push alone doesn't update live. 사고 사례: CHANGELOG v4.5 entry deploy 후 추가해서 라이브 미반영, 사용자가 'GitHub 은 했으면서 왜 라이브는 안 해?' 지적."
   - "3.6 (2026-05-04): Documented 4-way sync (backup + share + DEV + Vercel) as a single comprehensive bash command in 'System Files Deployment' section. Added 누락 방지 룰 + 사고 사례 (2026-04-18 ~ 05-03 share folder 16일 stale)를 명시. system-docs-updater 스킬도 Quick Update Command → All-in-One Sync Command 로 재구성."
   - "3.5 (2026-05-03): Added Antigravity 03-7/03-8 output lanes. Fixed deployment flow rules count (7→8, includes blank-line-rules). Clarified that 5 of 8 system files are publicly deployed."
