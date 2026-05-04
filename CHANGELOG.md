@@ -16,9 +16,93 @@ CMDS: "[[📚 501 Obsidian]]"
 
 > 공개 배포되는 5개 시스템 파일(CLAUDE.md, AGENTS.md, CMDS.md, 🏛 CMDS Head Quarter, 🏛 CMDS Guide)의 변경 이력을 추적합니다. 볼트 내부에는 추가로 3개 비공개 시스템 파일(ANTIGRAVITY.md, BRAIN.md, BRAIN_PROMPT.md)이 있어 총 8개로 운영되며, 이 3개는 vendor·product 전용이라 외부 배포 대상이 아닙니다.
 
+## 📐 2-Layer Version System
+
+이 changelog 는 **2-layer 버전 시스템**의 매크로 레이어:
+
+| Layer | 단위 | 위치 | 예시 |
+|-------|------|------|------|
+| 🌐 **매크로 (시스템 전체)** | Vercel 배포 스냅샷 | **이 CHANGELOG.md** | v4.5, v4.5.1 |
+| 🔬 **마이크로 (파일별)** | 각 파일의 evolution | 각 파일 frontmatter `version:` | CLAUDE 3.8, CMDS 2.5, ... |
+
+각 매크로 entry 에는 **그 시점의 8 files version snapshot matrix** 를 포함해 마이크로 ↔ 매크로 매핑이 명시됩니다.
+
+---
+
+## v4.5.2 — 2026-05-04 (2-Layer Version System Formalized)
+
+**트리거**: 사용자 질문 — *"파일마다 버전 넘버가 다른 게 괜찮나? 전체 버전은 어디에서 관리해?"* — 정당한 지적이지만 답이 묵시적으로만 존재했음. 이번에 명시적 시스템화.
+
+### File Version Snapshot
+
+| File | Version | Δ from v4.5.1 |
+|------|:-------:|:-------------:|
+| **CLAUDE.md** | **3.9** | ⬆ 3.8 → 3.9 |
+| AGENTS.md | 2.5 | — |
+| ANTIGRAVITY.md | 2.0 | — |
+| CMDS.md | 2.5 | — |
+| 🏛 CMDS Guide.md | 2.5 | — |
+| 🏛 CMDS Head Quarter.md | 1.4 | — |
+| BRAIN.md *(internal)* | (Gobi-managed) | — |
+| BRAIN_PROMPT.md *(internal)* | (Gobi-managed) | — |
+
+### Changes
+
+- **CHANGELOG.md** 상단에 "📐 2-Layer Version System" 섹션 추가 — 매크로(이 changelog) vs 마이크로(파일별 frontmatter `version:`) 구분 명시
+- **모든 매크로 entry 에 File Version Snapshot matrix 의무화** — v4.5.2/v4.5.1/v4.5/v4.4 까지 backfill 완료 (이전은 추정값으로 표기)
+- **SKILL.md** (system-docs-updater) 에 매트릭스 템플릿 + 버전 번호 규칙 (매크로 = `v{maj}.{min}.{patch}`, 마이크로 = `{maj}.{min}`) 추가
+- **CLAUDE.md v3.9**: "📦 System Files Deployment" 섹션에 2-Layer Version System 표 명시. 다음 LLM 세션이 자동으로 매크로/마이크로 구분 인지
+
+### Why 2 Layers (정당화)
+
+| Layer | 답하는 질문 | 비유 |
+|-------|------------|------|
+| 🌐 매크로 (CHANGELOG) | "외부 사용자가 다운받는 ZIP 의 스냅샷 버전?" | `package.json` 의 `"version"` |
+| 🔬 마이크로 (frontmatter) | "이 파일이 얼마나 진화했나?" | `node_modules/<lib>/package.json` 의 각 lib version |
+
+둘 다 의미 있고 보완적. 단점은 매핑 추적 — 그래서 매크로 entry 마다 matrix 의무화로 보완.
+
+---
+
+## v4.5.1 — 2026-05-04 (Frontmatter Cleanup)
+
+**트리거**: CLAUDE.md 의 `tags: [CMDS, system, 1, 2]` 에 stray numeric `1, 2` 가 어떤 자동 편집으로 leak. 본문은 무변경, frontmatter만 정상화.
+
+### File Version Snapshot
+
+| File | Version | Δ from v4.5 |
+|------|:-------:|:-----------:|
+| **CLAUDE.md** | **3.8** | ⬆ 3.7 → 3.8 |
+| AGENTS.md | 2.5 | — |
+| ANTIGRAVITY.md | 2.0 | — |
+| CMDS.md | 2.5 | — |
+| 🏛 CMDS Guide.md | 2.5 | — |
+| 🏛 CMDS Head Quarter.md | 1.4 | — |
+| BRAIN.md *(internal)* | (Gobi-managed) | — |
+| BRAIN_PROMPT.md *(internal)* | (Gobi-managed) | — |
+
+### Changes
+
+- CLAUDE.md frontmatter: `tags: [CMDS, system, 1, 2]` → `tags: [- CMDS, - system]` (proper YAML array)
+- `1, 2` 는 precedence/audience leak 으로 추정 (이전 자동 편집의 artifact)
+- 본문 0 byte 변경, ZIP 74,639 bytes (74,542 에서 +97 bytes — frontmatter 차이만)
+
 ---
 
 ## v4.5 — 2026-05-04 (4-Way Sync Workflow + Share Folder Restored + Sequencing Rule)
+
+### File Version Snapshot
+
+| File | Version | Δ from v4.4 |
+|------|:-------:|:-----------:|
+| **CLAUDE.md** | **3.7** | ⬆ 3.5 → 3.7 (3.6 + 3.7 in same cycle) |
+| AGENTS.md | 2.5 | — |
+| ANTIGRAVITY.md | 2.0 | — |
+| CMDS.md | 2.5 | — |
+| 🏛 CMDS Guide.md | 2.5 | — |
+| 🏛 CMDS Head Quarter.md | 1.4 | — |
+| BRAIN.md *(internal)* | (Gobi-managed) | — |
+| BRAIN_PROMPT.md *(internal)* | (Gobi-managed) | — |
 
 **트리거 #1 (share folder)**: v4.4 배포 직후 사용자 지적 — `40. Docs/47. CMDS Docs/cmds-system-files-share/` (sanitized 외부 공유본) 가 4월 18일 이후 16일간 stale 상태로 방치됨. 원인은 `system-docs-updater` 스킬의 옛 "Quick Update Command" 가 backup 만 다루고 share 는 별도 섹션으로 분리되어 있어 매번 누락됨. 운영 워크플로 자체를 4-way fan-out 으로 재설계.
 
@@ -66,6 +150,19 @@ CMDS: "[[📚 501 Obsidian]]"
 ---
 
 ## v4.4 — 2026-05-03 (8-File Scheme + Codex/Antigravity Lanes)
+
+### File Version Snapshot
+
+| File | Version | Δ from v4.3 |
+|------|:-------:|:-----------:|
+| CLAUDE.md | 3.5 | ⬆ ~3.3 → 3.5 |
+| AGENTS.md | 2.5 | ⬆ ~2.3 → 2.5 |
+| **ANTIGRAVITY.md** | **2.0** | ⬆ bare → 2.0 (full rewrite) |
+| CMDS.md | 2.5 | ⬆ ~2.3 → 2.5 |
+| 🏛 CMDS Guide.md | 2.5 | ⬆ ~2.3 → 2.5 |
+| 🏛 CMDS Head Quarter.md | 1.4 | ⬆ 1.2 → 1.4 |
+| BRAIN.md *(internal)* | (Gobi-managed) | — |
+| BRAIN_PROMPT.md *(internal)* | (Gobi-managed) | — |
 
 **트리거**: 다중 AI agent 운영 정착 — Codex 일상 사용 본격화 + Antigravity (Google Gemini) 시스템 파일 모더나이즈 + 8개 system file 의 precedence 정합성 확보.
 

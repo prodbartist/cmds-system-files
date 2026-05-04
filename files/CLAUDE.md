@@ -26,9 +26,10 @@ optional-for:
 token-estimate: 5800
 CMDS: "[[📚 501 Obsidian]]"
 index: "[[🏛 CMDS Head Quarter]]"
-version: "3.8"
+version: "3.9"
 status: completed
 changelog:
+  - "3.9 (2026-05-04): Documented 2-Layer Version System (매크로 = CHANGELOG.md / 마이크로 = 파일별 version) in 'System Files Deployment' section. 사용자 질문 ('파일마다 버전 다른 게 괜찮나? 전체 버전은?') 에 응답 — 두 layer 가 보완적이며 매크로 entry 마다 파일별 version snapshot matrix 가 매핑 추적 보장."
   - "3.8 (2026-05-04): Removed stray numeric tag artifact (`tags: [CMDS, system, 1, 2]` ← `1, 2` came from precedence/audience leak). Restored proper YAML array format. Routine cleanup, no content changes."
   - "3.7 (2026-05-04): Added Sequencing Rule (누락 방지 #2) — Vercel deploy is a snapshot, so any DEV folder change after deploy needs a redeploy. GitHub auto-deploy is NOT connected, so git push alone doesn't update live. 사고 사례: CHANGELOG v4.5 entry deploy 후 추가해서 라이브 미반영, 사용자가 'GitHub 은 했으면서 왜 라이브는 안 해?' 지적."
   - "3.6 (2026-05-04): Documented 4-way sync (backup + share + DEV + Vercel) as a single comprehensive bash command in 'System Files Deployment' section. Added 누락 방지 룰 + 사고 사례 (2026-04-18 ~ 05-03 share folder 16일 stale)를 명시. system-docs-updater 스킬도 Quick Update Command → All-in-One Sync Command 로 재구성."
@@ -174,6 +175,20 @@ Obsidian Sync 는 dotfile (`.claude/`) 을 동기화하지 않기 때문에, Cla
 ### 📦 System Files Deployment (system.cmdspace.work)
 
 **8 system files 중 공개 가능한 5개(CLAUDE, AGENTS, CMDS, HQ, Guide)** 만 `system.cmdspace.work` 에 배포. 나머지 3개(ANTIGRAVITY = Gemini 전용, BRAIN/BRAIN_PROMPT = Gobi 페르소나 전용)는 vendor·product 특화라 외부 배포 대상에서 제외. 배포 스택/경로/명령은 아래와 같습니다.
+
+#### 📐 2-Layer Version System
+
+CMDS 시스템 파일은 **2-layer 버전 시스템** 사용:
+
+| Layer | 단위 | 위치 | 예시 |
+|-------|------|------|------|
+| 🌐 **매크로 (시스템 전체)** | Vercel 배포 스냅샷 | `/Users/yohankoo/DEV/cmds-system-files/CHANGELOG.md` | v4.5, v4.5.1 |
+| 🔬 **마이크로 (파일별)** | 각 파일의 evolution | 각 파일 frontmatter `version:` | CLAUDE 3.8, CMDS 2.5, ... |
+
+**둘 다 의미 있고 독립적** — 매크로는 외부 배포 단위 (사용자가 다운받는 ZIP 의 스냅샷), 마이크로는 각 파일의 schema/content evolution. 매크로 entry 안에 *그 시점의 8 files version snapshot matrix* 가 포함되어 매핑 추적 가능.
+
+→ "현재 시스템 전체 버전?" 질문 → `DEV/CHANGELOG.md` 의 최상단 매크로 version 확인.
+→ "특정 파일 진화?" 질문 → 그 파일 frontmatter `version:` + `changelog:` 배열 확인.
 
 #### 배포 스택
 
