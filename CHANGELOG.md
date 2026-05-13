@@ -29,6 +29,72 @@ CMDS: "[[📚 501 Obsidian]]"
 
 ---
 
+## v4.6.0 — 2026-05-13 (Design System Surface + Share Folder Catch-Up)
+
+**트리거**: Google Stitch 의 `DESIGN.md` 패턴([google-labs-code/design.md](https://github.com/google-labs-code/design.md)) 도입 결정 + 5/4-5 vault 편집이 share 폴더로 sync 안 된 채 ~9일 stale 상태 발견 (사고 패턴 #2 재발).
+
+**왜 v4.6.0 (minor) 인가**: 이번 릴리즈는 단순 catch-up 이 아니라 **새 public surface 추가**. `DESIGN.md` 와 `design-tokens.json` 은 *AI 코딩 에이전트가 CMDS 디자인 시스템을 직접 학습할 수 있는 새 진입점* 이고, Claude 디자인 시스템·Figma Tokens Studio·Style Dictionary 등 외부 도구가 fetch 하는 정본이 됨. patch (v4.5.4) 가 아니라 minor bump 가 의미상 맞음.
+
+### File Version Snapshot
+
+| File | Version | Δ from v4.5.3 |
+|------|:-------:|:-------------:|
+| CLAUDE.md | 3.9 | — |
+| AGENTS.md | 2.5 | — |
+| ANTIGRAVITY.md | 2.0 | — |
+| CMDS.md | 2.5 | — |
+| 🏛 CMDS Guide.md | 2.5 | — |
+| 🏛 CMDS Head Quarter.md | 1.4 | — |
+| BRAIN.md *(internal)* | (Gobi-managed) | — |
+| BRAIN_PROMPT.md *(internal)* | (Gobi-managed) | — |
+
+(8 파일 micro 버전 무변경 — 이번 매크로 bump 는 *기존 파일 변경* 이 아니라 *새 자산 추가* 와 *share 폴더 catch-up* 이 트리거. 5/4-5 vault 편집은 의도적으로 micro bump 안 친 minor edit 들로 처리됨.)
+
+### Added
+
+- **`DESIGN.md`** — Google `design.md` alpha spec 준수. YAML frontmatter (colors / typography / rounded / spacing / layout / components) + canonical section order markdown body. CMDS Green/Pink 듀얼 모드, SF Pro + Pretendard 타이포 시스템 정본화.
+- **`design-tokens.json`** — DTCG / Tokens Studio for Figma 호환. light/dark 모드를 별도 token set 으로 분리, `{core.*}` alias 로 brand palette 참조. Figma Variables 자동 import 가능.
+
+### Fixed (share folder drift — 사고 패턴 #2 재발 대응)
+
+5/4 share 스냅샷 (May 4 20:12) 이후 vault 에서 추가 편집되었지만 `files/` 에 반영 안 된 3개 파일을 catch-up sync:
+
+- `files/CLAUDE.md` (vault 5/4 22:10) — ~2h drift
+- `files/CMDS-Guide.md` (vault 5/5 12:57) — ~17h drift
+- `files/CMDS-Head-Quarter.md` (vault 5/4 21:39) — ~1.5h drift
+- `files/CMDS-System-Files.zip` 재생성 (75139 B → 75258 B) — 5 files + 8 rules 반영
+
+### Distribution Policy (재확인)
+
+8개 system file 중 **공개 5개만** `files/` 에 포함:
+- ✅ 공개: CLAUDE.md / AGENTS.md / CMDS.md / 🏛 CMDS Guide / 🏛 CMDS Head Quarter
+- ❌ 비공개 (vendor / persona): ANTIGRAVITY.md (Gemini 전용) / BRAIN.md / BRAIN_PROMPT.md (Gobi 전용)
+
+이번 릴리즈에서 ANTIGRAVITY.md 를 share 에 추가할지 검토했으나, CMDS.md 의 분배 정책에 따라 *vendor-specific* 으로 분류해 비공개 유지 결정.
+
+### Install Snapshot (v4.6.0 기준)
+
+```bash
+# 풀 ZIP 다운로드
+curl -O https://system.cmdspace.work/files/CMDS-System-Files.zip
+unzip CMDS-System-Files.zip
+# → CLAUDE.md, AGENTS.md, CMDS.md, CMDS-Guide.md, CMDS-Head-Quarter.md + rules/ (8개)
+
+# 또는 GitHub tag 로 고정
+git clone --branch v4.6.0 https://github.com/johnfkoo951/cmds-system-files.git
+# (tag 는 이 commit 에서 생성됨)
+
+# 디자인 시스템 자산 (이번 릴리즈에 신설)
+curl -O https://system.cmdspace.work/DESIGN.md
+curl -O https://system.cmdspace.work/design-tokens.json
+```
+
+### Sequencing Rule 적용 결과
+
+v4.5 에서 도입한 *deploy 후 변경은 반드시 재배포* 룰에 따라 이번 catch-up + DESIGN.md 추가도 모두 `vercel deploy --prod` 로 라이브 반영 완료. live label `v4.6.0 · 2026-05-13` 까지 동시 갱신.
+
+---
+
 ## v4.5.3 — 2026-05-04 (Landing Page Version Label Sync)
 
 **트리거**: 사용자 스크린샷 — system.cmdspace.work 랜딩 페이지에 *"CMDS v4.3 · 2026-04-19 업데이트"* 배지가 stale. 시스템 파일은 v4.5.2 까지 잘 따라왔으나, **랜딩 페이지 / 문서 페이지의 버전 라벨은 별개의 수동 갱신 대상** 이라 누락. 사고 패턴 #4 = "marketing surface drift".
