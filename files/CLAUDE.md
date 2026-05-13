@@ -7,10 +7,8 @@ description: "Claude Code specific technical implementation guide. Defines file 
 author:
   - "[[구요한]]"
 date created: 2025-09-27T17:53
-date modified: 2026-05-04T20:30
-tags:
-  - CMDS
-  - system
+date modified: 2026-05-04T22:10
+tags: [CMDS, system, 1, 2]
 audience: Claude Code
 scope: technical-implementation
 precedence: 1
@@ -340,15 +338,15 @@ This mothership vault has **6 companion vaults** — separate Obsidian vaults wi
 
 ### Vault Inventory by Governance (2026-04-30)
 
-| Type | Vault | Path | 멤버 | Purpose |
-|------|-------|------|------|---------|
-| 🌍 **Mothership** | `CMDSPACE_Local_MBP` | (this vault) | 구요한 (Solo) | 마더십 — 모든 작업의 substrate |
-| 🛰 **Compiled Satellite** | `CMDS_LLM_Wiki` | `/Users/yohankoo/Local Obsidian_MBP/CMDS_LLM_Wiki` | 구요한 + LLM | 학습·연구·정리된 지식 (Karpathy LLM Wiki 패턴) |
-| 🤖 **Personal Product** | `CMDS_Gobi` | `/Users/yohankoo/Local Obsidian_MBP/CMDS_Gobi` | 구요한 (Solo) | 고비 스페이스 / 고비 데스크탑 개인 사용 |
-| 🤝 **Pair Collaboration** | `CMDS_JoonLab` | `/Users/yohankoo/Local Obsidian_MBP/CMDS_JoonLab` | 구요한 + 박준 | 교육·강의·컨설팅·코칭 |
-| 🤝 **Pair Collaboration** | `CMDSPACE_Admin` | `/Users/yohankoo/Local Obsidian_MBP/CMDSPACE_Admin` | 구요한 + 이태극 | 커맨드스페이스 운영 총괄 |
-| 👥 **Team Collaboration** | `GOBI` | `/Users/yohankoo/Local Obsidian_MBP/GOBI` | 5인 (구요한·이태극·김진영·강민석·Greg Moon) | 커맨드스페이스 × 고비 팀 |
-| 📤 **Public Distribution** | `cmds-vault` | `/Users/yohankoo/Local Obsidian_MBP/cmds-vault` | 구요한 → 외부 | CMDS 스타터킷 (외부 사용자 배포) |
+| Type                       | Vault                | Path                                                | 멤버                             | Purpose                             |
+| -------------------------- | -------------------- | --------------------------------------------------- | ------------------------------ | ----------------------------------- |
+| 🌍 **Mothership**          | `CMDSPACE_Local_MBP` | (this vault)                                        | 구요한 (Solo)                     | 마더십 — 모든 작업의 substrate              |
+| 🛰 **Compiled Satellite**  | `CMDS_LLM_Wiki`      | `/Users/yohankoo/Local Obsidian_MBP/CMDS_LLM_Wiki`  | 구요한 + LLM                      | 학습·연구·정리된 지식 (Karpathy LLM Wiki 패턴) |
+| 🤖 **Personal Product**    | `CMDS_Gobi`          | `/Users/yohankoo/Local Obsidian_MBP/CMDS_Gobi`      | 구요한 (Solo)                     | 고비 스페이스 / 고비 데스크탑 개인 사용             |
+| 🤝 **Pair Collaboration**  | `CMDS_JoonLab`       | `/Users/yohankoo/Local Obsidian_MBP/CMDS_JoonLab`   | 구요한 + 박준                       | 교육·강의·컨설팅·코칭                        |
+| 🤝 **Pair Collaboration**  | `CMDSPACE_Admin`     | `/Users/yohankoo/Local Obsidian_MBP/CMDSPACE_Admin` | 구요한 + 이태극                      | 커맨드스페이스 운영 총괄                       |
+| 👥 **Team Collaboration**  | `GOBI`               | `/Users/yohankoo/Local Obsidian_MBP/GOBI`           | 5인 (구요한·이태극·김진영·강민석·Greg Moon) | 커맨드스페이스 × 고비 팀                      |
+| 📤 **Public Distribution** | `cmds-vault`         | `/Users/yohankoo/Local Obsidian_MBP/cmds-vault`     | 구요한 → 외부                       | CMDS 스타터킷 (외부 사용자 배포)               |
 
 ### 멤버 별 vault 매핑
 
