@@ -7,7 +7,7 @@ description: "Central navigation hub for the CMDS vault. Provides links to 91 su
 author:
   - "[[구요한]]"
 date created: 2025-10-23T01:59
-date modified: 2026-05-04T21:39
+date modified: 2026-05-20
 tags:
   - CMDS
   - system
@@ -33,7 +33,7 @@ changelog:
 share_link: https://share.note.sx/fhfd1sg3#k4DqRdPCseLgf3fC7XlKzkIs/Hr5ZLdr/R6f5vlVJN0
 share_updated: 2025-08-25T11:43:35+09:00
 ---
-> **🔄 Last Updated: 2026-05-03** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS-Head-Quarter_backup.md`
+> **🔄 Last Updated: 2026-05-20** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS-Head-Quarter_backup.md`
 
 Links:: [[🏛 CMDS Head Quarter]] | [[🏛 CMDS Guide]]
 References:: [[🏛 000 YHN Home]]

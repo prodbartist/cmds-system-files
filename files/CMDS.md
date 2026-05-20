@@ -7,7 +7,7 @@ description: "Context and philosophy guide for all LLM assistants working with t
 author:
   - "[[구요한]]"
 date created: 2025-10-22T21:52
-date modified: 2026-05-03
+date modified: 2026-05-20
 tags: [CMDS, system]
 audience: All LLM assistants
 scope: context-philosophy
@@ -22,9 +22,10 @@ optional-for:
 token-estimate: 8500
 CMDS: "[[📚 601 Knowledge Management]]"
 index: "[[🏛 CMDS Head Quarter]]"
-version: "2.5"
+version: "2.6"
 status: completed
 changelog:
+  - "2.6 (2026-05-20): Moderate diet — removed Working Environments & Sync (4중복: CLAUDE/AGENTS/ANTIGRAVITY/CMDS), Key Directories & Their Roles (.claude/rules/directory-structure.md 가 정본), Command Suite 상세 (CLAUDE.md 3중복), Quick Reference 카테고리 표 (본문과 자체 중복), When to Reference Each File·Quick Decision Tree (다른 파일 헤더와 중복). Vault Statistics 날짜 갱신. 9 카테고리·Workflow Patterns·Understanding User Intent 전문 유지. 결과: ~43.8k → ~28k chars."
   - "2.5 (2026-05-03): Aligned precedence to 8-file scheme (3→4 to make room for ANTIGRAVITY at 3). Added Antigravity 03-7/03-8 output lanes throughout. Removed stray numeric tag artifact (`3`)."
   - "2.4 (2026-05-03): Added Codex MBP/Studio output lanes and clarified Codex as a daily AI coding agent alongside Claude Code."
   - "2.3 (2026-04-20): 구요한 프로필 정정 — 박사 논문 집필 중단 상태 명시, 개인사업자(법인 신설 준비중), 주업=사업+교육으로 재프레이밍. 현재 4대 초점(옵시디언 PKM · System Files · LLM Wiki · 9Yohan) + LG 임원/회장단 교육 언급 추가."
@@ -32,7 +33,7 @@ changelog:
   - "2.1 (2026-04-01): precedence/memory-type/required-for/token-estimate 추가"
   - "2.0 (2026-03-15): 전면 리뷰, 통계 갱신, AI Tools 업데이트"
 ---
-> 	**🔄 Last Updated: 2026-05-03** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS_backup.md` | Public: [system.cmdspace.work](https://system.cmdspace.work)
+> 	**🔄 Last Updated: 2026-05-20** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS_backup.md` | Public: [system.cmdspace.work](https://system.cmdspace.work)
 
 # CMDS.md
 
@@ -88,79 +89,7 @@ This vault has **8 system files** organized by audience. You are currently readi
 
 > **중요**: BRAIN.md / BRAIN_PROMPT.md 는 *Claude Code · Gemini CLI · Codex 등 일반 LLM coding agent 의 context window 로 들어가지 않음*. Gobi 앱이 외부 인터페이스(예: web)에서 구요한 페르소나로 답할 때만 사용. 다른 6개 파일과 *audience 가 본질적으로 다름*.
 
-### When to Reference Each File
-
-**Start here (CMDS.md) when**:
-- First time working with this vault
-- Need to understand user's (구요한) work context
-- Want to know the PURPOSE of each category (100-900)
-- Learning about CMDS Process (Connect → Merge → Develop → Share)
-
-**Reference CLAUDE.md when**:
-- Claude Code is writing or modifying code
-- Need Claude-specific technical specs
-
-**Reference AGENTS.md when**:
-- Codex / Cursor / Windsurf 등 일반 AI agent 작업 중
-- Need general technical specs without Claude-specific content
-
-**Reference ANTIGRAVITY.md when**:
-- Google Gemini / Antigravity IDE 가 작업 중
-- Gemini 전용 도구 매핑·행동 규칙 필요
-
-**Reference 🏛 CMDS Head Quarter.md when**:
-- Need the full category structure at a glance
-- Looking for ChatGPT GPT links
-
-**Reference 🏛 CMDS Guide.md when**:
-- Creating new notes (need Properties template)
-- Checking standard note types or naming conventions
-
-**Reference BRAIN.md / BRAIN_PROMPT.md when**:
-- Gobi 페르소나 시스템 작업 중 (예: persona 톤 갱신, brain profile 보강)
-- 일반 코딩 작업에서는 *건드리지 않음*
-
-### Quick Decision Tree
-
-```
-Are you trying to...
-├─ Understand the system?         → CMDS.md (you are here)
-├─ Write code (Claude Code)?      → CLAUDE.md
-├─ Write code (Codex/Cursor)?     → AGENTS.md
-├─ Write code (Gemini)?           → ANTIGRAVITY.md
-├─ Navigate to a category?        → 🏛 CMDS Head Quarter.md
-├─ Check standards/templates?     → 🏛 CMDS Guide.md
-└─ Update Gobi persona system?    → BRAIN.md / BRAIN_PROMPT.md
-```
-
-**This file provides the "story" behind the system. For technical "how-to", see CLAUDE.md or AGENTS.md.**
-
----
-
-## Working Environments & Sync
-
-This vault is synced across two Macs via **Obsidian Sync** (official Obsidian cloud server).
-
-| 환경 | 기기 | Base Path |
-|------|------|-----------|
-| Primary | MacBook Pro (16-inch) | `/Users/yohankoo/Local Obsidian_MBP/CMDSPACE_Local_MBP` |
-| Secondary | Mac Studio | `/Users/yohankoo/Obsidian_Local/CMDSPACE_Studio_Local_Org` |
-
-- All subfolders and files are kept identical across both machines
-- AI coding agent outputs are separated by environment subfolders under `00. Inbox/03. AI Agent/`:
-		- `03-1. Claude Code (MBP)` / `03-2. Claude Code (Studio)` — Claude Code
-		- `03-3. OpenClaw (MBP)` / `03-4. OpenClaw (Studio)` — OpenClaw
-		- `03-5. Codex (MBP)` / `03-6. Codex (Studio)` — Codex
-		- `03-7. Antigravity (MBP)` / `03-8. Antigravity (Studio)` — Antigravity (Google)
-
-### Public Deployment of System Files
-8 system files 중 **공개 가능한 5개** (CLAUDE.md / AGENTS.md / CMDS.md / 🏛 CMDS Guide / 🏛 CMDS Head Quarter) + 8 shared rules 가 **https://system.cmdspace.work** 에 배포되어 LLM agent 와 외부 협업자가 vault 접근 없이 참조할 수 있도록 함. 나머지 3개(ANTIGRAVITY.md / BRAIN.md / BRAIN_PROMPT.md)는 vendor-specific 또는 Gobi 페르소나 전용이라 외부 배포 대상에서 제외.
-
-- **Hosting**: Vercel project `cmds-system-files-v2` (team `johnfkoo951's projects`)
-- **DNS**: Cloudflare (`cmdspace.work`) — A record `system → 76.76.21.21`
-- **Deploy source**: `/Users/yohankoo/DEV/cmds-system-files/` (manual `vercel deploy --prod`)
-- **GitHub**: https://github.com/johnfkoo951/cmds-system-files (code backup, not auto-deployed)
-- For technical deploy flow, see [[CLAUDE.md]] → "📦 System Files Deployment" section
+> **Quick routing**: 시스템 이해 → CMDS.md (you are here) · 코드 작성 → CLAUDE.md (Claude) / AGENTS.md (Codex 등) / ANTIGRAVITY.md (Gemini) · 카테고리 네비게이션 → [[🏛 CMDS Head Quarter]] · 표준·템플릿 → [[🏛 CMDS Guide]] · Gobi 페르소나 → BRAIN.md / BRAIN_PROMPT.md. **Working environments / Deploy 절차는 [[CLAUDE.md]] 가 정본.**
 
 ---
 
@@ -487,54 +416,12 @@ Index notes aggregate related content across categories:
 
 ## Note Properties & Metadata
 
-Every note in CMDS contains structured metadata that enables powerful queries and connections.
+모든 노트는 구조화된 메타데이터 (frontmatter) 를 갖는다. **자세한 스키마·검증 규칙은 [[🏛 CMDS Guide]] 와 `.claude/rules/frontmatter-standard.md` 가 정본.**
 
-### Required Properties (7 fields)
-```yaml
----
-type:           # Note category (see types below)
-aliases: []     # Alternative names
-description: "" # English 1-2 sentence summary for LLMs
-author:
-  - "[[구요한]]"
-date created:   # YYYY-MM-DD
-date modified:  # YYYY-MM-DD
-tags: []        # Topical tags
----
-```
-
-> **`description` field** (added 2026-04-07): Must be in English, 1-2 sentences, skill-description style. Explains what the note contains AND when an LLM should reference it. This is a machine-readable relevance hint for AI agents working across the vault.
-
-### Common Note Types
-**Content Types**:
-- `note` — General knowledge notes (459+)
-- `terminology` — Term definitions (130+)
-- `research-pipeline` — Research pipeline documents (124+)
-- `manuscript` — Manuscripts and drafts (66+)
-- `books` — Book notes and reviews
-- `article` — Articles and essays
-- `research-review` — Literature reviews
-- `sermon` — Spiritual reflections
-
-**Structural Types**:
-- `CMDS` — Category index pages (replaces traditional MOC concept)
-- `moc` — Map of Content (85+)
-- `api` — API documentation (97+)
-- `index` — Collection pages
-
-**Activity Types**:
-- `meeting` — Meeting minutes (160+)
-- `people` — People profiles (93+)
-- `curriculum` — Course curricula (82+)
-- `channel` — YouTube/Blog/Newsletter 채널 프로필 (101+)
-- `project` — Project documentation
-
-### Status Values
-- `unread` — Not yet processed
-- `reading` — Currently reading/processing
-- `inProgress` — Active work in progress
-- `completed` — Finished
-- `archived` — Historical reference
+- **7 required properties**: `type`, `aliases`, `description` (English, 1-2 sentence skill-style hint for LLMs), `author`, `date created`, `date modified`, `tags`
+- **Common types**: `note` · `terminology` · `meeting` · `people` · `curriculum` · `manuscript` · `research-pipeline` · `channel` · `CMDS` (category index) · `moc` · `api` · `documentation`
+- **Status (5 values)**: `unread` · `reading` · `inProgress` · `completed` · `archived`
+- **Date format**: ISO 8601 (`YYYY-MM-DD` 또는 `YYYY-MM-DDTHH:mm`)
 
 ---
 
@@ -607,105 +494,19 @@ tags: []        # Topical tags
 
 ---
 
-## Key Directories & Their Roles
+## Key Directories
 
-### 00. Inbox/ — Processing Area
-**Purpose**: Temporary storage for new inputs before they're processed into the CMDS system
-- `01. Daily Notes/` — Daily reflections and logs (with 01-1. Planners, 01-2. Weekly Notes)
-- `02. Clippings/` — Web clippings (with 02-1. Literature Notes)
-- `03. AI Agent/` — **PRIMARY WORKING DIRECTORY** for all AI coding outputs
-	- `03-1. Claude Code (MBP)/` — Claude Code outputs on MacBook Pro
-	- `03-2. Claude Code (Studio)/` — Claude Code outputs on Mac Studio
-	- `03-3. OpenClaw (MBP)/` — OpenClaw outputs on MacBook Pro
-	- `03-4. OpenClaw (Studio)/` — OpenClaw outputs on Mac Studio
-	- `03-5. Codex (MBP)/` — Codex outputs on MacBook Pro
-	- `03-6. Codex (Studio)/` — Codex outputs on Mac Studio
-	- `03-7. Antigravity (MBP)/` — Antigravity outputs on MacBook Pro
-	- `03-8. Antigravity (Studio)/` — Antigravity outputs on Mac Studio
-- `04. Excalidraw/` — Visual diagrams
-- `05. Canvas/` — Canvas notes
-- `06. Automation/` — Automation workflows (06-1. Make.com, 06-2. n8n Lecture, 06-3. STT)
-- `06. GenAI Chats/` — GenAI conversation logs
-- `07. App Sync/` — External app sync (07-1. Claude, 07-2. Antigravity, 07-3. Bear Notes)
-- `08. Unlisted/` — Unlisted items
-- `09. Legacy/` — Legacy and archived content
+**전체 디렉토리 구조와 카테고리 매핑은 `.claude/rules/directory-structure.md` 가 정본.** 9개 최상위 폴더 (`00. Inbox` ~ `90. Settings`) 와 CMDS 100-900 카테고리는 1:1 매핑이 아니라 *역할 분리* 다:
 
-**Workflow**: Items in Inbox are temporary. They should be processed and moved to appropriate CMDS categories.
-
-### 10. CMDS Process/ — Process Documentation
-Documents the **Connect → Merge → Develop → Share** workflow itself
-- `11. Connect/` — Capturing and connecting ideas
-- `12. Merge/` — Integrating knowledge
-- `13. Develop/` — Building and creating
-- `14. Share/` — Publishing and sharing
-
-### 20. Literature Notes/ — Reading Notes
-Notes from books, articles, papers (usually migrate to [[📖 200 Literature]] categories)
-
-### 30. Permanent Notes/ — Evergreen Content
-Fully developed, timeless notes that represent mature knowledge
-
-### 40. Docs/ — Technical Documentation
-**Purpose**: Central repository for technical documents and guides
-- `41. Official Docs/` — Official documentation, API guides, product manuals
-- `42. AI Generated/` — AI-generated technical documents and tutorials
-- `43. Audio Files/` — Audio files
-- `44. Transcripts/` — Transcripts
-- `45. Partner Made/` — Partner-created documents
-- `46. My Docs/` — User-created technical documents and specifications
-- `47. CMDS Docs/` — CMDS system documentation (backups, share copies)
-- `49. API Information/` — API information and references
-
-**Workflow**: Reference materials for development, implementation guides, and technical knowledge. Distinct from 80. References (academic/research focus) - this is practical, implementation-focused documentation.
-
-### 50. Assets/ — Reusable Resources
-**Purpose**: Reusable resources, templates, and media assets
-- `51. Brand/` — Brand assets and identity
-- `51. Prompt/` — Prompt assets
-- `51. Prompt and Syntax/` — Prompts and syntax resources
-- `52. Workflow/` — Workflow templates and automation assets
-- `59. Obsidian Web Clipper/` — Web clipper templates
-
-**Workflow**: Shared resources referenced across multiple projects and notes. Prompts, workflows, and brand assets that are reused rather than project-specific.
-
-### 60. Collections/ — Entity Management
-- `61. People/` — People database
-- `62. Organization/` — Organizations
-- `63. Meetings/` — Meeting archives
-- `64. Spirituality/` — Spiritual content (Bible, sermons)
-- `67. Bases/` — Database structures
-- `68. Kanban Board/` — Kanban boards
-- `68-1. Portal/` — Portal pages
-- `69. Preferences/` — User preferences (Alcohol, Sleep, Jazz)
-
-### 70. Outputs/ — Final Deliverables
-- `71. Published/` — Published content
-- `72. Presentations/` — Presentation materials
-- `73. Courses/` — Course content
-- `74. Projects/` — Project documentation
-- `75. Consulting/` — Consulting deliverables
-- `79. Portfolio/` — Portfolio pages
-
-### 80. References/ — External Materials
-- `81. Attachment/` — File attachments
-- `82. Web Articles/` — Web articles
-- `83. References/` — General references
-- `84. References (Zotero)/` — Zotero references
-- `85. References (Book)/` — Book references
-- `86. Omnivore/` — Omnivore articles
-- `86. References (Book, Yes24)/` — Yes24 books
-- `89. Omnivore/` — Omnivore additional
-
-### 90. Settings/ — System Configuration
-- `91. Templates/` — Note templates
-- `92. Templates (archived)/` — Archived templates
-- `93. Generated Text/` — AI generated text
-- `94. Agent Settings/claude/` — AI agent configs 의 **원본 폴더**. 각 Mac 의 `.claude/{agents,commands,rules,skills}` 가 이 경로를 가리키는 symlink. Obsidian Sync 가 `.claude/` (dotfile) 은 동기화하지 않기 때문에 원본을 여기에 둠.
-- `95. Fonts/` — Font files
-- `96. Index/` — Index files
-- `97. File Class/` — File classification
-- `98. Format/` — Format definitions
-- `99. Others/` — Other settings
+- `00. Inbox/` — 미분류·임시. AI 에이전트 코드 출력은 `03. AI Agent/03-1~03-8` (agent × machine 매트릭스) 의 정해진 lane 으로.
+- `10. CMDS Process/` — Connect/Merge/Develop/Share 자체에 대한 문서
+- `20. Literature Notes/` · `30. Permanent Notes/` — 외부 지식 → 영구 노트
+- `40. Docs/` — 실무·기술 문서 (`47. CMDS Docs/` 에 system file backup/share 사본)
+- `50. Assets/` — 재사용 리소스 (브랜드·프롬프트·워크플로)
+- `60. Collections/` — People·Organization·Meetings·Bases
+- `70. Outputs/` — 최종 산출물 (강의·컨설팅·프로젝트)
+- `80. References/` — 외부 참조 (Zotero·Omnivore·도서)
+- `90. Settings/` — 템플릿·인덱스·에이전트 설정 (`94. Agent Settings/claude/` 가 `.claude/{agents,commands,rules,skills}` symlink 의 원본)
 
 ---
 
@@ -795,34 +596,9 @@ If discussing PKM system itself:
 - **Develop Stage** → Apply in [[📖 300 Data]] through [[📖 600 Specialties]]
 - **Share Stage** → Output via [[📖 700 Creatives]] or [[📖 800 Outputs]]
 
-### Command Suite: CMDS Process as Operational Verbs (2026-04-14+)
+### CMDS Process as Operational Verbs
 
-The CMDS Process is no longer just a filing framework — it's now the **operational vocabulary** of the vault via 8 slash commands. Each stage has a matching command that encodes the full workflow (purpose gate, cross-vault search, back-link, frontmatter compliance):
-
-| CMDS Process Stage | Command | What it does |
-|-------------------|---------|--------------|
-| 🔗 **Connect** | `/connect` | Capture inbox items into `📖 100 Themes` as stubs. Auto-classifies type (interest/topic/variable/terminology). Low-friction, fast. |
-| 🔀 **Merge** | `/merge` | Synthesize N notes into 1 `📖 200 Literature` note. Multi-dialog: purpose → candidates → angle → draft review. The heaviest command. |
-| 🛠 **Develop** | `/develop` | Apply methodology, build artifact (code, prompt, curriculum, specialty). Outputs to `00. Inbox/03. AI Agent/` first. |
-| 📤 **Share** | `/share` | Orchestrate existing skills (`thebetter-writer`, `markdown-slides`, etc.) to produce 700-800 outputs. |
-
-Plus cross-cutting utilities:
-
-| Utility | Role |
-|---------|------|
-| `/inbox` | Scan inbox subfolders, route to the right stage command (read-only, uses `AskUserQuestion`) |
-| `/lint {scope}` | Health check by stage (orphans, contradictions, stale, frontmatter v2 coverage) |
-| `/query` | Search vault + LLM Wiki, synthesize answer. Results file back into appropriate CMDS category (not a separate folder) |
-| `/status` | One-screen stage snapshot + recommended next action |
-
-**Why this matters philosophically**: The CMDS Process was originally a conceptual framework for how knowledge moves through the vault. With commands, it becomes an **interactive cognitive scaffold** — asking "이걸 connect할까, merge할까?" is now the first metacognitive step of any session, which sharpens what the current work actually is. Commands are not just automation; they're thinking aids that make the CMDS Process tangible.
-
-**Typical session patterns**:
-- **Daily**: `/status` → `/inbox` → (`/connect` or `/merge`)
-- **Weekly**: `/lint inbox` → `/merge {topic}` → `/share` (if applicable)
-- **Project work**: `/query {topic}` → `/merge {topic}` → `/develop` or `/share`
-
-> For command implementation details (parameters, dialog flows, output paths), see [[CLAUDE.md]] "CMDS Process Command Suite (2026-04-14+)" section. Command source files live in `90. Settings/94. Agent Settings/claude/commands/`.
+The CMDS Process is also encoded as **8 slash commands** (`/connect`, `/merge`, `/develop`, `/share` + `/inbox`, `/lint`, `/query`, `/status`). This makes "이걸 connect할까, merge할까?" the first metacognitive step of every session. **Command implementation details (parameters, dialog flows, output paths) are in [[CLAUDE.md]] § "CMDS Process Command Suite".** Source files live in `90. Settings/94. Agent Settings/claude/commands/`.
 
 ### When Searching for Context
 Look for relevant notes in:
@@ -837,7 +613,7 @@ Look for relevant notes in:
 
 <!-- DYNAMIC: 아래 통계와 도구 목록은 주기적으로 갱신됩니다 -->
 
-## Vault Statistics (as of 2026-03-15)
+## Vault Statistics (as of 2026-05-20)
 
 - **Total Notes**: 10,000+
 - **CMDS Categories**: 9 main (100-900) + 91 sub-categories
@@ -859,22 +635,6 @@ This is a **mature, established system** with well-defined patterns. Respect exi
 5. **AI is a partner**: AI tools enhance but don't replace human thinking
 6. **Standards enable freedom**: Consistent structure allows creative flexibility
 7. **Evolution over perfection**: The system grows and adapts continuously
-
----
-
-## Quick Reference: When to Use Which Category
-
-| If you're working with... | Use Category... | Subcategory Examples |
-|---------------------------|-----------------|---------------------|
-| New ideas, emerging topics | 📖 100 Themes | 102 Topics, 103 Variables |
-| Books, papers, theories | 📖 200 Literature | 210 Literature Reviews, 240 Books |
-| Survey data, datasets | 📖 300 Data | 302 Questionnaires, 310 Data Management |
-| Analysis methods, code | 📖 400 Methodologies | 420 Machine Learning, 491 Codes, 492 Prompts |
-| Software tools, AI platforms | 📖 500 Products | 501 Obsidian, 520 ChatGPT, 521 Claude |
-| Domain expertise, skills | 📖 600 Specialties | 601 Knowledge Management, 620 Generative AI |
-| Creative content | 📖 700 Creatives | 701 YouTube, 720 Music |
-| Publications, deliverables | 📖 800 Outputs | 801 PhD, 840 Lectures, 831 Consulting |
-| Business operations | 📖 900 Divisions | 901-909 (specific divisions) |
 
 ---
 

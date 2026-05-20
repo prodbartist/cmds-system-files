@@ -29,6 +29,54 @@ CMDS: "[[📚 501 Obsidian]]"
 
 ---
 
+## v4.7.0 — 2026-05-20 (CMDS.md Diet · System Files Dedup · 5-Way Sync)
+
+**트리거**: 사용자 지적 — *"CMDS.md 캐릭터 너무 많다"*. 전체 8 system file 검증 후 CMDS.md 가 43,856자 / 883줄로 비대화 확인. 주요 원인은 다른 파일과의 중복 콘텐츠 (Working Environments 4중복, Key Directories vs `.claude/rules/directory-structure.md`, Command Suite 상세 vs CLAUDE.md, Quick Reference 표 vs 본문 9 카테고리).
+
+**왜 v4.7.0 (minor) 인가**: 단순 cleanup 이 아니라 **CMDS.md 의 정체성 재정의** — "철학·사용자·9 카테고리·CMDS Process 의 정본" 으로 좁히고, "기술 정본" 은 CLAUDE.md / `.claude/rules/` 로 위임. 다른 시스템 파일 (CLAUDE / Guide) 도 stray tag 정리. 또한 **5-way sync 패턴 도입** (기존 4-way 에 GitHub push 단계 명시 추가).
+
+### File Version Snapshot
+
+| File | Version | Δ from v4.6.0 |
+|------|:-------:|:-------------:|
+| CLAUDE.md | **4.0** | ⬆ 3.9 → 4.0 (tags `[CMDS, system, 1, 2]` → `[CMDS, system]`, 3.8 changelog 가 claim 했지만 실제 미적용된 수정을 진짜로 반영) |
+| AGENTS.md | 2.5 | — (header 날짜만 갱신) |
+| ANTIGRAVITY.md | 2.0 | — (header 날짜만 갱신) |
+| CMDS.md | **2.6** | ⬆ 2.5 → 2.6 (**Moderate diet**: 43,856 → 33,519 chars, -23.6%) |
+| 🏛 CMDS Guide.md | **2.6** | ⬆ 2.5 → 2.6 (tags noise 5개 제거: `태그는자유로워야지`, `maps`, `example`, `service`, `index`) |
+| 🏛 CMDS Head Quarter.md | 1.4 | — (header 날짜만 갱신) |
+| BRAIN.md *(internal)* | (Gobi-managed) | — |
+| BRAIN_PROMPT.md *(internal)* | (Gobi-managed) | — |
+
+### CMDS.md Diet (Moderate ~28k 목표, 결과 33.5k)
+
+- ❌ **삭제**: Working Environments & Sync · Public Deployment 섹션 — CLAUDE.md / AGENTS.md / ANTIGRAVITY.md 와 4중복
+- ❌ **삭제**: Key Directories & Their Roles (~100줄) — `.claude/rules/directory-structure.md` 가 정본
+- ❌ **삭제**: Command Suite 상세 (28줄) — CLAUDE.md "CMDS Process Command Suite" 가 정본 → 1단락 요약 + 링크
+- ❌ **삭제**: Quick Reference 카테고리 표 — 본문 9 카테고리와 자체 중복
+- 🔻 **축약**: System Documentation Overview — When to Reference + Quick Decision Tree 를 한 줄 routing block 으로
+- 🔻 **축약**: Note Properties & Metadata — 스키마는 [[🏛 CMDS Guide]] 와 frontmatter-standard 로 위임
+- 🔄 **갱신**: Vault Statistics 날짜 (2026-03-15 → 2026-05-20)
+- ✅ **유지**: 9 카테고리 전문 (사용자 결정) · Workflow Patterns · Understanding User Intent · Guiding Principles
+
+### Header Sync (전체 6개 public-deployable files)
+
+모든 헤더 `Last Updated` 와 frontmatter `date modified` 를 **2026-05-20** 으로 통일. 이전 상태: CLAUDE 2026-05-04, 나머지 2026-05-03 ~ 2026-05-05 혼재.
+
+### Sync Process Upgrade: 4-way → 5-way
+
+스킬 `system-docs-updater` 의 `All-in-One Sync Command` 가 기존 ① backup → ② share → ③ DEV → ④ Vercel 4단계였는데, **④ GitHub push 를 명시적 단계로 추가**해 5-way 로 확장. 사용자 mental model "백업 → 동기화 → github → 홈페이지" 와 1:1 매핑. GitHub repo 는 Vercel 자동배포 없음을 다시 명시 (사고 패턴 #2 재발 방지).
+
+### Install Snapshot (v4.7.0 기준)
+
+```bash
+curl -O https://system.cmdspace.work/files/CMDS-System-Files.zip
+unzip CMDS-System-Files.zip
+git clone --branch v4.7.0 https://github.com/johnfkoo951/cmds-system-files.git
+```
+
+---
+
 ## v4.6.0 — 2026-05-13 (Design System Surface + Share Folder Catch-Up)
 
 **트리거**: Google Stitch 의 `DESIGN.md` 패턴([google-labs-code/design.md](https://github.com/google-labs-code/design.md)) 도입 결정 + 5/4-5 vault 편집이 share 폴더로 sync 안 된 채 ~9일 stale 상태 발견 (사고 패턴 #2 재발).

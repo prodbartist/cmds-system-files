@@ -7,8 +7,8 @@ description: "Claude Code specific technical implementation guide. Defines file 
 author:
   - "[[구요한]]"
 date created: 2025-09-27T17:53
-date modified: 2026-05-04T22:10
-tags: [CMDS, system, 1, 2]
+date modified: 2026-05-20
+tags: [CMDS, system]
 audience: Claude Code
 scope: technical-implementation
 precedence: 1
@@ -24,9 +24,10 @@ optional-for:
 token-estimate: 5800
 CMDS: "[[📚 501 Obsidian]]"
 index: "[[🏛 CMDS Head Quarter]]"
-version: "3.9"
+version: "4.0"
 status: completed
 changelog:
+  - "4.0 (2026-05-20): Tags 실제 정리 (3.8 changelog 가 claim 했지만 실제로는 `1, 2` 잔존 — 이번에 진짜 제거). Last Updated 헤더 및 date modified 2026-05-20 동기화. CMDS.md v2.6 다이어트와 한 세트."
   - "3.9 (2026-05-04): Documented 2-Layer Version System (매크로 = CHANGELOG.md / 마이크로 = 파일별 version) in 'System Files Deployment' section. 사용자 질문 ('파일마다 버전 다른 게 괜찮나? 전체 버전은?') 에 응답 — 두 layer 가 보완적이며 매크로 entry 마다 파일별 version snapshot matrix 가 매핑 추적 보장."
   - "3.8 (2026-05-04): Removed stray numeric tag artifact (`tags: [CMDS, system, 1, 2]` ← `1, 2` came from precedence/audience leak). Restored proper YAML array format. Routine cleanup, no content changes."
   - "3.7 (2026-05-04): Added Sequencing Rule (누락 방지 #2) — Vercel deploy is a snapshot, so any DEV folder change after deploy needs a redeploy. GitHub auto-deploy is NOT connected, so git push alone doesn't update live. 사고 사례: CHANGELOG v4.5 entry deploy 후 추가해서 라이브 미반영, 사용자가 'GitHub 은 했으면서 왜 라이브는 안 해?' 지적."
@@ -40,7 +41,7 @@ changelog:
   - "2.1 (2026-03-30): frontmatter 표준 추가, 백업 경로 이동"
   - "2.0 (2026-03-15): 전면 리뷰, 통계 갱신, GitHub/Web 링크"
 ---
-> **🔄 Last Updated: 2026-05-04** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CLAUDE_backup.md` | GitHub: [cmds-system-files](https://github.com/johnfkoo951/cmds-system-files) (코드 히스토리, 자동 배포 아님) | Web: [system.cmdspace.work](https://system.cmdspace.work) (Vercel `cmds-system-files-v2`)
+> **🔄 Last Updated: 2026-05-20** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CLAUDE_backup.md` | GitHub: [cmds-system-files](https://github.com/johnfkoo951/cmds-system-files) (코드 히스토리, 자동 배포 아님) | Web: [system.cmdspace.work](https://system.cmdspace.work) (Vercel `cmds-system-files-v2`)
 
 # CLAUDE.md
 
