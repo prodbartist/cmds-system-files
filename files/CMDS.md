@@ -7,10 +7,8 @@ description: "Context and philosophy guide for all LLM assistants working with t
 author:
   - "[[구요한]]"
 date created: 2025-10-22T21:52
-date modified: 2026-05-22
-tags:
-  - CMDS
-  - system
+date modified: 2026-05-23T16:42
+tags: [CMDS, system, 3]
 audience: All LLM assistants
 scope: context-philosophy
 precedence: 4

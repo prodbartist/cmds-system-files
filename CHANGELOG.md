@@ -25,7 +25,73 @@ CMDS: "[[📚 501 Obsidian]]"
 | 🌐 **매크로 (시스템 전체)** | Vercel 배포 스냅샷 | **이 CHANGELOG.md** | v4.5, v4.5.1 |
 | 🔬 **마이크로 (파일별)** | 각 파일의 evolution | 각 파일 frontmatter `version:` | CLAUDE 3.8, CMDS 2.5, ... |
 
-각 매크로 entry 에는 **그 시점의 8 files version snapshot matrix** 를 포함해 마이크로 ↔ 매크로 매핑이 명시됩니다.
+각 매크로 entry 에는 **그 시점의 9 files version snapshot matrix** 를 포함해 마이크로 ↔ 매크로 매핑이 명시됩니다.
+
+---
+
+## v4.8.0 — 2026-05-27 (8→9 Transition + 7-Way Satellite Sync)
+
+**트리거**: 5/22-23 사이 system file 체계가 **8 → 9 files** 로 전환됨 — DESIGN.md 가 precedence 9 (Visual Language tier) 로 신설. 5/20 v4.7.0 이후 메인 볼트는 빠르게 follow-up 변경 (CLAUDE 4.0→4.1, AGENTS 2.5→2.6, ANTIGRAVITY 2.0→2.1, CMDS 2.6→2.7, HQ 1.4→1.5, DESIGN 신규 1.0) 됐으나 DEV/CHANGELOG/HTML 라벨/위성 vault 가 stale 상태로 5일 누적. 사용자 요청: *"항상 시스템 파일 업데이트되면 다 같이 해줘"* — **7-way satellite sync routine** 으로 정식화.
+
+**왜 v4.8.0 (minor) 인가**: DESIGN.md 9번째 파일 추가 + 모든 LLM agent 파일 (CLAUDE/AGENTS/ANTIGRAVITY) 의 Related System Files 표 갱신 = *system file 체계 자체의 확장*. patch 아니라 minor. 동시에 **sync routine 자체가 5-way → 7-way 로 확장** (cmds-vault starter kit + LLM Wiki dependency check 두 위성 단계 추가).
+
+### File Version Snapshot
+
+| File | Version | Δ from v4.7.0 |
+|------|:-------:|:-------------:|
+| CLAUDE.md | **4.1** | ⬆ 4.0 → 4.1 (8→9 system file transition: Related System Files 표에 DESIGN.md precedence 9 추가, body 의 "8 system files" → "9 system files") |
+| AGENTS.md | **2.6** | ⬆ 2.5 → 2.6 (동일 — 9-file scheme 반영) |
+| ANTIGRAVITY.md | **2.1** | ⬆ 2.0 → 2.1 (동일 — 9-file scheme 반영) |
+| CMDS.md | **2.7** | ⬆ 2.6 → 2.7 (9-file table + minor edits) |
+| 🏛 CMDS Guide.md | 2.6 | — |
+| 🏛 CMDS Head Quarter.md | **1.5** | ⬆ 1.4 → 1.5 (DESIGN.md 연결) |
+| **DESIGN.md** | **1.0** | 🆕 NEW — Visual Language spec (precedence 9), 공개 배포 6번째 파일 |
+| BRAIN.md *(internal)* | (Gobi-managed) | — |
+| BRAIN_PROMPT.md *(internal)* | (Gobi-managed) | — |
+
+### 8 → 9 System Files (precedence layout)
+
+| Tier | precedence | File | Audience | Public? |
+|------|:----------:|------|----------|:-------:|
+| 🤖 LLM Coding Agents | 1 | CLAUDE.md | Claude Code | ✅ |
+| 🤖 LLM Coding Agents | 2 | AGENTS.md | Codex/Cursor/Windsurf | ✅ |
+| 🧪 Vendor-Specific | 3 | ANTIGRAVITY.md | Gemini IDE | ❌ |
+| 📚 Context & Standards | 4 | CMDS.md | All LLM | ✅ |
+| 📚 Context & Standards | 5 | 🏛 CMDS Guide.md | User + AI | ✅ |
+| 📚 Context & Standards | 6 | 🏛 CMDS Head Quarter.md | User + AI | ✅ |
+| 🧠 Gobi Persona | 7 | BRAIN.md | Gobi agent + 사람 | ❌ |
+| 🧠 Gobi Persona | 8 | BRAIN_PROMPT.md | Gobi agent | ❌ |
+| **🎨 Visual Language** | **9** | **DESIGN.md** | **All agents producing visual output** | ✅ |
+
+→ **공개 6개** (5→6 으로 확장: CLAUDE/AGENTS/CMDS/Guide/HQ + **DESIGN**), 비공개 3개 (ANTIGRAVITY/BRAIN/BRAIN_PROMPT) 변동 없음.
+
+### Sync Routine Upgrade: 5-way → 7-way (mothership + 2 satellites)
+
+v4.7 에서 도입한 5-way (backup → share → DEV → GitHub → Vercel) 에 **위성 2개** 를 명시 단계로 추가:
+
+- **⑥ cmds-vault** (starter kit, https://github.com/johnfkoo951/cmds-vault) — 메인 5 system file 의 sanitized + starter-specific 재작성 사본. **단순 복사 ❌, frontmatter only sync 가 default** (사용자 결정 — starter 본문은 의도적 재작성이라 보존). v1.0.0 → v1.1.0 commit + push.
+- **⑦ CMDS_LLM_Wiki** (satellite vault) — 자체 CLAUDE.md/AGENTS.md 가 메인을 *동적 참조* 하는 모델 (Karpathy LLM Wiki schema). 메인 변경은 LLM Wiki 의 dynamic reference 가 자동 흡수 — 단, "N system files" 등 stale count 표현이 있으면 패치. **이번에는 잔존 표현 없음 → no-op ✅** (의존성 모델의 가치 증명).
+
+### cmds-vault v1.1.0 변경
+
+이전 v1.0.0 (2026-05-02) 이후 25일간 stale. 사용자가 선택한 "frontmatter only" sync:
+
+- 5 파일 모두: `date modified: 2026-04-28` → `2026-05-27`
+- 5 파일 모두: version bump + changelog entry "Synced from mothership v4.8.0"
+- 🏛 CMDS Guide.md: tags noise 6개 (`index`, `NoteClass`, `operation`, `maps`, `example`, `service`) 제거 — 메인 v2.6 cleanup 따라옴
+- 본문은 starter-specific 표현 그대로 유지 ("this starter vault", `Upstream reference:` 헤더)
+
+### Install Snapshot (v4.8.0)
+
+```bash
+curl -O https://system.cmdspace.work/files/CMDS-System-Files.zip
+unzip CMDS-System-Files.zip   # → 6 public files + 8 rules (이전 5+8 에서 +1)
+git clone --branch v4.8.0 https://github.com/johnfkoo951/cmds-system-files.git
+```
+
+### 사용자 약속 (영구 기록)
+
+> *"항상 내 시스템 파일 업데이트 되면 다 같이 해줘"* (2026-05-22) — 앞으로 메인 system file 수정 시 **7-way sync 가 default 루틴**. 5-way 만 끝내고 위성 빼먹지 말 것.
 
 ---
 
