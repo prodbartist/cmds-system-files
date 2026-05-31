@@ -7,7 +7,7 @@ description: "Claude Code specific technical implementation guide. Defines file 
 author:
   - "[[구요한]]"
 date created: 2025-09-27T17:53
-date modified: 2026-05-22
+date modified: 2026-05-30
 tags:
   - CMDS
   - system
@@ -26,9 +26,10 @@ optional-for:
 token-estimate: 5800
 CMDS: "[[📚 501 Obsidian]]"
 index: "[[🏛 CMDS Head Quarter]]"
-version: "4.1"
+version: "4.2"
 status: completed
 changelog:
+  - "4.2 (2026-05-30): v4.9.0 pass — deploy section 4-way→8-way, ZIP/matrix counts to 6/9, dedup system-files tables."
   - "4.1 (2026-05-22): 8→9 system files 전환 — DESIGN.md (precedence 9, Visual Language tier) 추가. Related System Files 표를 9-file 로 갱신. 공개 배포 파일 5→6개로 확장 (DESIGN.md 공개 결정). Tags 진짜 정리(`1, 2` 잔존분 제거)."
   - "4.0 (2026-05-20): Tags 실제 정리 (3.8 changelog 가 claim 했지만 실제로는 `1, 2` 잔존 — 이번에 진짜 제거). Last Updated 헤더 및 date modified 2026-05-20 동기화. CMDS.md v2.6 다이어트와 한 세트."
   - "3.9 (2026-05-04): Documented 2-Layer Version System (매크로 = CHANGELOG.md / 마이크로 = 파일별 version) in 'System Files Deployment' section. 사용자 질문 ('파일마다 버전 다른 게 괜찮나? 전체 버전은?') 에 응답 — 두 layer 가 보완적이며 매크로 entry 마다 파일별 version snapshot matrix 가 매핑 추적 보장."
@@ -44,7 +45,7 @@ changelog:
   - "2.1 (2026-03-30): frontmatter 표준 추가, 백업 경로 이동"
   - "2.0 (2026-03-15): 전면 리뷰, 통계 갱신, GitHub/Web 링크"
 ---
-> **🔄 Last Updated: 2026-05-22** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CLAUDE_backup.md` | GitHub: [cmds-system-files](https://github.com/johnfkoo951/cmds-system-files) (코드 히스토리, 자동 배포 아님) | Web: [system.cmdspace.work](https://system.cmdspace.work) (Vercel `cmds-system-files-v2`)
+> **🔄 Last Updated: 2026-05-30** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CLAUDE_backup.md` | GitHub: [cmds-system-files](https://github.com/johnfkoo951/cmds-system-files) (코드 히스토리, 자동 배포 아님) | Web: [system.cmdspace.work](https://system.cmdspace.work) (Vercel `cmds-system-files-v2`)
 
 # CLAUDE.md
 
@@ -190,7 +191,7 @@ CMDS 시스템 파일은 **2-layer 버전 시스템** 사용:
 | 🌐 **매크로 (시스템 전체)** | Vercel 배포 스냅샷 | `/Users/yohankoo/DEV/cmds-system-files/CHANGELOG.md` | v4.5, v4.5.1 |
 | 🔬 **마이크로 (파일별)** | 각 파일의 evolution | 각 파일 frontmatter `version:` | CLAUDE 3.8, CMDS 2.5, ... |
 
-**둘 다 의미 있고 독립적** — 매크로는 외부 배포 단위 (사용자가 다운받는 ZIP 의 스냅샷), 마이크로는 각 파일의 schema/content evolution. 매크로 entry 안에 *그 시점의 8 files version snapshot matrix* 가 포함되어 매핑 추적 가능.
+**둘 다 의미 있고 독립적** — 매크로는 외부 배포 단위 (사용자가 다운받는 ZIP 의 스냅샷), 마이크로는 각 파일의 schema/content evolution. 매크로 entry 안에 *그 시점의 9 files version snapshot matrix* 가 포함되어 매핑 추적 가능.
 
 → "현재 시스템 전체 버전?" 질문 → `DEV/CHANGELOG.md` 의 최상단 매크로 version 확인.
 → "특정 파일 진화?" 질문 → 그 파일 frontmatter `version:` + `changelog:` 배열 확인.
@@ -220,15 +221,15 @@ CMDS 시스템 파일은 **2-layer 버전 시스템** 사용:
 ├── CHANGELOG.md                  ← 버전 이력
 ├── .vercel/project.json          ← Vercel 링크 (gitignored)
 ├── files/                        ← 다운로드 배포본
-│   ├── CLAUDE.md, AGENTS.md, CMDS.md, CMDS-Guide.md, CMDS-Head-Quarter.md
-│   ├── CMDS-System-Files.zip     ← 위 5개 + rules/ 번들
+│   ├── CLAUDE.md, AGENTS.md, CMDS.md, CMDS-Guide.md, CMDS-Head-Quarter.md, DESIGN.md
+│   ├── CMDS-System-Files.zip     ← 위 6개 + rules/ 번들
 │   └── rules/ (8개 .md)          ← .claude/rules/ 미러
 └── rules/ (8개 .md)              ← 레포 루트에도 복사본
 ```
 
-#### 동기화 플로우 (볼트 → 4 destinations → 프로덕션)
+#### 동기화 플로우 (볼트 → 8 destinations → 프로덕션)
 
-볼트 원본은 **항상 4 곳에 동기화** (누락하면 외부 배포·공유 문서가 stale). `system-docs-updater` 스킬이 4-way fan-out 을 담당.
+볼트 원본은 **항상 8 곳에 동기화** — 5 mothership (① 백업 ② 공유 ③ DEV ④ GitHub ⑤ Vercel) + 3 satellite (⑥ cmds-vault starter-kit frontmatter ⑦ CMDS_LLM_Wiki dependency check ⑧ LLM Wiki starter-kit 3-place drift check). 누락하면 외부 배포·공유 문서·위성 스타터킷이 stale. `system-docs-updater` 스킬이 8-way (5 mothership + 3 satellite) fan-out 을 담당.
 
 ```
 [볼트 원본 6개 공개]                              [① 백업 — 볼트 내부]
@@ -259,11 +260,11 @@ CMDS 시스템 파일은 **2-layer 버전 시스템** 사용:
                           system.cmdspace.work  (즉시 반영)
 ```
 
-> **⚠️ 누락 방지 룰 #1 (4 destinations)**: 시스템 파일 수정 후 ① + ② + ③ 모두 갱신해야 정합성 유지. ② share 폴더를 빼먹으면 외부에 공유한 sanitized 사본이 outdated 됨 (실제로 2026-04-30~05-03 사이 share 폴더 13~16일 stale 상태로 방치됐었음).
+> **⚠️ 누락 방지 룰 #1 (8 destinations)**: 시스템 파일 수정 후 ① ~ ⑧ 모두 갱신해야 정합성 유지 (최소 ① + ② + ③ 은 항상, ⑥ cmds-vault frontmatter / ⑦ LLM Wiki dep / ⑧ starter-kit drift 는 점검 필수). ② share 폴더를 빼먹으면 외부에 공유한 sanitized 사본이 outdated 됨 (실제로 2026-04-30~05-03 사이 share 폴더 13~16일 stale 상태로 방치됐었음).
 >
 > **⚠️ 누락 방지 룰 #2 (Sequencing)**: ④ `vercel deploy` 는 그 순간의 DEV 폴더 *스냅샷* 을 배포. 따라서 **CHANGELOG.md / HTML / 기타 DEV 콘텐츠 변경은 ④ 전에 끝내야 함**. 만약 deploy 후에 추가 변경했다면 반드시 재배포 (`cd $DEV && vercel deploy --prod --yes`). GitHub 자동 배포 연결 안 돼있어 git push 만으론 라이브 갱신 안 됨 (2026-05-04 CHANGELOG v4.5 entry deploy 후 추가해서 라이브 미반영 사고 발생).
 
-#### 배포 명령 (4-way 통합)
+#### 배포 명령 (8-way 통합 — 5 mothership + 3 satellite)
 
 ```bash
 VAULT="/Users/yohankoo/Local Obsidian_MBP/CMDSPACE_Local_MBP"
@@ -298,11 +299,22 @@ cp "$VAULT/.claude/rules/"*.md      "$DEV/files/rules/"
 cd "$DEV/files" && rm -f CMDS-System-Files.zip && \
   zip -rq CMDS-System-Files.zip CLAUDE.md AGENTS.md CMDS.md CMDS-Guide.md CMDS-Head-Quarter.md DESIGN.md rules/
 
-# ④ Vercel 배포 (실제 프로덕션 반영)
+# ④ GitHub push (코드 백업 — 자동 배포 X)
+cd "$DEV" && git add -A && git commit -m "sync system files" && git push
+
+# ⑤ Vercel 배포 (실제 프로덕션 반영)
 cd "$DEV" && vercel deploy --prod --yes
 ```
 
-→ 4-way 통합 후 `system.cmdspace.work` 에 즉시 반영 (캐시 갱신 포함). ④ 만 실행하면 ① ② ③ 누락이라 외부 공유본/백업/배포본 불일치 발생.
+→ ① ~ ⑤ (mothership 5) 통합 후 `system.cmdspace.work` 에 즉시 반영 (캐시 갱신 포함). ⑤ 만 실행하면 ① ② ③ 누락이라 외부 공유본/백업/배포본 불일치 발생.
+
+##### ⑥ ~ ⑧ Satellite 동기화 (cmds-vault + CMDS_LLM_Wiki)
+
+mothership system file 변경은 위성 스타터킷·의존 문서에도 파급된다. ⑤ Vercel 배포 후 다음 3개를 점검:
+
+- **⑥ cmds-vault starter-kit frontmatter sync** — CMDS 스타터킷 배포본 (`github.com/johnfkoo951/cmds-vault`) 의 frontmatter·system file 참조가 mothership 과 일치하는지 확인. 불일치 시 갱신.
+- **⑦ CMDS_LLM_Wiki dependency check** — satellite 의 Core Context / 가이드가 mothership 의 system file 개수·division 명·focus axis 변경을 반영하는지 점검 (예: "9 system files", "6 public") .
+- **⑧ LLM Wiki starter-kit 3-place drift check** — `_starter-kit/cmds-llm-wiki/` (canonical) · `/DEV/cmds-llm-wiki/` (git mirror) · GitHub Release ZIP 3곳의 drift 점검. **default no-op** — drift 발견 시 보고만 하고, release 는 사용자가 직접 수행 (자동 sync 금지).
 
 #### 새 Mac 에서 배포 권한 확보
 
@@ -320,16 +332,20 @@ vercel link --project cmds-system-files-v2 --yes
   ↓
 "sync system files 배포" 또는 skill 호출
   ↓
-스킬이 4 destinations 동시 갱신:
+스킬이 8 destinations 동시 갱신 (5 mothership + 3 satellite):
   ① 백업 (40. Docs/.../cmds-system-files/*_backup.md) — 6개 공개 + ANTIGRAVITY (private 는 비공개 백업만)
   ② 공유 (40. Docs/.../cmds-system-files-share/*_share.md) — 6개 sanitized
   ③ DEV (DEV/files/*.md + rules/ + ZIP 재생성) — 6개 공개 + 8 rules
   ④ (선택) GitHub git push
+  ⑤ Vercel deploy
+  ⑥ cmds-vault starter-kit frontmatter sync (github johnfkoo951/cmds-vault)
+  ⑦ CMDS_LLM_Wiki dependency check (satellite Core Context 정합성)
+  ⑧ LLM Wiki starter-kit 3-place drift check (default no-op — 보고만)
   ↓
 vercel deploy --prod --yes  (수동으로 실행 — 사용자가 ① ② ③ 검증 후)
 ```
 
-> **반드시 ② 공유 폴더도 갱신**. Skill 의 "Quick Update Command" 가 backup 만 다루고 share 는 별도 섹션이라 *과거에 share 누락 사고 있었음* (2026-04-18 ~ 2026-05-03 share 폴더 stale 상태). 4-way fan-out 명시 필요.
+> **반드시 ② 공유 폴더도 갱신**. Skill 의 "Quick Update Command" 가 backup 만 다루고 share 는 별도 섹션이라 *과거에 share 누락 사고 있었음* (2026-04-18 ~ 2026-05-03 share 폴더 stale 상태). 8-way (5 mothership + 3 satellite) fan-out 명시 필요.
 
 자세한 스킬 동작은 `system-docs-updater` 참조.
 
@@ -566,43 +582,21 @@ inbox 항목 빠르게 분류·등록
 
 ## System Documentation Structure
 
-This vault has **9 system files** that work together to provide complete guidance, organized by audience:
+This vault has **9 system files** that work together to provide complete guidance, organized by audience. (Detailed per-file blurbs live in the top "📌 Related System Files" blockquote; this is the compact reference matrix.)
 
-### 🤖 LLM Coding Agents (always-loaded context)
-
-| File                      | Audience               | Focus                                                |
-| ------------------------- | ---------------------- | ---------------------------------------------------- |
-| **CLAUDE.md** (this file) | Claude Code            | **HOW** - Claude Code 기술 규칙, file ops, commands  |
-| **AGENTS.md**             | Codex, Cursor, Windsurf | **HOW** - 타 AI coding agent 용 기술 규칙           |
-
-### 🧪 Vendor-Specific Agent
-
-| File                | Audience                       | Focus                                                       |
-| ------------------- | ------------------------------ | ----------------------------------------------------------- |
-| **ANTIGRAVITY.md**  | Google Gemini / Antigravity IDE | **HOW (Gemini)** - Gemini 전용 행동 규칙·도구 매핑          |
-
-### 📚 Context & Standards (referenced by all agents)
-
-| File                        | Audience           | Focus                                                |
-| --------------------------- | ------------------ | ---------------------------------------------------- |
-| **CMDS.md**                 | All LLM assistants | **WHY & WHAT** - 시스템 철학·사용자 프로필·9 카테고리 |
-| **🏛 CMDS Guide.md**        | User + AI          | **STANDARDS** - Properties v2, 템플릿, naming        |
-| **🏛 CMDS Head Quarter.md** | User               | **WHERE** - 91 카테고리 네비게이션 허브              |
-
-### 🧠 Gobi Persona System (Gobi 앱 entry point — *외부 LLM coding agent 아님*)
-
-| File                | Audience                | Focus                                                          |
-| ------------------- | ----------------------- | -------------------------------------------------------------- |
-| **BRAIN.md**        | Gobi agent + 사람       | **WHO** - 구요한 brain profile (사람을 기술하는 grounding source) |
-| **BRAIN_PROMPT.md** | Gobi agent              | **HOW (Gobi)** - Rules of Engagement (BRAIN.md 사용 메타 지침)  |
+| File | Audience | Focus | Precedence |
+| ---- | -------- | ----- | :--------: |
+| **CLAUDE.md** (this file) | Claude Code | **HOW** - Claude Code 기술 규칙, file ops, commands | 1 |
+| **AGENTS.md** | Codex, Cursor, Windsurf | **HOW** - 타 AI coding agent 용 기술 규칙 | 2 |
+| **ANTIGRAVITY.md** | Google Gemini / Antigravity IDE | **HOW (Gemini)** - Gemini 전용 행동 규칙·도구 매핑 | 3 |
+| **CMDS.md** | All LLM assistants | **WHY & WHAT** - 시스템 철학·사용자 프로필·9 카테고리 | 4 |
+| **🏛 CMDS Guide.md** | User + AI | **STANDARDS** - Properties v2, 템플릿, naming | 5 |
+| **🏛 CMDS Head Quarter.md** | User + AI | **WHERE** - 91 카테고리 네비게이션 허브 | 6 |
+| **BRAIN.md** | Gobi agent + 사람 | **WHO** - 구요한 brain profile (사람을 기술하는 grounding source) | 7 |
+| **BRAIN_PROMPT.md** | Gobi agent | **HOW (Gobi)** - Rules of Engagement (BRAIN.md 사용 메타 지침) | 8 |
+| **DESIGN.md** | All LLM agents producing visual artifacts | **HOW (Visual)** - v4.3 standards · Anti-Slop · Skill↔Surface mapping | 9 |
 
 > BRAIN.md / BRAIN_PROMPT.md 는 *Claude Code · Gemini CLI 등 일반 LLM coding agent 의 컨텍스트로 들어가지 않음*. Gobi 앱이 외부에서 구요한 페르소나로 답할 때만 사용. 다른 system files 와 audience 가 다르다는 점이 핵심.
-
-### 🎨 Visual Language (always-loaded when producing visual artifacts)
-
-| File          | Audience                              | Focus                                                                       |
-| ------------- | ------------------------------------- | --------------------------------------------------------------------------- |
-| **DESIGN.md** | All LLM agents producing visual artifacts | **HOW (Visual)** - v4.3 standards · Anti-Slop · Skill↔Surface mapping (precedence 9) |
 
 ### When to Use Which File
 

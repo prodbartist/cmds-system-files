@@ -7,7 +7,7 @@ description: "Central navigation hub for the CMDS vault. Provides links to 91 su
 author:
   - "[[구요한]]"
 date created: 2025-10-23T01:59
-date modified: 2026-05-22
+date modified: 2026-05-30
 tags:
   - CMDS
   - system
@@ -22,9 +22,10 @@ optional-for:
   - code-generation
 token-estimate: 1800
 index: "[[🏛 CMDS Guide]]"
-version: "1.5"
+version: "1.6"
 status: completed
 changelog:
+  - "1.6 (2026-05-30): v4.9.0 pass — added 🗂 System Files (9) section (public/private split + DESIGN.md precedence 9); restored full 100-900 category nav after an edit-pass truncation. Banner/date synced to 2026-05-30."
   - "1.5 (2026-05-22): 9-file scheme 인지 갱신 — HQ 본문은 카테고리 navigation 전용이라 system files 표 없음. Frontmatter changelog 만 갱신해 정합성 표시. DESIGN.md 의 시각 산출물 spec 으로의 역할은 CLAUDE/AGENTS/ANTIGRAVITY/CMDS 가 다룸."
   - "1.4 (2026-05-03): Aligned precedence to 8-file scheme (5→6). Added Antigravity 03-7/03-8 output folders to Working Environments."
   - "1.3 (2026-05-03): Added Codex MBP/Studio output folders to Working Environments."
@@ -34,7 +35,7 @@ changelog:
 share_link: https://share.note.sx/fhfd1sg3#k4DqRdPCseLgf3fC7XlKzkIs/Hr5ZLdr/R6f5vlVJN0
 share_updated: 2025-08-25T11:43:35+09:00
 ---
-> **🔄 Last Updated: 2026-05-22** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS-Head-Quarter_backup.md`
+> **🔄 Last Updated: 2026-05-30** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS-Head-Quarter_backup.md`
 
 Links:: [[🏛 CMDS Head Quarter]] | [[🏛 CMDS Guide]]
 References:: [[🏛 000 YHN Home]]
@@ -206,3 +207,21 @@ References:: [[🏛 000 YHN Home]]
 
 - 사용 기준: 외부 자료(기사·논문·전사)를 LLM이 통합 관리하는 주제별 deep-dive는 satellite에, 그 외 PKM은 메인 볼트에.
 - Cross-reference 규약: [[🛰 CMDS_LLM_Wiki Satellite Vault#5. Cross-Reference Convention]] 참조.
+
+## 🗂 System Files (9)
+> [!info] 9개 시스템 파일 — 공개 6 + 비공개 3
+> 공개 6 → [system.cmdspace.work](https://system.cmdspace.work) 배포 · 비공개 3 → vendor·product 전용 (외부 배포 X)
+
+| File | Prec | Audience | 역할 |
+|------|:----:|----------|------|
+| [[CLAUDE.md]] | 1 | Claude Code | 기술 규칙·command 매핑 (공개) |
+| [[AGENTS.md]] | 2 | Codex/Cursor/Windsurf | 타 AI coding agent 기술 규칙 (공개) |
+| [[ANTIGRAVITY.md]] | 3 | Google Gemini/Antigravity | Gemini 전용 규칙 (비공개) |
+| [[CMDS.md]] | 4 | All LLM | 시스템 철학·사용자 컨텍스트 (공개) |
+| [[🏛 CMDS Guide]] | 5 | User+AI | Properties 표준·템플릿 (공개) |
+| [[🏛 CMDS Head Quarter]] | 6 | User+AI | 네비게이션 허브 — 이 문서 (공개) |
+| [[BRAIN.md]] | 7 | Gobi+사람 | 구요한 brain profile (비공개) |
+| [[BRAIN_PROMPT.md]] | 8 | Gobi agent | Rules of Engagement (비공개) |
+| [[DESIGN.md]] | 9 | 시각 산출물 agent | 시각 언어 spec — v4.3·Anti-Slop·Skill↔Surface (공개) |
+
+> 기술 규약 정본 → [[CLAUDE.md]] · 시스템 철학 → [[CMDS.md]] · 시각 규약 → [[DESIGN.md]] · 표준·템플릿 → [[🏛 CMDS Guide]]

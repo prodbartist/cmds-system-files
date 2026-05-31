@@ -3,18 +3,18 @@ type: documentation
 aliases:
   - System Files Changelog
   - 시스템 파일 변경 로그
-description: Central version history for the 5 core CMDS system files (CLAUDE.md, AGENTS.md, CMDS.md, CMDS Guide, CMDS Head Quarter). Tracks schema changes, architecture upgrades, and frontmatter standard evolution. Reference when auditing version lineage or planning migrations.
+description: Central version history for the 6 publicly deployed CMDS system files (CLAUDE, AGENTS, CMDS, CMDS Guide, CMDS Head Quarter, DESIGN) — 9 total incl. 3 private. Tracks schema changes, architecture upgrades, and frontmatter standard evolution. Reference when auditing version lineage or planning migrations.
 author:
   - "[[구요한]]"
 date created: 2026-04-01T11:30
-date modified: 2026-05-04T00:10
+date modified: 2026-05-30
 tags: [CMDS, system, changelog]
 CMDS: "[[📚 501 Obsidian]]"
 ---
 
 # CMDS System Files — Changelog
 
-> 공개 배포되는 5개 시스템 파일(CLAUDE.md, AGENTS.md, CMDS.md, 🏛 CMDS Head Quarter, 🏛 CMDS Guide)의 변경 이력을 추적합니다. 볼트 내부에는 추가로 3개 비공개 시스템 파일(ANTIGRAVITY.md, BRAIN.md, BRAIN_PROMPT.md)이 있어 총 8개로 운영되며, 이 3개는 vendor·product 전용이라 외부 배포 대상이 아닙니다.
+> 공개 배포되는 6개 시스템 파일(CLAUDE.md, AGENTS.md, CMDS.md, 🏛 CMDS Head Quarter, 🏛 CMDS Guide, + DESIGN.md)의 변경 이력을 추적합니다. 볼트 내부에는 추가로 3개 비공개 시스템 파일(ANTIGRAVITY.md, BRAIN.md, BRAIN_PROMPT.md)이 있어 비공개 3개 포함 총 9개로 운영되며, 이 3개는 vendor·product 전용이라 외부 배포 대상이 아닙니다.
 
 ## 📐 2-Layer Version System
 
@@ -26,6 +26,39 @@ CMDS: "[[📚 501 Obsidian]]"
 | 🔬 **마이크로 (파일별)** | 각 파일의 evolution | 각 파일 frontmatter `version:` | CLAUDE 3.8, CMDS 2.5, ... |
 
 각 매크로 entry 에는 **그 시점의 9 files version snapshot matrix** 를 포함해 마이크로 ↔ 매크로 매핑이 명시됩니다.
+
+---
+
+## v4.9.0 — 2026-05-30 (8→9 Propagation Complete + Engine Hardening)
+
+**트리거**: v4.8.0 (5/27) 에서 8→9 전환은 *체계 선언* 만 완료됐고, 실제 web surface (index/docs/OG/README) 와 sync 엔진 (system-docs-updater) 은 여전히 5-file·5-way 가정을 잔존시킨 채였음. 이번 릴리즈는 그 propagation 을 끝까지 밀어붙이고, 누락을 구조적으로 막는 엔진 보강을 함께 수행.
+
+**왜 v4.9.0 (minor) 인가**: 단순 라벨 갱신이 아니라 *공개 surface 전반의 6-file/8-rule 정합성 확보* + *sync 엔진의 count-canon 내장* — 운영 신뢰성 자체의 업그레이드. patch 아니라 minor.
+
+### File Version Snapshot
+
+| File | Version | Δ from v4.8.0 |
+|------|:-------:|:-------------:|
+| CLAUDE.md | **4.2** | ⬆ 4.1 → 4.2 (8→9 propagation 잔존 표현 정리, count-canon 정합) |
+| AGENTS.md | **2.7** | ⬆ 2.6 → 2.7 (동일 — 9-file/6-public/8-rule 정합) |
+| ANTIGRAVITY.md | **2.2** | ⬆ 2.1 → 2.2 (동일 — count-canon 정합) |
+| CMDS.md | **2.8** | ⬆ 2.7 → 2.8 (count-canon 정합 + minor edits) |
+| 🏛 CMDS Guide.md | **2.7** | ⬆ 2.6 → 2.7 (count-canon 정합) |
+| 🏛 CMDS Head Quarter.md | **1.6** | ⬆ 1.5 → 1.6 (placeholder corruption 수정 + DESIGN.md 등재) |
+| **DESIGN.md** | **1.1** | ⬆ 1.0 → 1.1 (header de-stale + §9 follow-up 정리, 6번째 공개 다운로드로 surface) |
+| BRAIN.md *(internal)* | (Gobi-managed) | — |
+| BRAIN_PROMPT.md *(internal)* | (Gobi-managed) | — |
+
+### Changes
+
+- **8→9 propagation 완료** — 모든 web surface (index.html / docs/index.html / OG 메타 / README.md) 의 "5 files" · "5-way" · stale 라벨을 6-file/9-total/8-rule 로 정렬. v4.8.0 이 선언만 한 전환을 실제 공개 surface 까지 끝까지 반영.
+- **HQ placeholder corruption 수정** — 🏛 CMDS Head Quarter 의 깨진 placeholder/링크 잔재 정리, DESIGN.md 항목 정식 등재.
+- **DESIGN.md 를 6번째 공개 다운로드로 surface** — files/ 번들·다운로드 목록·Repository Structure 에 DESIGN.md 노출 (이전엔 별도 `/DESIGN.md` 만 존재, 공식 다운로드 surface 미반영).
+- **DESIGN.md header de-stale + §9 정리** — "pending 8→9 file restructure" header note 와 §9 Follow-up Actions 의 미완 항목을 완료 상태로 정리.
+- **system-docs-updater 엔진 보강** — (1) 5→6 file sweep 으로 확장, (2) count-canon (9 total / 6 public / 3 private / 8 rules) 을 스킬에 내장, (3) **pre-deploy grep gate** 추가 — 배포 전 `5 (core|system|files)` · `5-way` · stale count 패턴을 grep 으로 차단.
+- **git 태그 backfill** — 누락됐던 v4.7.0 / v4.8.0 태그를 backfill.
+- **cmds-vault DESIGN.md 추가** (v1.2.0) — starter kit 에 DESIGN.md sanitized 사본 추가.
+- **satellite count patch** — CMDS_LLM_Wiki 측 잔존 stale count 표현 패치.
 
 ---
 

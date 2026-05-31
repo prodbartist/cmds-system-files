@@ -7,7 +7,7 @@ description: "Operational standards guide for the CMDS vault. Defines the 7 requ
 author:
   - "[[구요한]]"
 date created: 2025-09-15T23:39
-date modified: 2026-05-20T14:11
+date modified: 2026-05-30
 tags: [CMDS, system, guideline, NoteClass, operation, 태그는자유로워야지, index, maps, example, service]
 audience: User + AI
 scope: operational-standards
@@ -22,9 +22,10 @@ optional-for:
 token-estimate: 4800
 links: []
 index: "[[🏛 CMDS Head Quarter]]"
-version: "2.6"
+version: "2.7"
 status: completed
 changelog:
+  - "2.7 (2026-05-30): v4.9.0 pass — added 🔗 Related System Files section with DESIGN.md (precedence 9) visual-standards cross-link; banner/version synced to 2.7."
   - "2.6 (2026-05-20): Tags noise 정리 — `태그는자유로워야지`, `maps`, `example`, `service`, `index` 제거 (vault 일반 태그 시스템과 의미 충돌). Last Updated 헤더 동기화."
   - "2.5 (2026-05-03): Aligned precedence to 8-file scheme (4→5). Added Antigravity 03-7/03-8 output lanes. Fixed `94. System Prompts/` → `94. Agent Settings/claude/` (folder rename was missed). Removed duplicate `99. Format/` entry. Updated Sync Settings lane reference (03-1~03-4 → 03-1~03-8). Backfilled Version History with v2.3/v2.4/v2.5 entries."
   - "2.4 (2026-05-03): Added Codex MBP/Studio AI Agent folders and clarified description double-quote examples."
@@ -38,9 +39,9 @@ share_expires: 2026-01-29T11:02:12.926Z
 
 # CMDS Guide
 
-> **🔄 Last Updated: 2026-05-20** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS-Guide_backup.md`
+> **🔄 Last Updated: 2026-05-30** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS-Guide_backup.md`
 >
-> 📌 **Version 2.5** - Properties 표준화 + 8-file precedence 정렬 + Antigravity lane 반영판
+> 📌 **Version 2.7** - Properties 표준화 + 9-file scheme + DESIGN 시각 규약 cross-link
 
 ## Properties
 ### 필수 Properties (Required)
@@ -621,6 +622,12 @@ date modified: 2026-03-30
 
 > [!EXAMPLE] _Atomic Habits_
 > "You do not rise to the level of your goals. You fall to the level of your systems."^[Clear, J. (2018). _Atomic Habits._ Avery. p.27.]
+
+---
+## 🔗 Related System Files
+- 기술 규약 → [[CLAUDE.md]] (precedence 1) · [[AGENTS.md]] (2) · [[ANTIGRAVITY.md]] (3)
+- 시스템 철학 → [[CMDS.md]] (4) · 네비게이션 → [[🏛 CMDS Head Quarter]] (6)
+- **시각 산출물 표준** (컬러 토큰·타이포·Anti-Slop·템플릿 카탈로그) → [[DESIGN.md]] (precedence 9). 이 Guide 가 metadata·text 규약을 다룬다면 DESIGN.md 는 visual 규약을 다룬다.
 
 ---
 *이 가이드는 CMDSPACE 볼트의 표준 Properties 체계를 정의합니다. 모든 새로운 노트는 이 규칙을 따라 작성되어야 합니다.*

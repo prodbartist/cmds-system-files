@@ -1,410 +1,388 @@
 ---
-version: alpha
-name: CMDS System Files Design System
-description: >-
-  Design tokens for CMDSPACE (커맨드스페이스) web surfaces — Apple SF Pro typography
-  paired with the CMDS Green/Pink palette. Used by system.cmdspace.work,
-  cmdspace.work, llm-wiki.cmdspace.work, and any CMDS-branded landing or docs
-  page. Light mode anchors on CMDS Green (#134538); dark mode pivots to
-  CMDS Pink (#E985A2) as the highlight color.
-colors:
-  # ── Brand · CMDS Green (primary, light mode accent)
-  cmds-green:        "#134538"
-  cmds-green-hover:  "#1A5D4B"
-  cmds-green-bright: "#22896A"
-  cmds-green-glow:   "#2FB488"
-  cmds-green-50:     "#F1F7F4"
-  cmds-green-100:    "#DCEBE3"
-  cmds-green-200:    "#BAD9C9"
-  cmds-green-800:    "#0D3529"
-  cmds-green-900:    "#0A2820"
-
-  # ── Brand · CMDS Pink (dark mode accent)
-  cmds-pink:         "#E985A2"
-  cmds-pink-light:   "#F4A4B8"
-  cmds-pink-dark:    "#D16C8A"
-  cmds-pink-soft:    "#2B1922"
-
-  # ── Light mode surfaces
-  bg:                "#FBFBFA"
-  bg-elev:           "#FFFFFF"
-  bg-subtle:         "#F5F6F4"
-  bg-code:           "#F5F5F3"
-
-  # ── Light mode foreground
-  fg:                "#0B0D0C"
-  fg-muted:          "#4A544F"
-  fg-subtle:         "#8A938E"
-
-  # ── Light mode borders
-  border:            "#E6E8E6"
-  border-strong:     "#D0D3D0"
-
-  # ── Dark mode surfaces
-  bg-dark:           "#0B0F0D"
-  bg-dark-elev:      "#0D1411"
-  bg-dark-subtle:    "#0A1110"
-
-  # ── Dark mode foreground
-  fg-dark:           "#F2F4F3"
-  fg-dark-muted:     "#9AA39D"
-  fg-dark-subtle:    "#626A66"
-
-  # ── Dark mode borders
-  border-dark:       "#1A231F"
-  border-dark-strong:"#26302A"
-
-  # ── Semantic
-  on-accent:         "#FFFFFF"
-  on-accent-dark:    "#0B0F0D"
-  warn:              "#B45309"
-
-typography:
-  hero:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Pretendard', sans-serif"
-    fontSize: "clamp(48px, 8vw, 104px)"
-    fontWeight: 700
-    lineHeight: 1.02
-    letterSpacing: "-0.042em"
-  h1:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Pretendard', sans-serif"
-    fontSize: "clamp(36px, 5vw, 60px)"
-    fontWeight: 700
-    lineHeight: 1.1
-    letterSpacing: "-0.028em"
-  h2:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Pretendard', sans-serif"
-    fontSize: "clamp(24px, 2.6vw, 36px)"
-    fontWeight: 600
-    lineHeight: 1.2
-    letterSpacing: "-0.018em"
-  h3:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Pretendard', sans-serif"
-    fontSize: "32px"
-    fontWeight: 700
-    lineHeight: 1.25
-    letterSpacing: "-0.028em"
-  lead:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Pretendard', sans-serif"
-    fontSize: "clamp(19px, 1.8vw, 22px)"
-    fontWeight: 400
-    lineHeight: 1.5
-    letterSpacing: "-0.015em"
-  body-lg:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Pretendard', sans-serif"
-    fontSize: "17px"
-    fontWeight: 400
-    lineHeight: 1.55
-    letterSpacing: "-0.011em"
-  body-md:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Pretendard', sans-serif"
-    fontSize: "15px"
-    fontWeight: 400
-    lineHeight: 1.55
-    letterSpacing: "-0.011em"
-  body-sm:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Pretendard', sans-serif"
-    fontSize: "14px"
-    fontWeight: 400
-    lineHeight: 1.5
-    letterSpacing: "-0.008em"
-  label:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Pretendard', sans-serif"
-    fontSize: "13px"
-    fontWeight: 600
-    lineHeight: 1.3
-    letterSpacing: "-0.005em"
-  code:
-    fontFamily: "ui-monospace, 'SF Mono', 'Menlo', 'JetBrains Mono', Consolas, monospace"
-    fontSize: "0.9em"
-    fontWeight: 400
-    lineHeight: 1.5
-
-rounded:
-  none:  "0px"
-  sm:    "6px"
-  md:    "8px"
-  lg:    "16px"
-  xl:    "20px"
-  pill:  "999px"
-  round: "50%"
-
-spacing:
-  xs:       "4px"
-  sm:       "8px"
-  md:       "16px"
-  lg:       "24px"
-  xl:       "32px"
-  "2xl":    "48px"
-  "3xl":    "80px"
-  section:  "clamp(24px, 5vw, 80px)"
-  block:    "clamp(80px, 10vw, 140px)"
-
-layout:
-  max-width-page:    "1200px"
-  max-width-content: "720px"
-  sidebar-width:     "280px"
-  toc-width:         "240px"
-  header-height:     "56px"
-
-components:
-  # ── Buttons (all radius pill, weight 500, letter -0.01em)
-  button-primary:
-    backgroundColor: "{colors.cmds-green}"
-    textColor: "{colors.on-accent}"
-    typography: "{typography.body-md}"
-    rounded: "{rounded.pill}"
-    padding: "14px 24px"
-  button-primary-dark:
-    backgroundColor: "{colors.cmds-pink}"
-    textColor: "{colors.on-accent-dark}"
-    typography: "{typography.body-md}"
-    rounded: "{rounded.pill}"
-    padding: "14px 24px"
-  button-secondary:
-    backgroundColor: "{colors.bg-elev}"
-    textColor: "{colors.fg}"
-    rounded: "{rounded.pill}"
-    padding: "14px 24px"
-  button-ghost:
-    backgroundColor: "transparent"
-    textColor: "{colors.fg-muted}"
-    rounded: "{rounded.pill}"
-    padding: "10px 14px"
-
-  # ── Cards
-  card:
-    backgroundColor: "{colors.bg-elev}"
-    textColor: "{colors.fg}"
-    rounded: "{rounded.xl}"
-    padding: "28px 32px"
-  card-subtle:
-    backgroundColor: "{colors.bg-subtle}"
-    textColor: "{colors.fg}"
-    rounded: "{rounded.lg}"
-    padding: "24px"
-
-  # ── Chips / pills
-  chip:
-    backgroundColor: "{colors.bg-subtle}"
-    textColor: "{colors.fg-muted}"
-    typography: "{typography.body-sm}"
-    rounded: "{rounded.pill}"
-    padding: "6px 14px"
-
-  # ── Logo mark
-  logo:
-    rounded: "{rounded.round}"
-    size: "32px"
-
-  # ── Code block (inline)
-  code-inline:
-    backgroundColor: "{colors.bg-code}"
-    textColor: "{colors.fg}"
-    typography: "{typography.code}"
-    rounded: "{rounded.sm}"
-    padding: "2px 6px"
+type: documentation
+aliases:
+  - CMDSPACE Design System
+  - DESIGN.md
+  - Visual Language Spec
+description: "Visual language specification for all CMDSPACE artifacts. Defines v4.3 design constants (SF Pro × CMDS Green/Pink), anti-AI-slop negative list, template catalog, and a Skill ↔ Surface mapping covering 80+ skills (web, PDF, slides, image, video, diagram). Reference whenever any LLM agent (Claude Code, Codex, Antigravity, Gobi) produces a visual artifact for the CMDSPACE brand."
+author:
+  - "[[구요한]]"
+date created: 2026-05-22T18:47
+date modified: 2026-05-30
+tags:
+  - CMDS
+  - system
+  - design
+  - design-system
+  - visual-language
+audience: All LLM coding agents producing visual artifacts
+scope: visual-language
+precedence: 9
+memory-type: feedback
+required-for:
+  - web-generation
+  - pdf-generation
+  - slide-generation
+  - image-generation
+  - video-generation
+optional-for:
+  - text-only-output
+  - data-analysis
+token-estimate: 4200
+CMDS: "[[📚 731 Digital Art and Design]]"
+index: "[[🏛 CMDS Head Quarter]]"
+version: "1.1"
+status: completed
+changelog:
+  - "1.0 (2026-05-22): Initial version. 9th system file added to mothership. Sources — getdesign.md pattern (2026-04-23 capture), v4.3 design standards (cmdspace-web-builder skill), Anti-AI-Slop guidelines (Claude Design system prompt captured 2026-05-04), 87-skill catalog mapped to visual surfaces. Triggered by /query — CMDSPACE 버전의 design.md 만들어줘 (2026-05-22)."
+  - "1.1 (2026-05-30): Went public as 6th deployed file (v4.8.0); header de-staled; §9 follow-ups resolved; counts hedged."
 ---
+> **🔄 Last Updated: 2026-05-30** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/DESIGN_backup.md` | Public: [system.cmdspace.work](https://system.cmdspace.work) (6th public file, deployed v4.8.0 2026-05-27)
 
-# CMDS System Files Design System
+# DESIGN.md
 
-## Overview
+This file is the **visual language spec** for all CMDSPACE artifacts. It complements [[CLAUDE.md]] / [[AGENTS.md]] / [[ANTIGRAVITY.md]] (which govern *technical* conventions) by governing *visual* conventions: brand constants, anti-AI-slop rules, template catalog, and how the vault's 80+ skills map to visual surfaces (web · PDF · slides · image · video · diagram).
 
-The CMDS design system powers the public-facing web surfaces of **CMDSPACE
-(커맨드스페이스)** — a knowledge architecture operated by **구요한 (Yohan Koo)**.
-The system documents the visual language behind `system.cmdspace.work` (the
-landing + technical docs for the 5 core system files), `cmdspace.work` (the
-operator's personal hub), and any sibling subdomain that needs to feel like
-part of the same family.
-
-The aesthetic is **Apple-engineered typography paired with a
-practitioner-researcher palette**: SF Pro Display/Text for headings and body,
-SF Mono for code, with CMDS Green (`#134538`) anchoring light mode and CMDS
-Pink (`#E985A2`) lighting up dark mode. The brand is quiet, dense with
-information, and biased toward long-form reading — closer to a documentation
-site than a marketing landing page.
-
-Primary use cases:
-
-- Public landing pages for CMDS subdomains
-- Long-form technical documentation
-- Editorial / essay pages (e.g., 더배러 newsletter mirror)
-- AI coding agents (Claude Code, Codex, Cursor, Antigravity) building new
-  CMDS-branded surfaces — this file is the single source of truth.
-
-## Colors
-
-**Light mode (default).** Warm off-white surface (`#FBFBFA`) over near-black
-text (`#0B0D0C`). The primary accent is **CMDS Green** — used for CTAs,
-links, focus rings, and emphatic body text. Greens beyond `cmds-green` are
-calibrated for hover, bright callouts, and tonal backgrounds (the `50/100/200`
-ramp is for soft fills; `800/900` is for high-contrast badges).
-
-**Dark mode.** Near-black warm surface (`#0B0F0D`) over off-white text
-(`#F2F4F3`). The primary accent flips to **CMDS Pink** — the green never
-appears as a CTA color in dark mode. Pink ramps from `light` for hover up to
-`dark` for active states, with `pink-soft` (`#2B1922`) as a tinted background.
-
-**Semantic tokens.**
-
-- `bg` / `bg-elev` / `bg-subtle` — page, elevated surface, sunken surface
-- `fg` / `fg-muted` / `fg-subtle` — primary text, secondary text, tertiary text
-- `border` / `border-strong` — hairlines and emphatic separators
-- `on-accent` — text color on top of the accent (`#FFFFFF` light, near-black dark)
-- `warn` — single semantic warning color (`#B45309`)
-
-The palette is intentionally narrow. There are no blue/purple/red accents and
-no semantic success/info colors — confirmations use foreground tone, errors
-borrow the warn color.
-
-## Typography
-
-The typeface stack is **Apple system fonts first, Pretendard as Korean
-fallback** — SF Pro Display for display sizes (`hero`, `h1`, `h3`), SF Pro
-Text for everything else, SF Mono for code, and New York (serif) reserved
-for editorial / essay surfaces only.
-
-Type scale follows a fluid pattern using `clamp()` so that hero and h2 sizes
-scale gracefully across mobile and desktop. The two unbreakable rules:
-
-1. **Tight letter-spacing on display sizes.** Hero is `-0.042em`, h1/h3 is
-   `-0.028em`. Body sits at `-0.011em`. This is what makes the type feel
-   Apple-engineered rather than generic.
-2. **Body line-height is 1.55**, not the default 1.5. Long-form reading is
-   the primary use case.
-
-Use `typography.lead` for the single sentence that follows a hero or h2 —
-it bridges display and body sizes. Use `typography.label` (13px, weight 600,
-slight letter-spacing tightening) for category badges and metadata rows.
-
-## Layout
-
-The system uses **two page widths**:
-
-- `max-width-page` (`1200px`) — landing pages, marketing surfaces. Section
-  padding is fluid (`clamp(24px, 5vw, 80px)`).
-- `max-width-content` (`720px`) — documentation, essays, long-form reading.
-  This is the reading column; everything else (sidebar, TOC) sits outside it.
-
-Documentation surfaces use a **three-column grid**: `sidebar-width` (280px)
-+ `max-width-content` (720px) + `toc-width` (240px). The sidebar collapses
-below the lg breakpoint; the TOC collapses below the xl breakpoint.
-
-Vertical rhythm uses two scales:
-
-- `spacing.section` (`clamp(24px, 5vw, 80px)`) — horizontal page padding
-- `spacing.block` (`clamp(80px, 10vw, 140px)`) — vertical gap between top-level page sections
-
-The site header is `56px` tall and behaves as a sticky top bar with a
-hairline border-bottom.
-
-## Elevation & Depth
-
-Elevation is **flat by default**. Hairline borders carry most of the
-hierarchy work. Two shadow recipes exist:
-
-- **Card shadow** (rest):
-  `0 1px 2px rgba(19, 69, 56, 0.06)` — a soft tint of CMDS Green.
-- **Card shadow** (hover): adds `0 8px 24px -8px rgba(19, 69, 56, 0.18)`.
-
-Primary buttons get a richer treatment — they combine an inset top
-highlight (`inset 0 1px 0 rgba(255,255,255,0.12)`) with two stacked drop
-shadows. This is the only place pseudo-3D treatment is allowed; everything
-else stays flat.
-
-Dark mode replaces the green-tinted shadows with neutral black at higher
-opacity (`rgba(0,0,0,0.4)`) and re-tints the primary button shadows with
-CMDS Pink.
-
-## Shapes
-
-The corner radius scale is opinionated. Buttons and chips are **pill-shaped**
-(`rounded.pill` = `999px`). Cards are **soft-cornered** (`rounded.xl` =
-`20px`). Inline code uses `rounded.sm` (`6px`). The logo mark is always a
-**perfect circle** (`rounded.round` = `50%`) — never a square or
-rounded-square.
-
-There is no `none` radius outside `<hr>` rules and full-bleed dividers.
-Sharp corners read as "unfinished" in this system.
-
-## Components
-
-### Buttons
-
-Three variants — primary, secondary, ghost — all pill-shaped, all using
-`typography.body-md` (15px / weight 500 / letter-spacing `-0.01em`).
-
-- **Primary (light)**: CMDS Green background, white text, double-stack
-  shadow + inset highlight. Hover darkens to `cmds-green-hover`. Active
-  scales to `0.985` (no other component uses transform).
-- **Primary (dark)**: CMDS Pink background, near-black text. Hover darkens
-  to `cmds-pink-dark`.
-- **Secondary**: `bg-elev` background, `border-strong` border. Hover swaps
-  background to `bg-subtle`, border to `fg-subtle`.
-- **Ghost**: transparent, `fg-muted` text, tighter padding (`10px 14px`).
-  Used inside dense rows where a full button would dominate.
-
-### Cards
-
-`card` uses `bg-elev` + `rounded.xl` + `28px 32px` padding. For grids of
-many cards, use `card-subtle` (sunken into `bg-subtle`, `rounded.lg`,
-tighter `24px` padding).
-
-### Chips
-
-Pill-shaped, `bg-subtle` background, `fg-muted` text, `body-sm` typography,
-`6px 14px` padding. Used for metadata badges (version numbers, dates,
-precedence ranks).
-
-### Code (inline)
-
-`bg-code` background, `rounded.sm`, `2px 6px` padding, monospace `0.9em`.
-Block code uses the same background but no rounded corners on the outer
-container — the surrounding card does the rounding.
-
-### Logo
-
-The CMDS logo is **always a circular mark** (32px in the header, scales up
-for hero placements). The asset lives at
-`/assets/logos/cmds-logo-round.png` and is reused as both `favicon` and
-`apple-touch-icon`.
-
-## Do's and Don'ts
-
-### Do
-
-- **Do** use SF Pro / SF Pro Display first. Pretendard is the Korean
-  fallback, not a replacement. New York is reserved for editorial surfaces.
-- **Do** preserve `letter-spacing: -0.011em` on body and tighter on
-  display. This is the dominant visual signature.
-- **Do** flip the primary accent from CMDS Green (light) to CMDS Pink
-  (dark) — never use green CTAs in dark mode.
-- **Do** keep cards on `rounded.xl` (20px). Smaller radii on cards read as
-  generic Material.
-- **Do** use `spacing.block` for vertical gaps between top-level page
-  sections. Tight vertical rhythm breaks the editorial feel.
-- **Do** include 17 Open Graph / Twitter meta tags on every public page,
-  with a dedicated 1200×630 OG image. The CMDS surface is link-shared
-  heavily.
-
-### Don't
-
-- **Don't** introduce additional accent colors (blue / purple / red). The
-  CMDS palette is intentionally narrow.
-- **Don't** use square or rounded-square logos. The mark is always a circle.
-- **Don't** apply box shadows to non-button components by default. Cards
-  rely on hairline borders.
-- **Don't** use sharp corners on buttons. Pills are the only shape; even
-  small icon buttons follow the pill (or `round` for circular icon-only
-  buttons).
-- **Don't** stack more than two shadow layers — the primary button is the
-  only place where layered shadows are warranted.
-- **Don't** let body line-height drop below 1.5. Long-form reading is the
-  primary use case.
+> **📌 Related System Files (9 System Files)** — `precedence` 순서대로 로드, audience 별 그룹
+>
+> **🤖 LLM Coding Agents** (always-loaded technical context):
+> - @CLAUDE.md → [[CLAUDE.md]] — Claude Code specific (precedence: 1)
+> - @AGENTS.md → [[AGENTS.md]] — Codex / Cursor / Windsurf 등 (precedence: 2)
+>
+> **🧪 Vendor-Specific Agent**:
+> - @ANTIGRAVITY.md → [[ANTIGRAVITY.md]] — Google Gemini / Antigravity IDE (precedence: 3)
+>
+> **📚 Context & Standards** (referenced by all agents):
+> - @CMDS.md → [[CMDS.md]] — System philosophy & user context (precedence: 4)
+> - @🏛 CMDS Guide → [[🏛 CMDS Guide]] — Standards & templates (precedence: 5)
+> - @🏛 CMDS Head Quarter → [[🏛 CMDS Head Quarter]] — Navigation hub (precedence: 6)
+>
+> **🧠 Gobi Persona System** (Gobi 앱 entry point):
+> - @BRAIN.md → [[BRAIN.md]] — 구요한 brain profile (precedence: 7)
+> - @BRAIN_PROMPT.md → [[BRAIN_PROMPT.md]] — Agent Rules of Engagement (precedence: 8)
+>
+> **🎨 Visual Language** (always-loaded when producing visual artifacts):
+> - @DESIGN.md → [[DESIGN.md]] — This file — visual spec (precedence: 9)
 
 ---
 
-**Maintained by**: 구요한 (Yohan Koo) · CMDSPACE · `johnfkoo951@gmail.com`
-**Canonical URL**: `https://system.cmdspace.work/DESIGN.md` (once deployed)
-**Source repo**: `https://github.com/johnfkoo951/cmds-system-files`
-**Spec**: `https://github.com/google-labs-code/design.md` (alpha)
+## Origin & Lineage
+
+이 문서는 **getdesign.md** ([https://getdesign.md/](https://getdesign.md/)) 가 정립한 *"AI 코딩 에이전트용 DESIGN.md 패턴"* 의 CMDSPACE 버전이다. getdesign.md 는 Vercel·Stripe·Figma·Notion 등 69개 기성 브랜드의 디자인 시스템을 마크다운으로 큐레이션해 AI 에이전트에 공급한다. CMDSPACE 는 *외부 브랜드를 모방하는 대신 자체 시각 언어를 시스템 파일로 격상* 한다.
+
+**Lineage**:
+
+- `getdesign.md` 패턴 ([[AI 코딩 에이전트용 DESIGN.md 패턴]], 2026-04-23 capture)
+- `v4.3 design standards` (cmdspace-web-builder skill, 2026-Q1~)
+- `Anti-AI-Slop` negative-list (→ LLM Wiki: [[Anti-AI-Slop Design Guidelines]], 2026-05-04)
+- `张汉东 의 DESIGN.md → spec → plan` 공학적 파이프라인 (→ LLM Wiki: [[张汉东]], 조명용)
+
+---
+
+## 0. Audience & Scope
+
+| 항목 | 내용 |
+|------|------|
+| **Audience** | CMDSPACE 의 시각 산출물을 만드는 모든 LLM 에이전트 — Claude Code, Codex, Antigravity, Gobi |
+| **Triggers (자동 로드)** | 사용자가 "사이트 만들어줘", "PDF 만들어줘", "슬라이드 짜줘", "이미지 그려줘", "영상 만들어줘", "다이어그램 그려줘" 류 요청 시 |
+| **Scope IN** | 웹·PDF·슬라이드·이미지·영상·다이어그램·Canvas·SNS 시각 톤·뉴스레터 |
+| **Scope OUT** | 코드 로직, 데이터 분석, 텍스트 전용 답변 (이때는 CLAUDE.md 등 기술 system file 만으로 충분) |
+
+---
+
+## 1. CI Constants (절대 불변 — v4.3)
+
+> 다음 5개 항목은 **모든 시각 산출물에서 동일** 해야 한다. 변경 시 v4.4 로 버전업.
+> **버전 namespace 주의**: DESIGN 의 v4.3 은 시각 언어 표준 generation 이며 Vercel 배포 macro-version(v4.9.x)과 무관.
+
+### 1.1 컬러 토큰
+
+| 토큰 | 값 | 용도 |
+|------|-----|------|
+| `--cmds-green` | `#134538` | Primary brand (light 모드 accent, 헤더, CTA bg) |
+| `--cmds-green-bright` | `--cmds-green` 의 lighter shade | gradient endpoint |
+| `--cmds-pink` | `#E985A2` | Dark 모드 accent, dark 모드 CTA bg |
+| `--accent-on` | light=`#FFFFFF` / dark=`#1B1B1B` | accent 배경 위 텍스트 (테마별 자동 전환) |
+
+> **다크 모드 룰**: light 는 *Green + White text*, dark 는 *Pink + Dark text*. `prefers-color-scheme` 자동 감지 + localStorage 토글 영속.
+
+### 1.2 타이포그래피
+
+```css
+--font-sans:    "SF Pro Display", "SF Pro Text", "Pretendard", system-ui, sans-serif;
+--font-display: "SF Pro Display", "Pretendard", sans-serif;
+--font-mono:    "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+```
+
+- 한글은 **Pretendard**, 영문은 **SF Pro**. *둘 다 폴백 체인에 명시.*
+- 본문 16px · 큰 제목 최대 104px (랜딩 hero)
+- *Inter / Roboto / Arial / Fraunces 사용 금지* (anti-slop §2)
+
+### 1.3 로고 & 파비콘
+
+- `cmds-logo-round.png` — 라이트·다크 공통 (round mark, 원형 마스크)
+- typo lockup 은 `cmds-typo-black.png` / `cmds-typo-white.png` (테마별 swap)
+- 파비콘 = round logo PNG (인라인 SVG `§` placeholder 절대 금지)
+
+### 1.4 OG 메타 (17종, 절대 URL 만)
+
+페이지마다 1200×630 PNG OG 이미지 + 17개 메타 태그 필수. *상대 경로 절대 금지.*
+
+### 1.5 CTA 컬러 룰
+
+- Light 모드: `bg: var(--cmds-green); color: #FFFFFF;`
+- Dark 모드: `bg: var(--cmds-pink); color: #1B1B1B;` (어두운 글자)
+
+---
+
+## 2. Anti-AI-Slop Negative List
+
+> Claude Design system prompt (2026-05-04 captured) + cmdspace-web-builder ANTI-PATTERNS 통합. **LLM 이 default 로 빠지는 패턴을 명시 차단.**
+
+### 2.1 시각 (Visual)
+
+- ❌ Aggressive gradient backgrounds (색상 무한 변환은 "느낌 있어 보이는" LLM 디폴트)
+- ❌ Emoji 남발 — *brand navigation 이모지(🏛/📖/📚/🏷)는 vault 내부 wikilink prefix 전용*, 일반 가이드·랜딩에 붙이지 말 것
+- ❌ 좌측 border accent + 둥근 컨테이너의 "callout" 디폴트
+- ❌ SVG 로 사람·사물·아이콘 imagery 직접 그리기 → placeholder 두고 실제 자료 요청
+- ❌ 인라인 `style="color:#..."` (테마 전환 불가)
+- ❌ `<picture media="prefers-color-scheme">` (수동 토글과 충돌)
+- ❌ 히어로 상단 로고 + 아이브로우 "CMDS" 텍스트 동시 노출 (중복)
+
+### 2.2 타이포
+
+- ❌ Inter / Roboto / Arial / Fraunces / "system fonts" 일반화 — *SF Pro + Pretendard 만*
+
+### 2.3 콘텐츠
+
+- ❌ Filler content / placeholder section / dummy stats — *"every element should earn its place"*
+- ❌ Data slop (의미 없는 숫자·아이콘·통계)
+- ❌ Unilateral 섹션 추가 — 추가가 좋아 보이면 *먼저 사용자에게 물어볼 것*
+
+### 2.4 Positive prescription (대안)
+
+- ✅ `text-wrap: pretty` · CSS grid · 고급 CSS 효과
+- ✅ *"1 thousand no's for every yes"*
+- ✅ 빈 섹션은 layout/composition 으로 해결 (콘텐츠 발명 X)
+- ✅ Negative-list 가 차단한 *분포의 다른 영역* 에서 답 찾기
+
+---
+
+## 3. Template Catalog
+
+### 3.1 기본 3종 (cmdspace-web-builder)
+
+| 템플릿 | 레퍼런스 | 특징 | 적용처 |
+|--------|----------|------|--------|
+| **Quick Deploy** | [llm-wiki.cmdspace.work](https://llm-wiki.cmdspace.work) | 단일 HTML (~650 lines), 다크 토글 내장, `--accent-on` 패턴 | 개인 아카이브 · 스터디 가이드 · 빠른 런칭 |
+| **Landing** | [system.cmdspace.work](https://system.cmdspace.work) | Sticky header · 거대 타이포 hero · 풀 마케팅 랜딩 | 제품 · 컨퍼런스 · 공식 프로젝트 |
+| **Editorial Docs** | [system.cmdspace.work/docs/](https://system.cmdspace.work/docs/) | 3컬럼 (사이드바 · 본문 · TOC), ⌘K 팔레트, marked.js 인라인 렌더 | API 문서 · 가이드 · 시스템 문서 |
+
+### 3.2 Landing 확장 컴포넌트 5종
+
+기본 landing 이 마케팅 중심일 때, 시스템·아키텍처 설명에는 다음 5종 추가:
+
+1. **Star Topology Diagram** — 중앙 허브 + N개 노드 원형 배치 (멀티 에이전트·mind map)
+2. **Numbered Control Loop** — 10단계 이상 프로세스를 5×2 그리드로
+3. **Division Grid** — 풍부한 정보 카드 (좌측 accent border)
+4. **Callout Box** — tint 배경 · label/title/body 3단
+5. **Layer Grid** — 파일 구조 / 레이어 카드 (4열 · pill 라벨)
+
+실전 적용 예: [9yohan.cmdspace.work](https://9yohan.cmdspace.work) (5종 모두 사용).
+
+---
+
+## 4. Skill ↔ Surface Mapping ★
+
+> **이 표는 본 문서의 가장 큰 부가가치.** LLM 이 *"CMDSPACE 시각 산출물 X 를 만들려면 어떤 스킬을 부를지"* 한 표로 결정.
+
+### 4.1 웹
+
+| Surface | 1차 스킬 | 보조 스킬 | 참고 |
+|---------|----------|---------|------|
+| 랜딩·서브도메인 | `cmdspace-web-builder` | `vercel-deployer`, `domain-routing` | v4.3 표준 |
+| 매거진·포트폴리오 | `obsidian-magazine-site` | `cmdspace-web-builder` | 멀티모달 |
+| 기술 문서 | `obsidian-docusaurus-builder` | `cmdspace-web-builder` (Editorial Docs) | Vercel 배포 포함 |
+| 미니멀 단일 페이지 | `minimal-homepage` | — | 빌드툴 없음 |
+| 배포 후 유지 | `cmdspace-update` | `web-deployments-sync` | apex 갱신 |
+
+### 4.2 PDF
+
+| Surface | 1차 스킬 | 보조 스킬 | 참고 |
+|---------|----------|---------|------|
+| 브로셔·일반 문서 | `md-to-pdf` | — | report 테마 H2 수동 번호 제거 룰 [^pdf] |
+| 이력서 (도장 포함) | `resume-update` | `md-to-pdf` | 효력 문서 only 도장 |
+| NotebookLM 워터마크 제거 | `notebooklm-logo-remover` | — | post-processing |
+
+### 4.3 슬라이드
+
+| Surface | 1차 스킬 | 보조 스킬 | 참고 |
+|---------|----------|---------|------|
+| Markdown 슬라이드 | `markdown-slides` | `tone-writer` | 빠른 deck |
+| PowerPoint | `pptx-cmds` | `image-generation-skill` | 한국 기업 호환 |
+| Keynote (macOS native) | `keynote` | `image-generation-skill` | Magic Move 지원 |
+| 발표 톤·내용 | `presentation-english-coach`, `presentation-generator-ko` | — | 영어/한국어 톤 |
+
+### 4.4 이미지
+
+| Surface | 1차 스킬 | 보조 스킬 | 참고 |
+|---------|----------|---------|------|
+| 슬라이드용 일러스트 | `image-generation-skill` | — | 사용자 스타일 정의 |
+
+### 4.5 영상
+
+| Surface | 1차 스킬 | 보조 스킬 | 참고 |
+|---------|----------|---------|------|
+| Remotion (React 비디오) | `markdown-video` | `remotion-best-practices` | DEV 폴더 사용 [^video] |
+| HeyGen 아바타 | `heygen` | `audio-generator` | 1-shot prompt-to-video |
+| YouTube 한글 자막 | `youtube-kr-subtitle` | `video-cleaning` | Claude 직접 번역 |
+
+### 4.6 다이어그램·Canvas
+
+| Surface | 1차 스킬 | 보조 스킬 |
+|---------|----------|---------|
+| Mermaid 다이어그램 | `obsidian-mermaid` | (mermaid-rules.md 준수) |
+| Knowledge graph | `graphify` | — |
+| Obsidian Canvas | `obsidian-canvas`, `cmds-canvas` | `json-canvas` |
+
+### 4.7 텍스트 시각 톤 (시각 산출물 아니지만 brand voice)
+
+| Surface | 1차 스킬 |
+|---------|----------|
+| SNS 4종 카피 | `cmds-sns-promo` |
+| 톤별 콘텐츠 | `tone-writer` |
+| 더배러 뉴스레터 | `thebetter-writer` |
+
+### 4.8 사전 점검
+
+| Surface | 스킬 |
+|---------|------|
+| UI 가이드라인 준수 점검 | `web-design-guidelines` |
+
+---
+
+## 5. Cross-Surface Consistency Rules
+
+다른 surface 간 일관성 룰. *같은 콘텐츠를 웹 → PDF → 슬라이드 → 영상 으로 옮길 때 동일 brand 인상이 유지되도록.*
+
+### 5.1 마스터 → 파생 흐름
+
+- **마스터**: 항상 *Markdown* (단일 진실 원천). 볼트 내 노트가 master.
+- **파생**: 위 4 섹션의 스킬로 web/PDF/slide/video 로 변환.
+- *반대 방향 금지*: PPT 를 master 로 두고 거꾸로 MD 추출하면 brand drift.
+
+### 5.2 색상 일관성
+
+모든 surface 에서 `--cmds-green` / `--cmds-pink` / `--accent-on` 토큰 동일 적용. 슬라이드 마스터 슬라이드·PDF 헤더·영상 lower-third 모두 동일.
+
+### 5.3 로고 사용
+
+- 웹: 헤더 좌측 round logo (32~40px)
+- PDF: 표지/푸터 round logo + typo lockup (테마별 swap)
+- 슬라이드: 마스터 슬라이드 우하단 round logo
+- 영상: 인트로 1초 + 아웃트로 마지막 프레임
+
+### 5.4 OG 메타 일관성
+
+웹 → SNS 공유 → 카카오톡 미리보기 까지 1200×630 OG 이미지 동일 사용.
+
+---
+
+## 6. Anti-Patterns (Vault-Specific)
+
+CMDSPACE 운영에서 반복 발생한 실수 — *DESIGN.md v1.0 시점의 기억* 정리.
+
+- ❌ **이모지 prefix 오용** — 🏛/📖/📚/🏷 는 vault navigation hub 전용. 일반 가이드·프로젝트 문서에 붙이면 wikilink 자동 placeholder 생성 사고 (2026-05-03 windlight 가이드 위반 사례) [^emoji]
+- ❌ **PDF report 테마 H2 수동 번호** — TOC 자동 번호와 중복. report 테마에서 본문 H2 의 수동 번호 제거 (2026-05-11 SGI 교육 사고) [^pdf]
+- ❌ **정보 전달 문서에 도장** — 도장은 *효력 문서* (견적·계약·제안서) 에만. 커리큘럼·안내문·회의록은 텍스트 서명만 [^pdf]
+- ❌ **차의과대 수업 문서 PDF 자동 변환** — master MD 만 만들고 끝. PDF 는 명시 요청 시에만
+- ❌ **SNS 카피에 마크다운 기호 노출** — LinkedIn/Threads/X/카톡은 마크다운 렌더 X. `**볼드**`, `*이탤릭*`, 백틱이 그대로 노출됨. 카피 블록 내부는 plain text + 이모지·하이픈·공백으로 강조
+- ❌ **영상 프로젝트 node_modules 를 vault 안에** — `/Users/yohankoo/DEV/video-projects/` 사용, vault 에는 tracking MD 만 [^video]
+
+[^pdf]: 메모리 [pdf-protocol](`~/.claude/projects/.../memory/pdf-protocol.md`) 참조
+[^emoji]: 메모리 [feedback_emoji_prefix_reserved](`~/.claude/projects/.../memory/feedback_emoji_prefix_reserved.md`) 참조
+[^video]: `.claude/rules/video-project-workflow.md` 참조
+
+---
+
+## 7. Pre-Flight Checklist (Before Publishing Any Visual Artifact)
+
+모든 시각 산출물 publish 전 다음 점검:
+
+### 7.1 모든 surface 공통
+
+- [ ] CI 컬러 토큰 사용 (`#134538` · `#E985A2`) — 임의 컬러 X
+- [ ] 폰트 = SF Pro + Pretendard 만 — Inter/Roboto 검출 시 즉시 교체
+- [ ] 로고 = `cmds-logo-round.png` (round PNG) — 인라인 SVG placeholder X
+- [ ] Anti-AI-Slop §2 negative-list 검증
+- [ ] 이모지 prefix (🏛/📖/📚/🏷) 가 잘못 사용되지 않았는지
+
+### 7.2 웹 추가
+
+- [ ] OG 이미지 1200×630 PNG + 17 메타 + 절대 URL
+- [ ] Light/Dark 토글 + localStorage 영속
+- [ ] CTA 컬러 룰 (light=green+white / dark=pink+dark text)
+
+### 7.3 PDF 추가
+
+- [ ] report 테마 본문 H2 수동 번호 제거 (TOC 자동 번호와 중복 방지)
+- [ ] 도장 필요성 재검증 — 효력 문서면 ✅, 정보 전달 문서면 ❌
+- [ ] Preview 시각 점검 (자동 열기)
+
+### 7.4 슬라이드 추가
+
+- [ ] 마스터 슬라이드에 round logo 우하단
+- [ ] 16:9 또는 4:3 명시
+- [ ] 한국어 = Pretendard, 영문 = SF Pro 분리
+
+### 7.5 영상 추가
+
+- [ ] 인트로 1초 round logo · 아웃트로 마지막 프레임 brand lockup
+- [ ] 자막 폰트 = Pretendard (한국어) / SF Pro (영문)
+- [ ] 프로젝트 코드 = `/Users/yohankoo/DEV/video-projects/{name}/`, vault 는 tracking MD 만
+
+---
+
+## 8. Sources & References
+
+### 8.1 Vault 내부
+
+- [[AI 코딩 에이전트용 DESIGN.md 패턴]] — getdesign.md 패턴 capture
+- [[CLAUDE.md]] · [[AGENTS.md]] · [[ANTIGRAVITY.md]] — 기존 audience-specific system files
+- [[CMDS.md]] · [[🏛 CMDS Guide]] · [[🏛 CMDS Head Quarter]] — context & standards
+- `90. Settings/91. Templates/` — 기존 template 모음
+- `30. Permanent Notes/39. Guideline/Design, Colors and Graphics.md` — *legacy (2022) (archived/deprecated)*, 본 DESIGN.md 가 대체
+
+### 8.2 LLM Wiki (satellite)
+
+- [Anti-AI-Slop Design Guidelines](obsidian://open?vault=CMDS_LLM_Wiki&file=20.%20Wiki%2F21.%20Concepts%2FAnti-AI-Slop%20Design%20Guidelines) — negative-list 패턴
+- [Claude Design](obsidian://open?vault=CMDS_LLM_Wiki&file=20.%20Wiki%2F22.%20Entities%2FClaude%20Design) — Anthropic 의 대화형 디자인 도구
+- [Antigravity (Google DeepMind)](obsidian://open?vault=CMDS_LLM_Wiki&file=20.%20Wiki%2F22.%20Entities%2FAntigravity%20%28Google%20DeepMind%29) — 6번째 audience system file 케이스
+- [张汉东](obsidian://open?vault=CMDS_LLM_Wiki&file=20.%20Wiki%2F22.%20Entities%2F%E5%BC%A0%E6%B1%89%E4%B8%9C) — DESIGN.md → spec → plan 공학적 파이프라인
+
+### 8.3 External
+
+- [getdesign.md](https://getdesign.md/) — 69개 브랜드 디자인 시스템 큐레이션 (원형 패턴)
+- [cmdspace-web-builder skill](`~/.claude/skills/cmdspace-web-builder/SKILL.md`) — v4.3 표준
+- 실전 레퍼런스: [system.cmdspace.work](https://system.cmdspace.work) · [llm-wiki.cmdspace.work](https://llm-wiki.cmdspace.work) · [9yohan.cmdspace.work](https://9yohan.cmdspace.work)
+
+---
+
+## 9. Post-Restructure Status (v4.8.0 / v4.9.0)
+
+v4.8.0 (2026-05-27)으로 mothership 이 *8 → 9 system files* 가 되었고, 아래 정합성 작업이 완료됨:
+
+- [x] **CLAUDE.md / AGENTS.md / ANTIGRAVITY.md / CMDS.md** 의 "📌 Related System Files" 표를 8개 → 9개로 갱신 (DESIGN.md = precedence 9 추가)
+- [x] **🏛 CMDS Head Quarter** 의 System Files 섹션에 DESIGN.md 항목 추가
+- [x] **system-docs-updater 스킬** 의 동기화 대상 목록에 DESIGN.md 추가 (백업 + share + DEV + Vercel 4-way fan-out)
+- [x] **system.cmdspace.work 배포** — DESIGN.md 를 공개 가능한 *6번째 파일* 로 배포 결정·반영 (CLAUDE/AGENTS/CMDS/Guide/HQ 와 함께 포함)
+- [x] **legacy 흡수** — `30. Permanent Notes/39. Guideline/Design, Colors and Graphics.md` (2022) 에 deprecation 배너 추가, archive 처리. 본 DESIGN.md 가 정본
+- [x] **`💻 Working Environments` 의 Public Deployment 섹션** (CLAUDE.md/AGENTS.md/CMDS.md) — 공개 파일 개수 표기 6개로 갱신
+
+> **상태**: 위 정합성 작업은 v4.8.0 (2026-05-27) ~ v4.9.0 (2026-05-30) 사이에 *한 세션 / 한 commit* 으로 묶여 완료됨. system-docs-updater 스킬로 4-way fan-out 자동화.
+
+---
+
+**For technical conventions**: see [[CLAUDE.md]] / [[AGENTS.md]] / [[ANTIGRAVITY.md]].
+**For system philosophy**: see [[CMDS.md]].
+**For navigation**: see [[🏛 CMDS Head Quarter]].

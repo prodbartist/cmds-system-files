@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMDS System Files v4.8.0 — Knowledge Architecture</title>
-    <meta name="description" content="CMDS (CMDSPACE) Personal Knowledge Management System — 5 core system files, 8 shared rules, 8 slash commands for AI agents and human users.">
+    <title>CMDS System Files v4.9.0 — Knowledge Architecture</title>
+    <meta name="description" content="CMDS (CMDSPACE) Personal Knowledge Management System — 6 core system files, 8 shared rules, 8 slash commands for AI agents and human users.">
     <link rel="icon" type="image/png" href="/assets/logos/cmds-logo-round.png">
     <link rel="apple-touch-icon" href="/assets/logos/cmds-logo-round.png">
 
     <!-- Open Graph (1200×630 dedicated docs OG image — dark Pink variant) -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="CMDS System Files">
-    <meta property="og:title" content="CMDS System Files v4.8.0 — Technical Documentation">
-    <meta property="og:description" content="Five files, ordered by precedence. The complete technical documentation for CMDS knowledge architecture — rules, patterns, and workflows.">
+    <meta property="og:title" content="CMDS System Files v4.9.0 — Technical Documentation">
+    <meta property="og:description" content="Six files, ordered by precedence. The complete technical documentation for CMDS knowledge architecture — rules, patterns, and workflows.">
     <meta property="og:url" content="https://system.cmdspace.work/docs/">
     <meta property="og:image" content="https://system.cmdspace.work/assets/og/og-docs.png">
     <meta property="og:image:secure_url" content="https://system.cmdspace.work/assets/og/og-docs.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="CMDS System Files v4.8.0 — Technical documentation: five files ordered by precedence">
+    <meta property="og:image:alt" content="CMDS System Files v4.9.0 — Technical documentation: six files ordered by precedence">
     <meta property="og:locale" content="en_US">
     <meta property="og:locale:alternate" content="ko_KR">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CMDS System Files v4.8.0 — Technical Documentation">
-    <meta name="twitter:description" content="Five files, ordered by precedence. Complete technical documentation for CMDS knowledge architecture.">
+    <meta name="twitter:title" content="CMDS System Files v4.9.0 — Technical Documentation">
+    <meta name="twitter:description" content="Six files, ordered by precedence. Complete technical documentation for CMDS knowledge architecture.">
     <meta name="twitter:image" content="https://system.cmdspace.work/assets/og/og-docs.png">
-    <meta name="twitter:image:alt" content="CMDS System Files v4.8.0 — Technical documentation">
+    <meta name="twitter:image:alt" content="CMDS System Files v4.9.0 — Technical documentation">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
@@ -778,7 +778,7 @@
     <a class="brand" href="/">
         <img class="brand-mark" src="/assets/logos/cmds-logo-round.png" alt="CMDS" width="28" height="28">
         <span>CMDS System Files</span>
-        <span class="brand-version">v4.8.0</span>
+        <span class="brand-version">v4.9.0</span>
     </a>
     <nav class="header-nav-inline">
         <a href="/" class="nav-home" title="Back to landing">
@@ -836,12 +836,20 @@
         </div>
 
         <div class="sidebar-group">
+            <div class="sidebar-label" data-i18n="nav.visual">Visual Language</div>
+            <ul>
+                <li><a href="#design-md" data-target="design-md"><code>DESIGN.md</code><span class="file-badge">9</span></a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-group">
             <div class="sidebar-label" data-i18n="nav.rules">Shared Rules</div>
             <ul>
                 <li><a href="#rule-indentation" data-target="rule-indentation">indentation</a></li>
                 <li><a href="#rule-frontmatter" data-target="rule-frontmatter">frontmatter-standard</a></li>
                 <li><a href="#rule-file-creation" data-target="rule-file-creation">file-creation</a></li>
                 <li><a href="#rule-wikilink" data-target="rule-wikilink">wikilink</a></li>
+                <li><a href="#rule-blank-line" data-target="rule-blank-line">blank-line</a></li>
                 <li><a href="#rule-directory" data-target="rule-directory">directory-structure</a></li>
                 <li><a href="#rule-mermaid" data-target="rule-mermaid">mermaid</a></li>
                 <li><a href="#rule-video" data-target="rule-video">video-project</a></li>
@@ -869,17 +877,17 @@
 
             <!-- HERO -->
             <section class="hero" id="overview">
-                <div class="hero-eyebrow">CMDS · 2026-05-27 · v4.8.0</div>
+                <div class="hero-eyebrow">CMDS · 2026-05-30 · v4.9.0</div>
                 <h1 class="hero-title">
                     <span class="en-only">A knowledge <em>architecture</em>,<br>shared openly.</span>
                     <span class="ko-only"><em>지식 아키텍처</em>를<br>공유합니다.</span>
                 </h1>
                 <p class="hero-lede">
-                    <span class="en-only">Five core system files, eight shared rules, and eight slash commands that keep a 10,000-note Obsidian vault coherent across humans and AI agents. Read them, download them, adapt them.</span>
-                    <span class="ko-only">만 개 이상의 노트를 가진 Obsidian 볼트를 사람과 AI 에이전트 양쪽에 대해 일관되게 유지하는 — 5개의 핵심 시스템 파일, 8개의 공유 규칙, 8개의 슬래시 커맨드. 읽고, 내려받고, 자신의 시스템에 맞추세요.</span>
+                    <span class="en-only">Six core system files, eight shared rules, and eight slash commands that keep a 10,000-note Obsidian vault coherent across humans and AI agents. Read them, download them, adapt them.</span>
+                    <span class="ko-only">만 개 이상의 노트를 가진 Obsidian 볼트를 사람과 AI 에이전트 양쪽에 대해 일관되게 유지하는 — 6개의 핵심 시스템 파일, 8개의 공유 규칙, 8개의 슬래시 커맨드. 읽고, 내려받고, 자신의 시스템에 맞추세요.</span>
                 </p>
                 <div class="hero-meta">
-                    <span><strong>5</strong> <span data-i18n="meta.files">system files</span></span>
+                    <span><strong>6</strong> <span data-i18n="meta.files">system files</span></span>
                     <span><strong>8</strong> <span data-i18n="meta.rules">shared rules</span></span>
                     <span><strong>8</strong> <span data-i18n="meta.commands">slash commands</span></span>
                     <span><strong>9</strong> <span data-i18n="meta.patterns">architecture patterns</span></span>
@@ -889,7 +897,7 @@
 
             <!-- ARCHITECTURE -->
             <section class="arch" id="architecture">
-                <div class="arch-title" data-i18n="arch.title">The 5-File Precedence</div>
+                <div class="arch-title" data-i18n="arch.title">The 6-File Precedence</div>
                 <div class="arch-grid">
                     <div class="arch-cell">
                         <div class="ac-idx">precedence · 1</div>
@@ -915,6 +923,11 @@
                         <div class="ac-idx">precedence · 5</div>
                         <div class="ac-name"><code>CMDS Head Quarter</code></div>
                         <div class="ac-desc"><span class="en-only">The navigation hub. 91 category links across 9 CMDS sections.</span><span class="ko-only">네비게이션 허브. 9개 CMDS 섹션의 91개 카테고리 링크.</span></div>
+                    </div>
+                    <div class="arch-cell">
+                        <div class="ac-idx">precedence · 9</div>
+                        <div class="ac-name"><code>DESIGN.md</code></div>
+                        <div class="ac-desc"><span class="en-only">Visual language spec — brand constants, anti-AI-slop rules, skill-to-surface mapping.</span><span class="ko-only">시각 언어 명세 — 브랜드 상수, 안티-AI-슬롭 규칙, 스킬↔서피스 매핑.</span></div>
                     </div>
                 </div>
             </section>
@@ -965,6 +978,15 @@
                 <div class="doc-body loading">Loading…</div>
             </article>
 
+            <article class="doc" id="design-md" data-file="DESIGN.md" data-precedence="9" data-audience="All visual-output agents">
+                <div class="doc-header">
+                    <div class="doc-kicker">VISUAL DOC <span class="dot">·</span> precedence 9 <span class="dot">·</span> Visual-output agents</div>
+                    <h2 class="doc-title"><code>DESIGN.md</code></h2>
+                    <p class="doc-desc" data-i18n="doc.design.desc">Visual language spec — brand constants, anti-AI-slop rules, template catalog, and skill-to-surface mapping for every visual artifact.</p>
+                </div>
+                <div class="doc-body loading">Loading…</div>
+            </article>
+
             <!-- RULES -->
             <section class="doc" id="rules-intro">
                 <div class="doc-header">
@@ -1002,6 +1024,14 @@
                 <div class="doc-header">
                     <div class="doc-kicker">RULE</div>
                     <h2 class="doc-title" style="font-size: 28px;"><code>wikilink-rules.md</code></h2>
+                </div>
+                <div class="doc-body loading">Loading…</div>
+            </article>
+
+            <article class="doc" id="rule-blank-line" data-file="rules/blank-line-rules.md">
+                <div class="doc-header">
+                    <div class="doc-kicker">RULE</div>
+                    <h2 class="doc-title" style="font-size: 28px;"><code>blank-line-rules.md</code></h2>
                 </div>
                 <div class="doc-body loading">Loading…</div>
             </article>
@@ -1073,13 +1103,14 @@
             'nav.intro': 'Introduction',
             'nav.ai': 'AI Documents',
             'nav.human': 'Human Documents',
+            'nav.visual': 'Visual Language',
             'nav.rules': 'Shared Rules',
             'meta.files': 'system files',
             'meta.rules': 'shared rules',
             'meta.commands': 'slash commands',
             'meta.patterns': 'architecture patterns',
             'meta.props': 'required properties',
-            'arch.title': 'The 5-File Precedence',
+            'arch.title': 'The 6-File Precedence',
             'dl.zip': 'Download ZIP',
             'toc.label': 'On this page',
             'doc.claude.desc': 'Technical implementation guide for Claude Code — file rules, vault commands, output paths, and Obsidian-specific syntax.',
@@ -1087,6 +1118,7 @@
             'doc.cmds.desc': 'Philosophy and context — why the system exists, who it\'s for, how the nine categories relate.',
             'doc.guide.desc': 'Operational standards — required properties, templates, naming and tagging conventions.',
             'doc.hq.desc': 'The navigation hub — 91 categories across 100–900 CMDS sections.',
+            'doc.design.desc': 'Visual language spec — brand constants, anti-AI-slop rules, template catalog, and skill-to-surface mapping for every visual artifact.',
             'doc.rules.desc': 'Eight atomic rule files used via @include in CLAUDE.md and AGENTS.md.'
         },
         ko: {
@@ -1095,13 +1127,14 @@
             'nav.intro': '소개',
             'nav.ai': 'AI 문서',
             'nav.human': '휴먼 문서',
+            'nav.visual': '시각 언어',
             'nav.rules': '공유 규칙',
             'meta.files': '시스템 파일',
             'meta.rules': '공유 규칙',
             'meta.commands': '슬래시 커맨드',
             'meta.patterns': '아키텍처 패턴',
             'meta.props': '필수 프로퍼티',
-            'arch.title': '5개 파일의 우선순위',
+            'arch.title': '6개 파일의 우선순위',
             'dl.zip': 'ZIP 다운로드',
             'toc.label': '이 페이지',
             'doc.claude.desc': 'Claude Code 기술 구현 가이드 — 파일 규칙, 볼트 명령, 출력 경로, Obsidian 전용 문법.',
@@ -1109,6 +1142,7 @@
             'doc.cmds.desc': '철학과 컨텍스트 — 왜 이 시스템이 존재하는지, 누구를 위한 것인지, 9개 카테고리의 관계.',
             'doc.guide.desc': '운영 표준 — 필수 프로퍼티, 템플릿, 이름과 태깅 규칙.',
             'doc.hq.desc': '네비게이션 허브 — 100–900 CMDS 섹션의 91개 카테고리.',
+            'doc.design.desc': '시각 언어 명세 — 브랜드 상수, 안티-AI-슬롭 규칙, 템플릿 카탈로그, 모든 시각 산출물의 스킬↔서피스 매핑.',
             'doc.rules.desc': 'CLAUDE.md와 AGENTS.md에서 @include 로 사용되는 8개의 원자적 규칙 파일.'
         }
     };

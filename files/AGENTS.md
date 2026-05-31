@@ -7,7 +7,7 @@ description: "Technical guide for non-Claude AI coding agents (Gemini CLI, Codex
 author:
   - "[[구요한]]"
 date created: 2026-01-02T16:30
-date modified: 2026-05-22
+date modified: 2026-05-30
 tags:
   - CMDS
   - system
@@ -25,9 +25,10 @@ optional-for:
 token-estimate: 3200
 CMDS: "[[📚 501 Obsidian]]"
 index: "[[🏛 CMDS Head Quarter]]"
-version: "2.6"
+version: "2.7"
 status: completed
 changelog:
+  - "2.7 (2026-05-30): v4.9.0 pass — added Pre-Flight Checklist + mermaid-rules import + DESIGN visual-artifact trigger; note-types/template-count aligned."
   - "2.6 (2026-05-22): 8→9 system files 전환 — DESIGN.md (precedence 9, Visual Language tier) 추가. Related System Files 표를 9-file 로 갱신. 공개 배포 카운트 5→6 갱신."
   - "2.5 (2026-05-03): Added Antigravity 03-7/03-8 output lanes for symmetry with Claude Code/OpenClaw/Codex. ANTIGRAVITY.md now full system file (precedence 3) — see [[ANTIGRAVITY.md]] for Gemini-specific notes."
   - "2.4 (2026-05-03): Codex MBP/Studio output lanes, Codex command/tool mapping, .agents skill registry, qmd refresh fallback, and description double-quote backfill added."
@@ -37,7 +38,7 @@ changelog:
   - "2.0 (2026-04-01): @include 기반 공통 규칙 분리, 중복 60% 제거"
   - "1.0 (2026-03-30): 초기 버전, frontmatter 표준 추가"
 ---
-> **🔄 Last Updated: 2026-05-22** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/AGENTS_backup.md` | Public: [system.cmdspace.work](https://system.cmdspace.work) (Vercel `cmds-system-files-v2`, deployed from `/Users/yohankoo/DEV/cmds-system-files/`)
+> **🔄 Last Updated: 2026-05-30** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/AGENTS_backup.md` | Public: [system.cmdspace.work](https://system.cmdspace.work) (Vercel `cmds-system-files-v2`, deployed from `/Users/yohankoo/DEV/cmds-system-files/`)
 
 # AGENTS.md
 
@@ -72,7 +73,7 @@ This is an Obsidian vault for the **CMDSPACE (커맨드스페이스)** knowledge
 
 The vault implements the CMDS framework — a comprehensive Personal Knowledge Management (PKM) system with 9 major categories (100-900 series). The operator is simultaneously researching and teaching four current focus axes: (1) Obsidian-based PKM, (2) System Files infrastructure, (3) LLM Wiki satellite vault, (4) 9Yohan multi-agent system. See [[CMDS.md]] for full context.
 
-**Vault Scale**: 10,000+ notes, 120+ plugins, 90+ templates
+**Vault Scale**: 10,000+ notes, 120+ plugins, 100+ templates
 
 ### Working Environments & Sync
 Two Macs are synced via **Obsidian Sync** (official Obsidian cloud server). All subfolders and files are kept identical.
@@ -126,6 +127,8 @@ All code-related outputs start under `00. Inbox/03. AI Agent/` and are separated
 
 @.claude/rules/video-project-workflow.md
 
+@.claude/rules/mermaid-rules.md
+
 ---
 
 ## Essential (Post-Compact)
@@ -139,6 +142,25 @@ All code-related outputs start under `00. Inbox/03. AI Agent/` and are separated
 > 6. **날짜 포맷**: ISO 8601 (YYYY-MM-DD)
 > 7. **빈 줄 최소화 (Obsidian-tight)**: 헤딩→sub-heading, 헤딩→콘텐츠, 리스트 끝→다음 헤딩 사이 빈 줄 X. `---` / `##` 단락 분리에만 빈 줄 허용
 > 8. **파일 참조 3종 결정 트리**: vault 내부 .md → `[[wikilink]]` (default · 이모지 prefix 정확히) · 에이전트 자동 로드 필요 → `@path/to/file.md` · vault 외부 경로/코드 → 백틱. 인라인 코드로 vault 내부 .md 쓰면 wikilink 깨짐. 자세한 결정 트리는 `.claude/rules/wikilink-rules.md`
+
+---
+
+## Pre-Flight Checklist (Before Every Write/Edit)
+
+Every time the agent creates or edits a `.md` file, verify:
+
+- [ ] **YAML frontmatter uses 2 SPACES** (not tabs)
+- [ ] **Markdown body uses TAB** (not spaces)
+- [ ] **No unnecessary blank lines** between heading→sub-heading, heading→content, list end→next heading (Obsidian-tight)
+- [ ] **Wikilinks in YAML are quoted**: `"[[link]]"` not `[[link]]`
+- [ ] **File reference form is correct**: vault 내부 → `[[wikilink]]` (default, 이모지 prefix 정확히) · 에이전트 자동 로드 필요 → `@path/to/file.md` · vault 외부(`/DEV/`, `~/.claude/`) → 백틱. 인라인 코드로 vault 내부 .md 쓰지 말 것 (`.claude/rules/wikilink-rules.md` 참조)
+- [ ] **Mermaid node/edge labels are quoted**: `A["label"]`, no `[/` start
+- [ ] **Arrays use proper format**: hyphen + space + value
+- [ ] **Dates use ISO 8601**: `YYYY-MM-DD` format
+- [ ] **`description` field present and in English**: 1-2 sentences explaining the note for LLMs
+- [ ] **`description` wrapped in double quotes `"..."`**: unquoted `: ` or ` #` breaks YAML parser
+- [ ] **Code output saved to**: `00. Inbox/03. AI Agent/03-5. Codex (MBP)/` (MBP) or `03-6. Codex (Studio)/` (Studio)
+- [ ] **Filename follows convention**: `YYYY-MM-DD-description.ext`
 
 ---
 
@@ -208,6 +230,12 @@ If this is too slow for the current task, at minimum report that qmd refresh was
 
 ---
 
+## Visual Artifacts (DESIGN.md)
+
+When producing any visual artifact — web page, PDF, slide deck, image, video, diagram — read [[DESIGN.md]] (precedence 9) BEFORE generating and obey its CI color tokens (`#134538` green / `#E985A2` pink), SF Pro + Pretendard fonts, and the Anti-AI-Slop negative list.
+
+---
+
 ## Obsidian Wikilinks
 
 ```markdown
@@ -232,6 +260,10 @@ If this is too slow for the current task, at minimum report that qmd refresh was
 - `curriculum` - Course curriculum
 - `channel` - YouTube/Blog/Newsletter 채널 프로필
 - `CMDS` - CMDS index pages (replaces traditional MOC concept)
+- `research-pipeline` - Research pipeline documents
+- `api` - API documentation
+- `moc` - Map of Content
+- `manuscript` - Manuscripts and drafts
 - `documentation` - Technical docs
 
 ## Status Values
