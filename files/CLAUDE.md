@@ -7,7 +7,7 @@ description: "Claude Code specific technical implementation guide. Defines file 
 author:
   - "[[구요한]]"
 date created: 2025-09-27T17:53
-date modified: 2026-05-30
+date modified: 2026-06-16
 tags:
   - CMDS
   - system
@@ -26,9 +26,10 @@ optional-for:
 token-estimate: 5800
 CMDS: "[[📚 501 Obsidian]]"
 index: "[[🏛 CMDS Head Quarter]]"
-version: "4.2"
+version: "4.3"
 status: completed
 changelog:
+  - "4.3 (2026-06-16): tags 회귀 재수정 (macro v4.9.1) — stray `1, 2` 태그가 v4.9.0 배포 후 inline 포맷(`[CMDS, system, 1, 2]`)으로 재발(2026-06-05). 리스트 포맷 복원. 3.8/4.0/4.1 에 이은 4번째 재발이라 근본 원인(Obsidian inline-tag 변환 추정) 추적 필요. 콘텐츠 변경 없음."
   - "4.2 (2026-05-30): v4.9.0 pass — deploy section 4-way→8-way, ZIP/matrix counts to 6/9, dedup system-files tables."
   - "4.1 (2026-05-22): 8→9 system files 전환 — DESIGN.md (precedence 9, Visual Language tier) 추가. Related System Files 표를 9-file 로 갱신. 공개 배포 파일 5→6개로 확장 (DESIGN.md 공개 결정). Tags 진짜 정리(`1, 2` 잔존분 제거)."
   - "4.0 (2026-05-20): Tags 실제 정리 (3.8 changelog 가 claim 했지만 실제로는 `1, 2` 잔존 — 이번에 진짜 제거). Last Updated 헤더 및 date modified 2026-05-20 동기화. CMDS.md v2.6 다이어트와 한 세트."
@@ -45,7 +46,7 @@ changelog:
   - "2.1 (2026-03-30): frontmatter 표준 추가, 백업 경로 이동"
   - "2.0 (2026-03-15): 전면 리뷰, 통계 갱신, GitHub/Web 링크"
 ---
-> **🔄 Last Updated: 2026-05-30** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CLAUDE_backup.md` | GitHub: [cmds-system-files](https://github.com/johnfkoo951/cmds-system-files) (코드 히스토리, 자동 배포 아님) | Web: [system.cmdspace.work](https://system.cmdspace.work) (Vercel `cmds-system-files-v2`)
+> **🔄 Last Updated: 2026-06-16** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CLAUDE_backup.md` | GitHub: [cmds-system-files](https://github.com/johnfkoo951/cmds-system-files) (코드 히스토리, 자동 배포 아님) | Web: [system.cmdspace.work](https://system.cmdspace.work) (Vercel `cmds-system-files-v2`)
 
 # CLAUDE.md
 

@@ -7,7 +7,7 @@ description: Central version history for the 6 publicly deployed CMDS system fil
 author:
   - "[[구요한]]"
 date created: 2026-04-01T11:30
-date modified: 2026-05-30
+date modified: 2026-06-16
 tags: [CMDS, system, changelog]
 CMDS: "[[📚 501 Obsidian]]"
 ---
@@ -26,6 +26,35 @@ CMDS: "[[📚 501 Obsidian]]"
 | 🔬 **마이크로 (파일별)** | 각 파일의 evolution | 각 파일 frontmatter `version:` | CLAUDE 3.8, CMDS 2.5, ... |
 
 각 매크로 entry 에는 **그 시점의 9 files version snapshot matrix** 를 포함해 마이크로 ↔ 매크로 매핑이 명시됩니다.
+
+---
+
+## v4.9.1 — 2026-06-16 (CLAUDE.md tags 회귀 hotfix)
+
+**트리거**: v4.9.0 배포(5/30~31) 이후 mothership `CLAUDE.md` 의 `tags` 가 2026-06-05 에 다시 inline 포맷 + stray 숫자 태그 (`[CMDS, system, 1, 2]`) 로 mangle 됨. 동일한 `1, 2` 잔존 버그가 3.8 / 4.0 / 4.1 에 이어 **4번째 재발**. Obsidian inline-tag 변환 등 외부 요인 추정.
+
+**왜 v4.9.1 (patch) 인가**: 콘텐츠·rule·web surface 변경 없는 frontmatter 위생 hotfix. 구조 변경 없음 → patch.
+
+### File Version Snapshot
+
+| File | Version | Δ from v4.9.0 |
+|------|:-------:|:-------------:|
+| CLAUDE.md | **4.3** | ⬆ 4.2 → 4.3 (tags 회귀 재수정, 리스트 포맷 복원) |
+| AGENTS.md | 2.7 | — |
+| ANTIGRAVITY.md | 2.2 | — |
+| CMDS.md | 2.8 | — |
+| 🏛 CMDS Guide.md | 2.7 | — |
+| 🏛 CMDS Head Quarter.md | 1.6 | — (date-modified drift only) |
+| DESIGN.md | 1.1 | — |
+| BRAIN.md *(internal)* | (Gobi-managed) | — |
+| BRAIN_PROMPT.md *(internal)* | (Gobi-managed) | — |
+
+### Changes
+
+- **CLAUDE.md tags 회귀 수정** — `[CMDS, system, 1, 2]` → 정상 YAML 리스트 (`- CMDS` / `- system`). stray `1, 2` 제거. CLAUDE micro 4.2 → 4.3.
+- **재발 패턴 기록** — 동일 버그 4번째 (3.8 / 4.0 / 4.1 / 4.3). 근본 원인 추적은 follow-up (Obsidian inline-tag 변환 가설).
+- **date drift 정리** — HQ `date modified`(06-11) 등 배포본 대비 drift 동기화.
+- 콘텐츠·rule·web surface 변경 없음 — Vercel 재배포 불요, GitHub 코드 히스토리에만 반영.
 
 ---
 
