@@ -7,8 +7,13 @@ description: "Operational standards guide for the CMDS vault. Defines the 7 requ
 author:
   - "[[구요한]]"
 date created: 2025-09-15T23:39
-date modified: 2026-05-30
-tags: [CMDS, system, guideline, NoteClass, operation, 태그는자유로워야지, index, maps, example, service]
+date modified: 2026-07-02
+tags:
+  - CMDS
+  - system
+  - guideline
+  - NoteClass
+  - operation
 audience: User + AI
 scope: operational-standards
 precedence: 5
@@ -22,9 +27,10 @@ optional-for:
 token-estimate: 4800
 links: []
 index: "[[🏛 CMDS Head Quarter]]"
-version: "2.7"
+version: "2.8"
 status: completed
 changelog:
+  - "2.8 (2026-07-02): 전수 감사 픽스 세트 (macro v4.9.3) — (a) tags 노이즈 회귀 재제거 (v2.6 정리분이 재발했던 것 — 태그는자유로워야지·index·maps·example·service) + 리스트 포맷 복원, (b) merge 예시 frontmatter 의 CMDS:/index: 방향 오류 수정 (📖→📚, 📚→🏷 — direction rule 과 일치), (c) Properties Template Examples 5종에 description 필드 추가 + 누락된 date modified 4건 보완, (d) 날짜 형식 명세를 frontmatter-standard 와 통일 (초 단위 제거), (e) 표준 Type 목록 CMDS 중복 등재·프로퍼티 CMDS 이중 정의 제거, (f) index: 프로퍼티에 시스템 파일 예외 명문화, (g) Folder Structure 에 실존 폴더 6개 추가 (01. Articles·53·54·65·66·76), (h) Version History 에 v2.6/v2.7 백필."
   - "2.7 (2026-05-30): v4.9.0 pass — added 🔗 Related System Files section with DESIGN.md (precedence 9) visual-standards cross-link; banner/version synced to 2.7."
   - "2.6 (2026-05-20): Tags noise 정리 — `태그는자유로워야지`, `maps`, `example`, `service`, `index` 제거 (vault 일반 태그 시스템과 의미 충돌). Last Updated 헤더 동기화."
   - "2.5 (2026-05-03): Aligned precedence to 8-file scheme (4→5). Added Antigravity 03-7/03-8 output lanes. Fixed `94. System Prompts/` → `94. Agent Settings/claude/` (folder rename was missed). Removed duplicate `99. Format/` entry. Updated Sync Settings lane reference (03-1~03-4 → 03-1~03-8). Backfilled Version History with v2.3/v2.4/v2.5 entries."
@@ -39,9 +45,9 @@ share_expires: 2026-01-29T11:02:12.926Z
 
 # CMDS Guide
 
-> **🔄 Last Updated: 2026-05-30** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS-Guide_backup.md`
+> **🔄 Last Updated: 2026-07-02** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS-Guide_backup.md`
 >
-> 📌 **Version 2.7** - Properties 표준화 + 9-file scheme + DESIGN 시각 규약 cross-link
+> 📌 **Version 2.8** - Properties 표준화 + 9-file scheme + DESIGN 시각 규약 cross-link
 
 ## Properties
 ### 필수 Properties (Required)
@@ -53,8 +59,8 @@ aliases: []     # 별칭 (배열 형식)
 description: "" # 1-2 문장 영어 요약 (LLM용, 반드시 double quote)
 author:
   - "[[구요한]]"  # 작성자 (wikilink 형식)
-date created:   # 생성일 (YYYY-MM-DDTHH:mm:ss)
-date modified:  # 수정일 (YYYY-MM-DDTHH:mm:ss)
+date created:   # 생성일 (YYYY-MM-DD 또는 YYYY-MM-DDTHH:mm)
+date modified:  # 수정일 (YYYY-MM-DD 또는 YYYY-MM-DDTHH:mm)
 tags: []        # 태그 (배열 형식)
 ---
 ```
@@ -67,8 +73,8 @@ tags: []        # 태그 (배열 형식)
 > - ❌ 나쁨: `"회의록"` (한국어), `"This is a note"` (무정보)
 ### 표준 Properties 정의
 #### 날짜 관련
-- `date created` - 생성일 (YYYY-MM-DDTHH:mm:ss)
-- `date modified` - 수정일 (YYYY-MM-DDTHH:mm:ss)
+- `date created` - 생성일 (YYYY-MM-DD 또는 YYYY-MM-DDTHH:mm)
+- `date modified` - 수정일 (YYYY-MM-DD 또는 YYYY-MM-DDTHH:mm)
 - `date` - 이벤트/미팅 날짜 (YYYY-MM-DD)
 - `publish_date` - 발행일 (YYYY-MM-DD)
 - `year` - 연도 (YYYY)
@@ -83,6 +89,7 @@ tags: []        # 태그 (배열 형식)
 - `type` - 노트 유형 (아래 표준 type 목록 참조)
 - `CMDS` - CMDS 카테고리 연결 (예: `[[📚 620 Generative AI]]`)
 - `index` - 인덱스 참조 (예: `[[🏷 Meeting Notes]]`)
+	- ⚠️ 예외: **9개 시스템 파일** 은 vault 최상위 navigation 문서이므로 `index:` 에 🏛 허브 노트 (`[[🏛 CMDS Head Quarter]]`, `[[🏛 CMDS Guide]]`) 사용을 허용. 일반 노트는 🏷 Index note 만.
 - `status` - 상태값
 	- ✅ 표준값: `unread` | `reading` | `inProgress` | `completed` | `archived`
 
@@ -98,7 +105,6 @@ tags: []        # 태그 (배열 형식)
 - `source` - 출처
 - `source_url` - 출처 URL
 - `bookends` - 북엔드 (기존 유지)
-- `CMDS` - CMDS 카테고리 참조
 
 #### CMDS Process Command Fields (v2.2, 2026-04-14+)
 
@@ -133,8 +139,8 @@ tags:
   - rag
   - knowledge-management
   - literature-review
-CMDS: "[[📖 200 Literature]]"
-index: "[[📚 210 Literature Reviews]]"
+CMDS: "[[📚 210 Literature Reviews]]"
+index: "[[🏷 Research Notes]]"
 status: completed
 mergePurpose: "강의·강연 — 주간 팀 리서치 공유 워크플로 재설계"
 sourceNotes:
@@ -168,12 +174,11 @@ mainVaultRelated:
 - `project` - 프로젝트
 - `zettel` - 제텔카스텐 노트
 #### 구조/조직 타입
-- `CMDS` - 커맨드스페이스 인덱스
+- `CMDS` - CMDS 인덱스 페이지 (MOC 대체)
 - `organization` - 조직/기관
 - `portal` - 포털 페이지
 - `documentation` - 문서화/가이드
 - `index` - 색인
-- `CMDS` - CMDS 인덱스 페이지
 #### 콘텐츠 타입
 - `books` - 도서
 - `research-review` - 연구 리뷰
@@ -274,6 +279,7 @@ mainVaultRelated:
 ## Folder Structure
 ```
 00. Inbox/                      # 임시 저장 및 처리 공간
+├── 01. Articles/               # 아티클 수집 (신설)
 ├── 01. Daily Notes/            # 데일리 노트 (01-1. Planners, 01-2. Weekly Notes)
 ├── 02. Clippings/              # 웹 클리핑 (02-1. Literature Notes)
 ├── 03. AI Agent/               # ⭐ AI 코드 작업 전용 (PRIMARY)
@@ -328,6 +334,8 @@ mainVaultRelated:
 ├── 51. Prompt/                 # 프롬프트 자산
 ├── 51. Prompt and Syntax/      # 프롬프트 및 문법
 ├── 52. Workflow/               # 워크플로우 자산
+├── 53. Transcription Context/  # 전사(STT) 컨텍스트 자산
+├── 54. Lecture Assets/         # 강의 재사용 자산
 └── 59. Obsidian Web Clipper/   # 웹 클리퍼 템플릿
 
 60. Collections/                # 엔티티 관리 컬렉션
@@ -335,6 +343,8 @@ mainVaultRelated:
 ├── 62. Organization/           # 조직/기관
 ├── 63. Meetings/               # 회의록
 ├── 64. Spirituality/           # 영성 콘텐츠 (성경, 설교)
+├── 65. Equipment/              # 장비 관리
+├── 66. Naval Consultations/    # Naval 상담 로그
 ├── 67. Bases/                  # 데이터베이스 구조
 ├── 68. Kanban Board/           # 칸반 보드
 ├── 68-1. Portal/               # 포털 페이지
@@ -346,6 +356,7 @@ mainVaultRelated:
 ├── 73. Courses/                # 교육 과정
 ├── 74. Projects/               # 프로젝트 문서
 ├── 75. Consulting/             # 컨설팅 산출물
+├── 76. Promotions/             # 홍보물
 └── 79. Portfolio/              # 포트폴리오
 
 80. References/                 # 참고 자료 및 출처
@@ -380,6 +391,7 @@ mainVaultRelated:
 ---
 type: note
 aliases: []
+description: "" # 1-2 문장 영어 요약 (double-quoted)
 author:
   - "[[구요한]]"
 date created: 2025-01-09T14:30
@@ -395,9 +407,11 @@ status:
 ---
 type: meeting
 aliases: []
+description: "" # 1-2 문장 영어 요약 (double-quoted)
 author:
   - "[[구요한]]"
 date created: 2025-01-09T09:00
+date modified: 2025-01-09T09:00
 date: 2025-01-09
 attendees:
   - "[[참석자1]]"
@@ -414,9 +428,11 @@ tags: [meeting]
 ---
 type: research-review
 aliases: []
+description: "" # 1-2 문장 영어 요약 (double-quoted)
 author:
   - "[[구요한]]"
 date created: 2025-01-09T16:45
+date modified: 2025-01-09T16:45
 title: 
 source: 
 source_url: 
@@ -433,9 +449,11 @@ tags: [research]
 ---
 type: books
 aliases: []
+description: "" # 1-2 문장 영어 요약 (double-quoted)
 author:
   - "[[구요한]]"
 date created: 2025-01-09T11:20
+date modified: 2025-01-09T11:20
 title: 
 subtitle: 
 isbn: 
@@ -454,9 +472,11 @@ tags: [📚Book]
 ---
 type: people
 aliases: []
+description: "" # 1-2 문장 영어 요약 (double-quoted)
 author:
   - "[[구요한]]"
 date created: 2025-01-09T10:15
+date modified: 2025-01-09T10:15
 email: 
 mobile: 
 organization: "[[조직명]]"
@@ -562,6 +582,9 @@ date modified: 2026-03-30
 - `.obsidian` - macOS, Windows, Android
 - `.obsidian_mobile` - iOS, iPadOS
 ## Version History
+- **v2.8** (2026-07-02): 전수 감사 픽스 — tags 노이즈 회귀 재제거, merge 예시 CMDS:/index: 방향 오류 수정, 템플릿 예시 5종 description·date modified 보완, 날짜 형식 통일 (초 단위 제거), CMDS 타입/프로퍼티 중복 제거, index: 시스템 파일 예외 명문화, Folder Structure 실존 폴더 6개 추가
+- **v2.7** (2026-05-30): 🔗 Related System Files 섹션 추가 (DESIGN.md precedence 9 cross-link), 배너·버전 동기화
+- **v2.6** (2026-05-20): Tags 노이즈 정리 (`태그는자유로워야지`·`maps`·`example`·`service`·`index` 제거), Last Updated 헤더 동기화
 - **v2.5** (2026-05-03): 8-file precedence 정렬 (4→5), Antigravity 03-7/03-8 lane 추가, `94. System Prompts/` → `94. Agent Settings/claude/` 폴더 이름 갱신, `99. Format/` 중복 제거, Sync Settings lane 표기 갱신 (`03-1~03-8`)
 - **v2.4** (2026-05-03): Codex MBP/Studio AI Agent 폴더 추가, description double-quote 예시 명확화
 - **v2.3** (2026-04-07): 필수 프로퍼티 7개로 확장 (description 추가, English required for LLMs)

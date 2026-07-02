@@ -2,16 +2,16 @@
 type: documentation
 aliases:
   - AI Agents Guide
-  - Gemini Codex Guide
-description: "Technical guide for non-Claude AI coding agents (Gemini CLI, Codex, Cursor, Windsurf). Simplified and portable version of CLAUDE.md. Reference when any AI agent other than Claude Code is operating in the CMDS vault."
+  - Non-Claude Agents Guide
+description: "Technical guide for non-Claude AI coding agents (Codex, Cursor, Windsurf; Gemini/Antigravity should prefer ANTIGRAVITY.md and treat this file as fallback). Simplified and portable version of CLAUDE.md. Reference when any AI agent other than Claude Code is operating in the CMDS vault."
 author:
   - "[[구요한]]"
 date created: 2026-01-02T16:30
-date modified: 2026-05-30
+date modified: 2026-07-02
 tags:
   - CMDS
   - system
-audience: Gemini CLI, Codex, Cursor, Windsurf
+audience: Codex, Cursor, Windsurf (Gemini/Antigravity 는 ANTIGRAVITY.md 우선 — 이 파일은 fallback)
 scope: technical-implementation
 precedence: 2
 memory-type: feedback
@@ -22,12 +22,14 @@ required-for:
 optional-for:
   - search
   - analysis
-token-estimate: 3200
+token-estimate: 8500
 CMDS: "[[📚 501 Obsidian]]"
 index: "[[🏛 CMDS Head Quarter]]"
-version: "2.7"
+version: "2.9"
 status: completed
 changelog:
+  - "2.9 (2026-07-02): 전수 감사 픽스 세트 (macro v4.9.3) — (a) frontmatter audience/aliases/description 에서 Gemini CLI 선두 표기 제거 (ANTIGRAVITY.md 우선·본 파일 fallback 관계 명시), (b) 백틱 감싼 CLAUDE.md wikilink 정정 (자기 규칙 위반), (c) /inbox 서브폴더 하드카운트 제거, (d) Rule Loading 목록에 mermaid-rules.md 추가, (e) Guide/HQ @import 표기 wikilink 로 정정, (f) token-estimate 3200→8500 실측화, 배너 동기화."
+  - "2.8 (2026-07-02): Codex & Codex-Fugu compatibility pass — added `.codex/` runtime layer (README + hooks.json + qmd-reindex.sh + 8 command adapters) and `.agents/skills/` Fugu wrappers for all 8 CMDS Process operations. New AGENTS.md sections: Runtime Entrypoints, Cross-Agent Operation Map, Runtime Compatibility Matrix, Multi-Agent Orchestration. Clarified hooks are manual in Codex/Fugu and wikilinks resolve to paths."
   - "2.7 (2026-05-30): v4.9.0 pass — added Pre-Flight Checklist + mermaid-rules import + DESIGN visual-artifact trigger; note-types/template-count aligned."
   - "2.6 (2026-05-22): 8→9 system files 전환 — DESIGN.md (precedence 9, Visual Language tier) 추가. Related System Files 표를 9-file 로 갱신. 공개 배포 카운트 5→6 갱신."
   - "2.5 (2026-05-03): Added Antigravity 03-7/03-8 output lanes for symmetry with Claude Code/OpenClaw/Codex. ANTIGRAVITY.md now full system file (precedence 3) — see [[ANTIGRAVITY.md]] for Gemini-specific notes."
@@ -38,11 +40,13 @@ changelog:
   - "2.0 (2026-04-01): @include 기반 공통 규칙 분리, 중복 60% 제거"
   - "1.0 (2026-03-30): 초기 버전, frontmatter 표준 추가"
 ---
-> **🔄 Last Updated: 2026-05-30** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/AGENTS_backup.md` | Public: [system.cmdspace.work](https://system.cmdspace.work) (Vercel `cmds-system-files-v2`, deployed from `/Users/yohankoo/DEV/cmds-system-files/`)
+> **🔄 Last Updated: 2026-07-02** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/AGENTS_backup.md` | Public: [system.cmdspace.work](https://system.cmdspace.work) (Vercel `cmds-system-files-v2`, deployed from `/Users/yohankoo/DEV/cmds-system-files/`)
 
 # AGENTS.md
 
 This file provides guidance to AI coding agents (Codex, Cursor, Windsurf, etc.) when working with this Obsidian vault. **Google Gemini / Antigravity 사용 시에는 [[ANTIGRAVITY.md]] 가 우선** 참조됨.
+
+> **🧭 Codex & Codex-Fugu**: 이 볼트는 원래 Claude Code 중심으로 설계됐지만, 이제 Codex 네이티브 런타임 레이어(`.codex/`)와 Fugu 자동 발견 스킬 레지스트리(`.agents/skills/`)가 Claude 하네스를 미러한다. 진입점·자동화 차이는 아래 **Codex Operating Notes** 의 *Runtime Entrypoints*, *Cross-Agent Operation Map*, *Runtime Compatibility Matrix*, *Multi-Agent Orchestration* 섹션을 먼저 읽을 것. 개요는 `.codex/README.md`.
 
 > **📌 Related System Files (9 System Files)** — precedence 순서대로 로드, audience 별 그룹
 >
@@ -55,8 +59,8 @@ This file provides guidance to AI coding agents (Codex, Cursor, Windsurf, etc.) 
 >
 > **📚 Context & Standards** (referenced by all agents):
 > - @CMDS.md → [[CMDS.md]] — System philosophy & user context (precedence: 4)
-> - @🏛 CMDS Guide → [[🏛 CMDS Guide]] — Standards & templates (precedence: 5)
-> - @🏛 CMDS Head Quarter → [[🏛 CMDS Head Quarter]] — Navigation hub (precedence: 6)
+> - [[🏛 CMDS Guide]] — Standards & templates (precedence: 5 · 공백 포함 경로라 @import 불가 — 필요 시 명시 Read)
+> - [[🏛 CMDS Head Quarter]] — Navigation hub (precedence: 6 · 공백 포함 경로라 @import 불가 — 필요 시 명시 Read)
 >
 > **🧠 Gobi Persona System** (Gobi 앱 entry point — *외부 LLM coding agent 아님*):
 > - @BRAIN.md → [[BRAIN.md]] — 구요한 brain profile (사람을 기술하는 grounding source) (precedence: 7)
@@ -105,7 +109,7 @@ All code-related outputs start under `00. Inbox/03. AI Agent/` and are separated
 - **DEV source folder**: `/Users/yohankoo/DEV/cmds-system-files/`
 - **Deploy command** (from DEV folder): `vercel deploy --prod --yes`
 - **GitHub repo**: https://github.com/johnfkoo951/cmds-system-files — code backup only, **not connected to Vercel auto-deploy**
-- Details & sync skill: see `[[CLAUDE.md]]` → "📦 System Files Deployment" section
+- Details & sync skill: see [[CLAUDE.md]] → "📦 System Files Deployment" section
 
 ---
 
@@ -155,6 +159,7 @@ Every time the agent creates or edits a `.md` file, verify:
 - [ ] **Wikilinks in YAML are quoted**: `"[[link]]"` not `[[link]]`
 - [ ] **File reference form is correct**: vault 내부 → `[[wikilink]]` (default, 이모지 prefix 정확히) · 에이전트 자동 로드 필요 → `@path/to/file.md` · vault 외부(`/DEV/`, `~/.claude/`) → 백틱. 인라인 코드로 vault 내부 .md 쓰지 말 것 (`.claude/rules/wikilink-rules.md` 참조)
 - [ ] **Mermaid node/edge labels are quoted**: `A["label"]`, no `[/` start
+- [ ] **Table has a blank line before it**: a sentence/list immediately followed by a `| ... |` row breaks rendering — insert one blank line between the lead-in line and the table header (see `.claude/rules/blank-line-rules.md`)
 - [ ] **Arrays use proper format**: hyphen + space + value
 - [ ] **Dates use ISO 8601**: `YYYY-MM-DD` format
 - [ ] **`description` field present and in English**: 1-2 sentences explaining the note for LLMs
@@ -172,7 +177,17 @@ Every time the agent creates or edits a `.md` file, verify:
 
 ## Codex Operating Notes
 
-Codex can work in this vault, but it should treat Claude-specific files as portable workflow specs rather than literal tool calls.
+Codex can work in this vault natively. As of 2026-07-02 there is a dedicated **`.codex/` runtime layer** and a **`.agents/skills/` Fugu-discoverable registry** that mirror the Claude Code harness, so **Codex (single agent)** and **Codex-Fugu (multi-agent orchestration)** run the same CMDS Process operations Claude Code runs. Claude-specific files remain the canonical specs; Codex treats them as portable workflow specs rather than literal tool calls, and prefers the `.codex/` / `.agents/` entrypoints below.
+
+### Codex / Codex-Fugu Runtime Entrypoints
+
+| Harness | Operation entrypoint | Skill discovery | Notes |
+|---------|----------------------|-----------------|-------|
+| Claude Code | `.claude/commands/{op}.md` (`/op`) | manual (command references) | PostToolUse hooks auto-run (`.claude/settings.json`) |
+| Codex (single) | `.codex/commands/{op}.md` | manual | hooks are manual; ask user in plain text only when blocked |
+| Codex-Fugu (multi-agent) | `.agents/skills/{op}/SKILL.md` (auto-discovered) + `.codex/commands/{op}.md` | **automatic** — `.agents/skills/*/SKILL.md` exposed as skills | workers never prompt the user; orchestrator reindexes once |
+
+The 8 CMDS Process operations (`connect, merge, develop, share, inbox, lint, query, status`) exist in all three places. See `.codex/README.md` for the layer overview and the **Cross-Agent Operation Map** below for the parity table.
 
 ### Rule Loading
 
@@ -184,6 +199,7 @@ Codex can work in this vault, but it should treat Claude-specific files as porta
 - `.claude/rules/blank-line-rules.md`
 - `.claude/rules/file-creation-rules.md`
 - `.claude/rules/directory-structure.md`
+- `.claude/rules/mermaid-rules.md`
 
 For video or Remotion-like work, also read `.claude/rules/video-project-workflow.md`.
 
@@ -213,20 +229,69 @@ The files in `90. Settings/94. Agent Settings/claude/commands/` are still the ca
 
 ### qmd Refresh
 
-Claude Code runs a PostToolUse hook after `Write`/`Edit` to refresh qmd. Codex edits may not trigger that hook, so after meaningful Markdown changes run:
+Claude Code runs a PostToolUse hook after `Write`/`Edit` to refresh qmd. **Codex CLI and Codex-Fugu do NOT auto-run hooks** — `.codex/hooks.json` mirrors `.claude/settings.json` for portability/documentation only. So after meaningful Markdown changes run:
 
 ```bash
 qmd update && qmd embed
 ```
 
-If this is too slow for the current task, at minimum report that qmd refresh was skipped.
+Or run the ready-made script: `.codex/hooks/qmd-reindex.sh`. In **Fugu, only the orchestrator** runs the reindex once per batch — parallel workers must not each reindex (duplicate/competing embeds). If this is too slow for the current task, at minimum report that qmd refresh was skipped. Mothership qmd collections: `mothership_inbox`, `mothership_cmds_process`, `mothership_literature`, `mothership_permanent`, `mothership_docs`, `mothership_assets`, `mothership_collections`, `mothership_outputs`, `mothership_references`, `mothership_settings`; the LLM Wiki satellite is collection `wiki`.
 
 ### Skill Registry
 
-- Codex-native skills live in `.agents/skills/`.
+- Codex-native / Fugu-discoverable skills live in `.agents/skills/`. Fugu auto-exposes every `.agents/skills/*/SKILL.md`, so each CMDS Process operation has a thin wrapper skill there that points to its `.codex/commands/{op}.md` runtime spec.
 - Claude Code skills live in `90. Settings/94. Agent Settings/claude/skills/` and are exposed through `.claude/skills`.
 - If the same skill exists in both places and contents differ, Codex should use `.agents/skills/` for execution and consult the Claude version only for historical context.
 - Do not silently synchronize skill files across registries unless the user asks for a sync.
+
+### Cross-Agent Operation Map (8 CMDS Process operations)
+
+When you add or change an operation, edit **all three** rows together (Claude command + Codex command + Fugu skill), then re-check with the parity note below. Because `.codex/` and `.agents/` sit outside Obsidian's graph and this vault is **not a git repo**, parity is verified by filesystem inspection (`find .codex .agents/skills`), not `git diff`.
+
+| Operation | Fan | Codex command | Fugu skill | Claude mirror |
+|-----------|-----|---------------|------------|---------------|
+| connect | 1→1 | `.codex/commands/connect.md` | `.agents/skills/connect/SKILL.md` | `.claude/commands/connect.md` |
+| merge | N→1 | `.codex/commands/merge.md` | `.agents/skills/merge/SKILL.md` | `.claude/commands/merge.md` |
+| develop | 1→1 | `.codex/commands/develop.md` | `.agents/skills/develop/SKILL.md` | `.claude/commands/develop.md` |
+| share | 1→N | `.codex/commands/share.md` | `.agents/skills/share/SKILL.md` | `.claude/commands/share.md` |
+| inbox | router | `.codex/commands/inbox.md` | `.agents/skills/inbox/SKILL.md` | `.claude/commands/inbox.md` |
+| lint | read-only | `.codex/commands/lint.md` | `.agents/skills/lint/SKILL.md` | `.claude/commands/lint.md` |
+| query | 1→1 | `.codex/commands/query.md` | `.agents/skills/query/SKILL.md` | `.claude/commands/query.md` |
+| status | read-only | `.codex/commands/status.md` | `.agents/skills/status/SKILL.md` | `.claude/commands/status.md` |
+
+> **Parity note**: The canonical CMDS Process spec is still the Claude command file. The `.codex/commands/` file is its shell-first translation, and the `.agents/skills/` file is a thin Fugu wrapper that points back to the `.codex/` spec. Keep the operation name identical across all three.
+
+### Runtime Compatibility Matrix (Claude Code · Codex · Codex-Fugu)
+
+The three harnesses share the same operation names and schema, but runtime features (slash-command auto-load, hook auto-run, sub-agents) differ. This table defines what is automatic vs. a manual substitute in each runtime.
+
+| Capability | Claude Code | Codex (single) | Codex-Fugu (multi-agent) |
+|------------|-------------|----------------|--------------------------|
+| Operation entrypoint | `.claude/commands/{op}.md` (`/op`) | `.codex/commands/{op}.md` | `.agents/skills/{op}/SKILL.md` (auto) + `.codex/commands/{op}.md` |
+| Skill discovery | manual (command refs) | manual | **automatic** — `.agents/skills/*/SKILL.md` exposed |
+| `[[wikilink]]` resolution | Obsidian graph | **no** → read as path | **no** → read as path |
+| PostToolUse hook auto-run | ✅ `.claude/settings.json` | ❌ `.codex/hooks.json` = docs/manual | ❌ not auto-run |
+| qmd reindex | hook auto (debounced) | manual: `qmd update && qmd embed` or `.codex/hooks/qmd-reindex.sh` | manual: **orchestrator once** (no per-worker reindex) |
+| User prompts | `AskUserQuestion` | plain-text, only when blocked | **workers never prompt** — orchestrator only |
+| Parallel sub-agents | `Task` sub-agent | none (single) | `spawn_agent` / `wait_agent` workers |
+| Output lane | `03-1`/`03-2` | `03-5`/`03-6` | `03-5`/`03-6` |
+
+> [!warning] Wikilinks do not resolve in Codex/Fugu
+> `[[CMDS.md]]`, `[[DESIGN.md]]`, `[[AGENTS.md]]` etc. in any spec are Obsidian conveniences. Shell-based agents must read the **path**: root-level notes resolve to `./<name>.md`; vault notes are found with `rg --files` / `rg` / `qmd query`. Wikilinks written into YAML must still be quoted `"[[...]]"` per the frontmatter standard.
+
+> [!warning] Hooks are manual in Codex/Fugu
+> `.codex/hooks.json` mirrors the Claude `settings.json` schema but is **not** auto-invoked by Codex CLI or Fugu. After a write session, run `qmd update && qmd embed` (or `.codex/hooks/qmd-reindex.sh`) yourself. In Fugu, only the orchestrator runs it once.
+
+### Multi-Agent Orchestration (Codex-Fugu)
+
+Invariants for running multiple Fugu workers in parallel. Apply only to operations where fan-out is natural (e.g. a large `/lint` split by scope, a multi-format `/share`, or a multi-file `/develop`); single small operations should be done locally by the orchestrator.
+
+- **Single-writer rule**: `index.md`/`log.md`-style shared files and any given note must be written by **one** agent. Either the orchestrator writes serially, or worker write-sets are **completely disjoint**. Two workers writing the same file corrupts it — workers return results, the orchestrator integrates. `/merge` is single-writer by nature (never fan out the synthesis write).
+- **Generator ≠ Verifier**: the worker (or pass) that produced a note does not also verify/lint it. Assign verification to a separate `spawn_agent` worker to avoid rubber-stamping.
+- **Gates are orchestrator/human only**: promoting an artifact out of the inbox lane, deleting notes, flipping status, raising confidence, or adding a new domain are not done automatically by workers — the orchestrator handles them after user confirmation.
+- **Reindex once**: read-only fan-out first; qmd reindex happens last and only from the orchestrator.
+- **Workers don't prompt the user**: only the orchestrator asks questions (plain text). Workers that hit ambiguity return a proposed decision for the orchestrator to confirm.
+- **Disjoint write-sets for `/develop`**: decompose multi-file builds so each worker owns a distinct file/subfolder inside the Codex lane (`03-5`/`03-6`); the orchestrator merges. Use a git worktree/branch only if concurrent writes to the same tree are unavoidable.
 
 ---
 
@@ -300,7 +365,7 @@ Templates are in `90. Settings/91. Templates/`. Key templates:
 
 ## CMDS Process Command Suite (2026-04-14+)
 
-The mothership has 8 slash commands aligned with the **CMDS Process** (Connect → Merge → Develop → Share). Implementation lives in `.claude/commands/` (symlinked to `90. Settings/94. Agent Settings/claude/commands/`). If your agent runtime supports Claude Code-compatible slash commands, you can invoke these directly; otherwise, treat them as workflow documentation for how the user thinks about vault operations.
+The mothership has 8 slash commands aligned with the **CMDS Process** (Connect → Merge → Develop → Share). Canonical implementation lives in `.claude/commands/` (symlinked to `90. Settings/94. Agent Settings/claude/commands/`). Codex-native runtime translations live in `.codex/commands/{op}.md`, and Fugu-discoverable wrappers live in `.agents/skills/{op}/SKILL.md` (see **Cross-Agent Operation Map** above). If your agent runtime supports Claude Code-compatible slash commands, you can invoke these directly; Codex should use its `.codex/` / `.agents/` entrypoints; otherwise, treat them as workflow documentation for how the user thinks about vault operations.
 
 ### Stage commands (the 4-stage knowledge lifecycle)
 
@@ -315,7 +380,7 @@ The mothership has 8 slash commands aligned with the **CMDS Process** (Connect �
 
 | Command | Role |
 |---------|------|
-| `/inbox` | Scan 9 inbox subfolders, route to stage command. **Read-only, router only.** |
+| `/inbox` | Scan 00. Inbox/ subfolders, route to stage command. **Read-only, router only.** |
 | `/lint {scope}` | Health check by stage scope (inbox/connect/merge/develop/share/all). Read-only. |
 | `/query` | Search vault + LLM Wiki, synthesize answer, file back to appropriate CMDS category (NOT a separate folder). |
 | `/status` | One-screen stage snapshot + recommended next action. Zero dialogs. |
@@ -344,10 +409,12 @@ inbox 항목 빠르게 등록               → /connect
 
 ### For agents without slash command support
 
-If your runtime doesn't execute `/connect` etc. directly, you can still:
+**Codex / Codex-Fugu**: use the native entrypoints first — `.codex/commands/{name}.md` (single agent) or the auto-discovered `.agents/skills/{name}/SKILL.md` (Fugu). They already translate Claude tool calls to shell + `apply_patch` + `qmd`.
 
-1. Read the command file (`90. Settings/94. Agent Settings/claude/commands/{name}.md`) to understand the expected workflow.
-2. Execute the workflow manually using standard tool calls (Read, Write, Edit, Glob, Grep).
+If your runtime doesn't execute `/connect` etc. directly and has no `.codex/` layer, you can still:
+
+1. Read the command file (`.codex/commands/{name}.md`, or the canonical `90. Settings/94. Agent Settings/claude/commands/{name}.md`) to understand the expected workflow.
+2. Execute the workflow manually using standard tool calls (shell `rg`/`sed`/`find`, `apply_patch`, `qmd`).
 3. Follow the same frontmatter conventions and user-dialog checkpoints the command specifies.
 
 The commands are self-contained markdown — each `.md` file is both the spec and the prompt.

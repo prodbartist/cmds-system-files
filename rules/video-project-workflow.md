@@ -18,7 +18,7 @@
 2. **볼트 내 추적 MD 위치**: `00. Inbox/03. AI Agent/{current agent lane}/YYYY-MM-DD-<descriptive-name>.md` (Codex MBP: `03-5. Codex (MBP)/`)
 	- 기획, 나레이션 초안, 진행 로그, 결정사항, 이슈, 컨텍스트만 담는다
 	- 상단에 **DEV 절대경로** 명시 필수
-3. **인덱스 업데이트**: `[[🏷 Video Projects]]` (기존 Claude 인덱스 경로: `00. Inbox/03. AI Agent/03-1. Claude Code (MBP)/2026-04-14-video-projects-index.md`) 에 새 항목 추가
+3. **인덱스 업데이트**: [[2026-04-14-video-projects-index|🏷 Video Projects]] (경로: `00. Inbox/03. AI Agent/03-1. Claude Code (MBP)/2026-04-14-video-projects-index.md`) 에 새 항목 추가 — bare `[[🏷 Video Projects]]` 는 alias 라 resolve 안 됨, 반드시 aliased 링크로
 4. **DEV 프로젝트 루트 README**: 각 프로젝트 폴더에 `README.md` 생성, 볼트 추적 MD로 역참조
 
 ### 볼트 내 추적 MD 필수 섹션
@@ -57,25 +57,24 @@ npm run build
 ```yaml
 ---
 type: note
-aliases: [Project Name]
+aliases:
+  - Project Name
 description: "Tracking note for the <project>. Project source lives at /Users/yohankoo/DEV/video-projects/<name>/. Reference when <situation>."
 author:
   - "[[구요한]]"
 date created: YYYY-MM-DD
 date modified: YYYY-MM-DD
-tags: [video, remotion, ...]
+tags:
+  - video
+  - remotion
 CMDS: "[[📚 630 Development]]"
 status: inProgress | completed
 ---
 ```
 
-## Existing Projects (as of 2026-04-14)
+## Existing Projects
 
-| DEV Folder | Vault Tracking Note |
-|-----------|--------------------|
-| `/Users/yohankoo/DEV/video-projects/lg-ceo-value-video/` | `2026-02-24-lg-ceo-value-video.md` |
-| `/Users/yohankoo/DEV/video-projects/lg-cns-ch5-probability-video/` | `2026-03-24-lg-cns-ch5-probability-video.md` |
-| `/Users/yohankoo/DEV/video-projects/parkjun-welcome-video/` | `2026-03-03-parkjun-welcome-video.md` |
+프로젝트 목록 정본은 인덱스 노트 [[2026-04-14-video-projects-index|🏷 Video Projects]] 에서 관리한다 (이 룰 파일에 하드코딩된 표를 두지 않음 — 과거 3개 프로젝트 시점의 표가 14개 시점까지 방치됐던 drift 방지). 새 프로젝트 생성 시 인덱스 노트에 행 추가가 필수 절차.
 
 ## Anti-pattern
 

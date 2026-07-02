@@ -2,6 +2,8 @@
 
 ```
 00. Inbox/                      # Temporary storage and processing
+├── _Gobi_Captures/             # Gobi capture inbox
+├── 01. Articles/               # Article collection
 ├── 01. Daily Notes/            # Daily journal (01-1. Planners, 01-2. Weekly Notes)
 ├── 02. Clippings/              # Web clippings (02-1. Literature Notes)
 ├── 03. AI Agent/               # Code outputs (PRIMARY)
@@ -37,6 +39,8 @@
 │       ├── rules/
 │       └── skills/
 ```
+
+> **문서화 대상 외 루트 폴더**: `_Settings_/`, `프로젝트/`, `context/`, `copilot-custom-prompts/` (Obsidian Copilot 플러그인 자동 생성), `_starter-kit/` 계열은 canonical CMDS 구조 밖의 시스템·legacy 폴더 — 위 트리에 넣지 않고 여기서만 명시한다.
 
 ## Symbolic Link: .claude/ ↔ 94. Agent Settings/
 

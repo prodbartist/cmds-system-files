@@ -7,8 +7,10 @@ description: "Context and philosophy guide for all LLM assistants working with t
 author:
   - "[[구요한]]"
 date created: 2025-10-22T21:52
-date modified: 2026-05-30
-tags: [CMDS, system, 3]
+date modified: 2026-07-02
+tags:
+  - CMDS
+  - system
 audience: All LLM assistants
 scope: context-philosophy
 precedence: 4
@@ -22,9 +24,10 @@ optional-for:
 token-estimate: 8500
 CMDS: "[[📚 601 Knowledge Management]]"
 index: "[[🏛 CMDS Head Quarter]]"
-version: "2.8"
+version: "2.9"
 status: completed
 changelog:
+  - "2.9 (2026-07-02): 전수 감사 픽스 세트 (macro v4.9.3) — (a) tags stray `3` 3번째 재발 제거·리스트 포맷 복원, (b) cmds-llm-wiki 스타터킷 버전 v1.4.0 → v1.7.0 실측 갱신, (c) 최상위 폴더 카운트 9→10 정정, (d) 폴더 wikilink 2곳을 백틱 경로로 정정 (60. Collections/63. Meetings), (e) When Creating New Notes 필수 프로퍼티를 7개 전부로 확장 (description·date modified 누락 보완), (f) '91 카테고리' → 실측 87 정정 2곳, (g) 배너 탭 문자 정규화 + 날짜 동기화."
   - "2.8 (2026-05-30): v4.9.0 pass — fixed 9Yohan + starter-kit paths, count accuracy, PhD-paused annotations, Antigravity added to tools."
   - "2.7 (2026-05-22): 8→9 system files 전환 — DESIGN.md (precedence 9, Visual Language tier) 추가. System Documentation Overview 에 🎨 Visual Language 테이블 추가, Essential 섹션 카운트 8→9 + 공개 5→6 갱신, body 본문 참조 3건 갱신. Tags 잔존 `3` 제거. (deployed in macro v4.8.0, 2026-05-27)"
   - "2.6 (2026-05-20): Moderate diet — removed Working Environments & Sync (4중복: CLAUDE/AGENTS/ANTIGRAVITY/CMDS), Key Directories & Their Roles (.claude/rules/directory-structure.md 가 정본), Command Suite 상세 (CLAUDE.md 3중복), Quick Reference 카테고리 표 (본문과 자체 중복), When to Reference Each File·Quick Decision Tree (다른 파일 헤더와 중복). Vault Statistics 날짜 갱신. 9 카테고리·Workflow Patterns·Understanding User Intent 전문 유지. 결과: ~43.8k → ~28k chars."
@@ -35,7 +38,7 @@ changelog:
   - "2.1 (2026-04-01): precedence/memory-type/required-for/token-estimate 추가"
   - "2.0 (2026-03-15): 전면 리뷰, 통계 갱신, AI Tools 업데이트"
 ---
-> 	**🔄 Last Updated: 2026-05-30** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS_backup.md` | Public: [system.cmdspace.work](https://system.cmdspace.work)
+> **🔄 Last Updated: 2026-07-02** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS_backup.md` | Public: [system.cmdspace.work](https://system.cmdspace.work)
 
 # CMDS.md
 
@@ -80,7 +83,7 @@ This vault has **9 system files** organized by audience. You are currently readi
 | --------------------------- | ------------------ | ---------------------------------------------------- | :--------: |
 | **CMDS.md** (this file)     | All LLM assistants | WHY & WHAT — 시스템 철학·사용자·9 카테고리           | 4          |
 | **🏛 CMDS Guide.md**        | User + AI          | Standards — Properties v2, 템플릿, naming            | 5          |
-| **🏛 CMDS Head Quarter.md** | User + AI          | Navigation — 91 카테고리 hub                         | 6          |
+| **🏛 CMDS Head Quarter.md** | User + AI          | Navigation — 87 서브카테고리 hub                      | 6          |
 
 #### 🧠 Gobi Persona System (Gobi 앱 entry point — *외부 LLM coding agent 아님*)
 
@@ -136,7 +139,7 @@ This vault has **9 system files** organized by audience. You are currently readi
 
 1. **Obsidian-Based Personal Knowledge Management** — a 3+ year, 10,000+ note ecosystem (mothership ~8,000 notes) as the substrate of everything else.
 2. **System Files Infrastructure** — total 9 system files in vault: 6 publicly deployed (CLAUDE.md, AGENTS.md, CMDS.md, 🏛 CMDS Guide, 🏛 CMDS Head Quarter, DESIGN.md) + 3 internal-only (ANTIGRAVITY.md for Gemini, BRAIN.md / BRAIN_PROMPT.md for Gobi persona). Shared `.claude/rules/` accompanies the 6 public files at `system.cmdspace.work`.
-3. **LLM Wiki Satellite Vault** — implementing Karpathy's LLM Wiki pattern (Raw Sources · Wiki · Queries) in a separate `CMDS_LLM_Wiki` vault. Public template distribution `cmds-llm-wiki` (current v1.4.0, [github.com/johnfkoo951/cmds-llm-wiki](https://github.com/johnfkoo951/cmds-llm-wiki)) is sanitized from this satellite — canonical source at `/Users/yohankoo/Local Obsidian_MBP/_starter-kit/cmds-llm-wiki/`, 3-place sync (canonical · `/Users/yohankoo/DEV/cmds-llm-wiki/` git mirror · GitHub Release ZIP).
+3. **LLM Wiki Satellite Vault** — implementing Karpathy's LLM Wiki pattern (Raw Sources · Wiki · Queries) in a separate `CMDS_LLM_Wiki` vault. Public template distribution `cmds-llm-wiki` (current v1.7.0 — 최신 버전은 [github.com/johnfkoo951/cmds-llm-wiki/releases](https://github.com/johnfkoo951/cmds-llm-wiki/releases) 참조) is sanitized from this satellite — canonical source at `/Users/yohankoo/Local Obsidian_MBP/_starter-kit/cmds-llm-wiki/`, 3-place sync (canonical · `/Users/yohankoo/DEV/cmds-llm-wiki/` git mirror · GitHub Release ZIP).
 4. **9Yohan Multi-Agent System** — mapping 900 Divisions × historical "Yohan" figures × the 9 fruits of the Spirit into a 9-agent orchestration (kepler.map / goethe.sense / dewey.learn / bach.score / neumann.compute / baptist.prepare / mccarthy.reason / huizinga.play / calvin.advise).
 
 These four axes are simultaneously **productized** (consulting, education), **published** (더배러 newsletter, public web), and **validated on the toughest stage**: top-level corporate education including LG executive and chairman-group training.
@@ -460,7 +463,7 @@ Index notes aggregate related content across categories:
 2. **Research** client's needs → Reference [[📚 601 Knowledge Management]] or [[📚 620 Generative AI]]
 3. **Design** solution → Draft in [[📚 831 Consulting]]
 4. **Deliver** → Present and document in [[📚 830 Projects]]
-5. **Follow up** → Track in [[60. Collections/63. Meetings/]]
+5. **Follow up** → Track in `60. Collections/63. Meetings/` ([[🏷 Meeting Notes]] 인덱스 경유)
 
 ### Content Creation Workflow
 1. **Identify** topic from [[📚 102 Topics]] or [[📚 220 Personal Insights]]
@@ -509,7 +512,7 @@ Index notes aggregate related content across categories:
 
 ## Key Directories
 
-**전체 디렉토리 구조와 카테고리 매핑은 `.claude/rules/directory-structure.md` 가 정본.** 9개 최상위 폴더 (`00. Inbox` ~ `90. Settings`) 와 CMDS 100-900 카테고리는 1:1 매핑이 아니라 *역할 분리* 다:
+**전체 디렉토리 구조와 카테고리 매핑은 `.claude/rules/directory-structure.md` 가 정본.** 10개 최상위 폴더 (`00. Inbox` ~ `90. Settings`) 와 CMDS 100-900 카테고리는 1:1 매핑이 아니라 *역할 분리* 다:
 
 - `00. Inbox/` — 미분류·임시. AI 에이전트 코드 출력은 `03. AI Agent/03-1~03-8` (agent × machine 매트릭스) 의 정해진 lane 으로.
 - `10. CMDS Process/` — Connect/Merge/Develop/Share 자체에 대한 문서
@@ -572,7 +575,7 @@ If discussing courses or lectures:
 
 ### Consulting Context
 If discussing client work:
-- Document in meetings ([[60. Collections/63. Meetings/]])
+- Document in meetings (`60. Collections/63. Meetings/` — [[🏷 Meeting Notes]])
 - Connect to relevant expertise ([[📚 831 Consulting]])
 - Reference applicable frameworks ([[📖 200 Literature]])
 - Consider deliverables ([[📚 830 Projects]])
@@ -598,7 +601,7 @@ If discussing PKM system itself:
 ### When Creating New Notes
 1. Determine the **CMDS category** (100-900 series) based on content type
 2. Use appropriate **note type** (note, meeting, curriculum, etc.)
-3. Add required **properties** (type, aliases, author, date created, tags)
+3. Add required **properties** — 7 fields: type, aliases, description (English), author, date created, date modified, tags
 4. Link to relevant **index notes** (🏷)
 5. Reference related **CMDS categories**
 6. Create **backlinks** to related notes
@@ -629,7 +632,7 @@ Look for relevant notes in:
 ## Vault Statistics (as of 2026-05-30)
 
 - **Total Notes**: ~8,000 (mothership) · 10,000+ (7-vault ecosystem)
-- **CMDS Categories**: 9 main (100-900) + 91 sub-categories
+- **CMDS Categories**: 9 main (100-900) + 87 sub-categories
 - **Templates**: 100+ note templates
 - **Obsidian Plugins**: 120+
 - **Note Types**: 459+ `note`, 160+ `meeting`, 130+ `terminology`, 124+ `research-pipeline`, 97+ `api`, 93+ `people`, 85+ `moc`, 82+ `curriculum`, 66+ `manuscript`

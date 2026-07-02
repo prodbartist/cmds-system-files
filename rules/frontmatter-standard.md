@@ -56,6 +56,8 @@ Per 🏛 CMDS Guide (authoritative):
 - ❌ `index: "[[📚 102 Topics]]"` (📚 belongs in `CMDS:`, not `index:`)
 - ✅ `CMDS: "[[📚 102 Topics]]"` + `index: "[[🏷 Research Notes]]"`
 
+**Exception — system files**: the 9 system files (CLAUDE.md, AGENTS.md, ANTIGRAVITY.md, CMDS.md, 🏛 CMDS Guide, 🏛 CMDS Head Quarter, BRAIN.md, BRAIN_PROMPT.md, DESIGN.md) are vault-top-level navigation documents and MAY use 🏛 hub notes (`"[[🏛 CMDS Head Quarter]]"`, `"[[🏛 CMDS Guide]]"`) in `index:`. Normal notes must still use 🏷 Index notes only. Do not "fix" system-file frontmatter to 🏷.
+
 **Default 🏷 per CMDS range** (pick the closest fit, override if content dictates):
 
 | CMDS range | Default `index:` |

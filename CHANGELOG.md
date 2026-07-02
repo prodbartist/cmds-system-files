@@ -7,7 +7,7 @@ description: Central version history for the 6 publicly deployed CMDS system fil
 author:
   - "[[구요한]]"
 date created: 2026-04-01T11:30
-date modified: 2026-06-23
+date modified: 2026-07-02
 tags: [CMDS, system, changelog]
 CMDS: "[[📚 501 Obsidian]]"
 ---
@@ -26,6 +26,38 @@ CMDS: "[[📚 501 Obsidian]]"
 | 🔬 **마이크로 (파일별)** | 각 파일의 evolution | 각 파일 frontmatter `version:` | CLAUDE 3.8, CMDS 2.5, ... |
 
 각 매크로 entry 에는 **그 시점의 9 files version snapshot matrix** 를 포함해 마이크로 ↔ 매크로 매핑이 명시됩니다.
+
+---
+
+## v4.9.3 — 2026-07-02 (전수 감사 픽스 — 멀티에이전트 audit)
+
+**트리거**: 사용자 지시 "cmds system file 전체 점검하고 개선" — Fable 5 멀티에이전트 감사 (finder 17 + verifier 60, 총 77 agents) 가 mothership 9 files + rules 8 + commands 8 + satellite 코어를 전수 검사. raw 127 findings → 적대 검증 후 confirmed 픽스 일괄 적용.
+
+**왜 v4.9.3 (patch) 인가**: 스키마·아키텍처 변경 없는 정합성 픽스 모음 (사실 오류·stale 카운트·깨진 링크·회귀 재수정). 단 6개 공개 .md 전부 + rules 2개 변경이라 전체 재배포.
+
+### File Version Snapshot
+
+| File | Version | Δ from v4.9.2 |
+|------|:-------:|:-------------:|
+| CLAUDE.md | **4.4** | ⬆ tags 회귀 5차 재수정 · 동기화 다이어그램 DESIGN.md 누락 · cross-vault wikilink 2곳 → obsidian URL · /query 서술 정정 · 91→87 · v4.2 하드코딩 제거 · token-estimate 실측화 |
+| AGENTS.md | **2.9** | ⬆ audience 에서 Gemini 선두 표기 제거 (ANTIGRAVITY 우선·fallback 명시) · 백틱 wikilink 정정 · mermaid-rules 로딩 목록 추가 |
+| ANTIGRAVITY.md | **2.3** | ⬆ App Sync 경로 오류 (00. Inbox/ prefix 누락) · mermaid-rules 추가 · 날짜 3자 동기화 |
+| CMDS.md | **2.9** | ⬆ tags stray 3 재발 제거 · 스타터킷 v1.4.0→v1.7.0 · 최상위 폴더 9→10 · 폴더 wikilink → 백틱 · 필수 프로퍼티 7개 완전 표기 · 91→87 |
+| 🏛 CMDS Guide.md | **2.8** | ⬆ tags 노이즈 회귀 재제거 · merge 예시 CMDS:/index: 방향 오류 · 템플릿 5종 description/date modified 보완 · CMDS 중복 정의 제거 · index: 시스템 파일 예외 명문화 · 폴더 트리 실측 6개 추가 |
+| 🏛 CMDS Head Quarter.md | **1.7** | ⬆ 91→87 · 인덴트/trailing 정규화 · Links:: 자기참조 제거 · Companion Vaults (6) 표 확장 |
+| DESIGN.md | **1.2** | ⬆ 미실존 스킬 2종 교체 · cmds-visual-gen 반영 · cross-vault wikilink → obsidian URL · 4-way → 8-way 정정 · 깨진 링크 구문 정리 |
+| BRAIN.md *(internal)* | (Gobi-managed) | 공개 bio 박사수료 표기 제거 (사용자 피드백 룰) · 연락처 placeholder 채움 |
+| BRAIN_PROMPT.md *(internal)* | (Gobi-managed) | frontmatter 7필드 보완 (type/aliases/author 추가, description 영어화) |
+
+### Changes
+
+- **Rules**: `mermaid-rules.md` 도형 표 정정 (trapezoid/평행사변형 뒤바뀜 — 공식 문법 정합), `video-project-workflow.md` (인덱스 aliased 링크 + 하드코딩 프로젝트 표 → 인덱스 위임), `directory-structure.md` (01. Articles·_Gobi_Captures 추가 + 비 CMDS 루트 폴더 각주), `frontmatter-standard.md` (시스템 파일 index: 예외 명문화)
+- **Commands**: status/lint "5 system files" → 9 · lint 빈 파일 체크에 지식 씨앗 carve-out (2026-06-10 정책) · lint/query/share allowed-tools 와 본문 워크플로 정합 (Edit/Write 추가) · connect stray tags 제거 + qmd mothership 컬렉션 정식 사용 · query qmd 헤지 제거 · share 라우팅 맵 현행화 (cmds-sns-promo/cmds-lecture-builder/cmds-shorts-builder/cmds-visual-gen, essay-reviewer-korean agent 표기, 706 오타) · inbox Antigravity 레인 · `.codex/commands/share.md` + `.agents/skills/share/SKILL.md` parity 동기화
+- **신규**: `90. Settings/96. Index/🏷 Books.md` 생성 — Guide·frontmatter-standard·/merge 가 지시해온 인덱스의 실체 부재 해소 (인바운드 12건 resolve)
+- **웹 surface**: index.html·docs/index.html 의 v4.9.0 stale 버전 문자열 → v4.9.3
+- **위성 (⑦)**: CMDS_LLM_Wiki Core Context v2.4 (9yohan 경로·5+1 카운트·명령 7→11·macro 동기화), satellite CLAUDE/AGENTS (스타터킷 v1.7.0 소급·CMDSPACE/ 경로 오류·archives 경로), LLM-Wiki-Starter-Kit.md v2.5 (Visibility Public 실측·v1.7.0·구조 미리보기 재작성), Multi-Vault Architecture 가이드 9건 (Admin pair 자기모순·GOBI sync 행·카운트 통일·qmd 등록 완료 반영), log.md 무괄호 헤더 14건 정규화
+- **위성 (⑥)**: cmds-vault Guide 의 시스템 파일 열거에 DESIGN 추가 — PR 워크플로 준수, 브랜치 `audit/design-md-author-enumeration` 커밋 (main 직접 push 안 함)
+- **위성 (⑧, report-only)**: cmds-llm-wiki 3-place 모두 v1.7.0 일치 (drift 없음). 단 `_starter-kit/` 루트에 구버전 v1.6.2.zip 잔존 (archives/ 에 중복) + cmds-vault GitHub Release 가 v1.0.0 에 정체 (태그 v1.2.0 존재, Release 미발행) — 사용자 결정 대기
 
 ---
 

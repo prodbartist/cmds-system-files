@@ -3,11 +3,11 @@ type: CMDS
 aliases:
   - CMDS HQ
   - Head Quarter
-description: "Central navigation hub for the CMDS vault. Provides links to 91 sub-categories across 9 main categories (100-900), a CMDS Process summary, vault folder structure (00-90), and working environment information. Reference when navigating the vault or locating a specific category."
+description: "Central navigation hub for the CMDS vault. Provides links to 87 sub-categories across 9 main categories (100-900), a CMDS Process summary, vault folder structure (00-90), and working environment information. Reference when navigating the vault or locating a specific category."
 author:
   - "[[구요한]]"
 date created: 2025-10-23T01:59
-date modified: 2026-06-11T08:09
+date modified: 2026-07-02
 tags:
   - CMDS
   - system
@@ -22,9 +22,10 @@ optional-for:
   - code-generation
 token-estimate: 1800
 index: "[[🏛 CMDS Guide]]"
-version: "1.6"
+version: "1.7"
 status: completed
 changelog:
+  - "1.7 (2026-07-02): 전수 감사 픽스 세트 (macro v4.9.3) — (a) description 의 '91 sub-categories' → 실측 87 정정, (b) 300 Data 하위 3항목 4-space → TAB 인덴트 정규화 + trailing space 제거, (c) Links:: 자기참조 제거, (d) Satellite Vaults 섹션을 Companion Vaults (6) 표로 확장 (7-vault ecosystem 반영), (e) 배너·date modified 동기화."
   - "1.6 (2026-05-30): v4.9.0 pass — added 🗂 System Files (9) section (public/private split + DESIGN.md precedence 9); restored full 100-900 category nav after an edit-pass truncation. Banner/date synced to 2026-05-30."
   - "1.5 (2026-05-22): 9-file scheme 인지 갱신 — HQ 본문은 카테고리 navigation 전용이라 system files 표 없음. Frontmatter changelog 만 갱신해 정합성 표시. DESIGN.md 의 시각 산출물 spec 으로의 역할은 CLAUDE/AGENTS/ANTIGRAVITY/CMDS 가 다룸."
   - "1.4 (2026-05-03): Aligned precedence to 8-file scheme (5→6). Added Antigravity 03-7/03-8 output folders to Working Environments."
@@ -35,9 +36,9 @@ changelog:
 share_link: https://share.note.sx/fhfd1sg3#k4DqRdPCseLgf3fC7XlKzkIs/Hr5ZLdr/R6f5vlVJN0
 share_updated: 2025-08-25T11:43:35+09:00
 ---
-> **🔄 Last Updated: 2026-05-30** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS-Head-Quarter_backup.md`
+> **🔄 Last Updated: 2026-07-02** | Backup: `40. Docs/47. CMDS Docs/cmds-system-files/CMDS-Head-Quarter_backup.md`
 
-Links:: [[🏛 CMDS Head Quarter]] | [[🏛 CMDS Guide]]
+Links:: [[🏛 CMDS Guide]]
 References:: [[🏛 000 YHN Home]]
 ## CMDS
 - #### [[📖 100 Themes]]
@@ -49,17 +50,17 @@ References:: [[🏛 000 YHN Home]]
 	- [[📚 201 Concepts]]
 	- [[📚 202 Frameworks]]
 	- [[📚 203 Models]]
-	- [[📚 204 Theories]] 
-	- [[📚 205 Classics]] 
+	- [[📚 204 Theories]]
+	- [[📚 205 Classics]]
 	- [[📚 210 Literature Reviews]]
 	- [[📚 220 Personal Insights]]
 	- [[📚 240 Books]]
 	- [[📚 290 Bible]]
 	- [[📚 291 Sermon]]
 - #### [[📖 300 Data]]
-    - [[📚 301 Scale Development and Validation]]
-    - [[📚 302 Questionnaires]]
-    - [[📚 303 Panel Data]]
+	- [[📚 301 Scale Development and Validation]]
+	- [[📚 302 Questionnaires]]
+	- [[📚 303 Panel Data]]
 	- [[📚 310 Data Management]]
 	- [[📚 311 Database Systems]]
 	- [[📚 330 Learning Management Systems]]
@@ -77,9 +78,9 @@ References:: [[🏛 000 YHN Home]]
 	- [[📚 422 Deep Learning]]
 	- [[📚 423 Predictive Analytics]]
 	- [[📚 490 Syntax]]
-	- [[📚 491 Codes]] 
-	- [[📚 492 Prompts]] 
-	- [[📚 493 Scripts]] 
+	- [[📚 491 Codes]]
+	- [[📚 492 Prompts]]
+	- [[📚 493 Scripts]]
 - #### [[📖 500 Products]]
 	- [[📚 501 Obsidian]]
 	- [[📚 502 Notion]]
@@ -197,16 +198,21 @@ References:: [[🏛 000 YHN Home]]
 | Primary | MacBook Pro | `03-1. Claude Code (MBP)` / `03-3. OpenClaw (MBP)` / `03-5. Codex (MBP)` / `03-7. Antigravity (MBP)` |
 | Secondary | Mac Studio | `03-2. Claude Code (Studio)` / `03-4. OpenClaw (Studio)` / `03-6. Codex (Studio)` / `03-8. Antigravity (Studio)` |
 
-## Satellite Vaults
-> [!tip] 이 볼트의 자매 볼트
-> CMDSPACE_Local_MBP 옆에 특수 목적 satellite 볼트가 있습니다. Obsidian Sync 별개이며 각자 독립 git repo로 관리됩니다.
+## Companion Vaults (6)
+> [!tip] 이 볼트의 companion 볼트
+> CMDSPACE_Local_MBP 옆에 governance 별로 분리된 **6개 companion 볼트** 가 있습니다 (7-vault ecosystem). Obsidian Sync 별개이며 각자 독립 git repo (또는 외부 sync) 로 관리됩니다. 정본: [[CLAUDE.md]] § Companion Vaults.
 
-| Satellite | 경로 | 목적 | 진입점 |
-|-----------|------|------|--------|
-| `CMDS_LLM_Wiki` | `/Users/yohankoo/Local Obsidian_MBP/CMDS_LLM_Wiki` | Karpathy LLM Wiki 패턴 구현 — LLM이 raw source를 컴파일하여 영속 위키 유지 | [[🛰 CMDS_LLM_Wiki Satellite Vault]] |
+| Type | Vault | 멤버 | 목적 | 진입점 |
+|------|-------|------|------|--------|
+| 🛰 Compiled Satellite | `CMDS_LLM_Wiki` | 구요한 + LLM | Karpathy LLM Wiki 패턴 — raw source 를 컴파일하여 영속 위키 유지 | [[🛰 CMDS_LLM_Wiki Satellite Vault]] |
+| 🤖 Personal Product | `CMDS_Gobi` | 구요한 | 고비 스페이스/데스크탑 개인 사용 | — |
+| 🤝 Pair | `CMDS_JoonLab` | 구요한 + 박준 | 교육·강의·컨설팅·코칭 | — |
+| 🤝 Pair | `CMDSPACE_Admin` | 구요한 + 이태극 | 커맨드스페이스 운영 총괄 | — |
+| 👥 Team (5인) | `GOBI` | 구요한·이태극·김진영·강민석·Greg Moon | 커맨드스페이스 × 고비 팀 | — |
+| 📤 Distribution | `cmds-vault` | 구요한 → 외부 | CMDS 스타터킷 (외부 사용자 배포) | — |
 
-- 사용 기준: 외부 자료(기사·논문·전사)를 LLM이 통합 관리하는 주제별 deep-dive는 satellite에, 그 외 PKM은 메인 볼트에.
-- Cross-reference 규약: [[🛰 CMDS_LLM_Wiki Satellite Vault#5. Cross-Reference Convention]] 참조.
+- 사용 기준: 외부 자료(기사·논문·전사)를 LLM이 통합 관리하는 주제별 deep-dive는 satellite에, 그 외 PKM은 메인 볼트에. 새 자료의 볼트 선택은 *합의 권한 (governance)* 우선.
+- Cross-reference 규약: [[🛰 CMDS_LLM_Wiki Satellite Vault#5. Cross-Reference Convention]] 참조. 크로스-볼트는 wikilink 불가 — `obsidian://open?vault=...` URL 사용.
 
 ## 🗂 System Files (9)
 > [!info] 9개 시스템 파일 — 공개 6 + 비공개 3
